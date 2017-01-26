@@ -14,6 +14,8 @@ public class LevelScript : MonoBehaviour {
     void Start () {
         //Sets when the monster should first spawn
         spawnTime = Random.Range(minTime, maxTime);
+
+        Cursor.visible = false;
     }
 	
 	// Update is called once per frame
@@ -32,8 +34,11 @@ public class LevelScript : MonoBehaviour {
     void SpawnBallMonster()
     {
         time = 0;
+        //Randomizes position of monster
         int spawnPositionX = Random.Range(-75, 75);
         var position = new Vector3(spawnPositionX, 5f, 160f);
+
+        //Creates monster
         var newBallMonster = GameObject.Instantiate(ballMonster, position, Quaternion.identity);
         newBallMonster.SetActive(true);
     }

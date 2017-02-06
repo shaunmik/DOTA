@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VR;
+using UnityEngine.UI;
 
 public class CastingControl : MonoBehaviour {
     public bool mouseMode;
@@ -10,6 +11,10 @@ public class CastingControl : MonoBehaviour {
     public GameObject RightHand;
     public Camera cam;
     public GameObject[] Prefabs;
+    private FireLevelController fireLevelController;
+    private WaterLevelController waterLevelController;
+    private EarthLevelController earthLevelController;
+    private WindLevelController windLevelController;   
 
     private float nextSpellLeft;
     private float nextSpellRight;
@@ -17,16 +22,56 @@ public class CastingControl : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        fireLevelController = FindObjectOfType<FireLevelController>();
+        waterLevelController = FindObjectOfType<WaterLevelController>();
+        earthLevelController = FindObjectOfType<EarthLevelController>();
+        windLevelController = FindObjectOfType<WindLevelController>();
         nextSpellLeft = Time.time;
         nextSpellRight = Time.time;
     }
 	
 	// Update is called once per frame
-	void Update () {    
-        if (ActionControlListener.isRightTriggerFullyPressed() && Time.time > nextSpellLeft)      
-            CastSpell(RightHand, true);        
-        if (ActionControlListener.isLeftTriggerFullyPressed() && Time.time > nextSpellRight)
-            CastSpell(LeftHand, false);
+    void Update () {    
+        if (ActionControlListener.isRightTriggerFullyPressed() && Time.time > nextSpellLeft){ 
+            DecrementElements(false);    
+            CastSpell(RightHand, false); 
+        }       
+        if (ActionControlListener.isLeftTriggerFullyPressed() && Time.time > nextSpellRight){
+            DecrementElements(true);
+            CastSpell(LeftHand, true);
+        } 
+    }
+
+
+    // Decrement the elements set in the specified hand
+    void DecrementElements(bool isLeftHand){
+	  if (isLeftHand){
+	      if (!string.IsNullOrEmpty(SpellController.leftElem[0])){
+                  DecrementElement(SpellController.leftElem[0], 2);
+              }
+	  } else {
+	      if (!string.IsNullOrEmpty(SpellController.rightElem[0])){
+                  DecrementElement(SpellController.rightElem[0], 2);
+              }
+	  }
+    }
+
+    // Decrement the elements by the specified amount
+    void DecrementElement(string elements, int amount){
+         int elemCount = elements.Length;
+         for (int i = 0; i < elemCount; i++) {
+             if (elements[i] == '1'){
+                fireLevelController.DecrementElement(amount);
+             } else if(elements[i] == '2'){
+                waterLevelController.DecrementElement(amount);
+             } else if(elements[i] == '3'){
+                earthLevelController.DecrementElement(amount);
+             } else if(elements[i] == '4'){
+                windLevelController.DecrementElement(amount);   
+             }
+	     //((FireLevelController)elemToCtrl[elements[i]]).DecrementElement(amount);
+	}
+
     }
 
     // TODO: this needs to take another argument of spell s.t. spell.castRate, spell.delay from spell class

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthController : MonoBehaviour {
 
@@ -21,8 +22,9 @@ public class PlayerHealthController : MonoBehaviour {
 	
         //Damage control.
 	public void TakeDamage(int damage) {
-            if (IsDead)
+            if (IsDead) {
                 return;
+            }
 
             // Decrement the current health by the damage but make sure it stays between the min and max.
             CurrentHealth -= damage;
@@ -34,7 +36,14 @@ public class PlayerHealthController : MonoBehaviour {
             // If the current health is approximately equal to zero
             if (Mathf.Abs(CurrentHealth) < float.Epsilon){
                 isDead = true;
+                GameOver();
             }
 		
 	}
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+
 }

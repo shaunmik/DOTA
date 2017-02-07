@@ -1,10 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpellController : MonoBehaviour {
 
 	public bool pause = false;	// Game paused or not
+        public GameObject fire;
+        public GameObject water;
+        public GameObject earth;
+        public GameObject wind;
+        public Image LeftHandElement1;
+        public Image LeftHandElement2;
+        public Image RightHandElement1;
+        public Image RightHandElement2;
 
 	public enum Elements {none, fire, water, earth, wind};	// Elements enumerator
 	public enum Spells {none, fire, water, earth, wind, 
@@ -12,9 +21,11 @@ public class SpellController : MonoBehaviour {
 						   steam, magma, elec, mud, storm, sandstorm}; // Spell enumerator
 	public enum Hands {left, right}	// Enumerator for hands
 
-	public int leftElem = (int) Spells.none;	// Spell held on left hand
-	public int rightElem = (int) Spells.none;	// Spell held on right hand
-	Hashtable elemToSpell;
+	public static string[] leftElem = new string[2]; // Spell held on left hand
+	public static string[] rightElem = new string[2];// Spell held on right hand
+	Hashtable elemToSpell;                           // Element to spell hashtable
+        Hashtable elemToGo;                              // Element to Element GameObject hashtable
+        Hashtable elemToImg;
 
 	Queue elemsChosen;	// Current one or two elements selected
 
@@ -24,6 +35,8 @@ public class SpellController : MonoBehaviour {
 		
 		elemsChosen = new Queue();
 		elemToSpell = new Hashtable();
+                elemToGo = new Hashtable();
+                elemToImg = new Hashtable();
 
 		// Create element combination to spell conversion
 		elemToSpell.Add("1", (int) Spells.fire);
@@ -40,6 +53,14 @@ public class SpellController : MonoBehaviour {
 		elemToSpell.Add("23", (int) Spells.mud);
 		elemToSpell.Add("24", (int) Spells.storm);
 		elemToSpell.Add("34", (int) Spells.sandstorm);
+                elemToGo.Add((int)Elements.fire, fire);
+                elemToGo.Add((int)Elements.water, water);
+                elemToGo.Add((int)Elements.earth, earth);
+                elemToGo.Add((int)Elements.wind, wind); 
+                elemToImg.Add((int)Elements.fire, "fire_core"); 
+                elemToImg.Add((int)Elements.water, "water_core"); 
+                elemToImg.Add((int)Elements.earth, "earth_core"); 
+                elemToImg.Add((int)Elements.wind, "wind_core");     
 	}
 	
 	// Update is called once per frame
@@ -48,8 +69,8 @@ public class SpellController : MonoBehaviour {
 			// Confirm left hand spell choice
 			ConfirmSpell(Hands.left);
 		} 
-		if (ActionControlListener.isRightTriggerPressed()) {
-			// Confirm right hand spell 
+		if (ActionControlListener.isRightConfirmPressed()) {
+			// Confirm right hand spell
 			ConfirmSpell(Hands.right);
 		} 
 		if (ActionControlListener.isFireButtonPressed()) {
@@ -68,7 +89,7 @@ public class SpellController : MonoBehaviour {
 		// DEBUG CODE BEGINS
 		if (Input.GetKeyDown("space")) {
 			Debug.Log("Testing: " + GetSpell(true));
-		}
+		} 
 	}
 
 
@@ -81,21 +102,59 @@ public class SpellController : MonoBehaviour {
 	void QueueElement(Elements elem) {
 		// Remove all elements if there are two already
 		if (elemsChosen.Count == 2) {
-			elemsChosen.Clear();
+                        SelectElement((int)elemsChosen.Dequeue(),true);
+                        SelectElement((int)elemsChosen.Dequeue(),true);
+			//elemsChosen.Clear();
 		}
 		elemsChosen.Enqueue((int)elem);
-		// TODO: Call the UI function to display element (K)
+                SelectElement((int)elem,false);
 	}
+
+       // Highlights the elements from the queue in the GUI
+       void SelectElement(int elem, bool deselect){
+            //Deselect an element -- remove the spinning circle inside the element 
+            if (deselect){
+               ((GameObject)elemToGo[elem]).SetActive(false);
+            } else {
+            //Select an element -- show the spinning circle inside the element 
+               ((GameObject)elemToGo[elem]).SetActive(true); 
+            }            
+       }
+
+       // Update the specified hand with provided elements
+       void updateHandElements(Hands hand, int[] elems){  
+            int elemCount = elemsChosen.Count; 
+            if (hand == Hands.left){
+                if (elems.Length == 2){
+                    ChangeImage(LeftHandElement1,(string)elemToImg[elems[0]]);
+                    ChangeImage(LeftHandElement2,(string)elemToImg[elems[1]]);
+                } else {
+                    ChangeImage(LeftHandElement1,(string)elemToImg[elems[0]]);
+                }
+            }else{
+                if (elems.Length == 2){
+                    ChangeImage(RightHandElement1,(string)elemToImg[elems[0]]);
+                    ChangeImage(RightHandElement2,(string)elemToImg[elems[1]]);
+                } else {
+                    ChangeImage(RightHandElement1,(string)elemToImg[elems[0]]);
+                }
+            }   
+        }
+
+        // Change the given image's source image
+        void ChangeImage(Image img, string sourceImage){
+             img.sprite = Resources.Load<Sprite>(sourceImage);
+        }
 
 
 	/**
 	  * Get spell on given hand.
 	  */
-	public int GetSpell(bool isLeftHand) {
+	public string GetSpell(bool isLeftHand) {
 		if (isLeftHand) {
-			return leftElem;
+			return leftElem[1];
 		} else {
-			return rightElem;
+			return rightElem[1];
 		}
 	}
 	
@@ -105,17 +164,32 @@ public class SpellController : MonoBehaviour {
 	  **/
 	void ConfirmSpell(Hands hand) {
 		int[] elemArray = queueToSortedArray();
-		string spellCode = getSpell(elemArray);
-		int spell = (int) elemToSpell[spellCode];
-		if (hand == Hands.left) {
-			leftElem = spell;
-		} else if (hand == Hands.right) {
-			rightElem = spell;
-		} else {
-			Debug.Log("ConfirmSpell was given an invalid hand.");
-		}
-		// Clear the current element queue
-		elemsChosen.Clear();
+                if (elemArray.Length > 0){
+			string spellCode = getSpell(elemArray);
+			int spell = (int) elemToSpell[spellCode];
+			if (hand == Hands.left) {
+		                //leftElem = spell;
+                                leftElem[0] = spellCode;
+                                leftElem[1] = spell.ToString();
+		                updateHandElements(hand,elemArray);
+			} else if (hand == Hands.right) {
+				//rightElem = spell;
+                                rightElem[0] = spellCode;
+                                rightElem[1] = spell.ToString();
+		                updateHandElements(hand,elemArray);
+			} else {
+				Debug.Log("ConfirmSpell was given an invalid hand.");
+			}
+			// Clear the current element queue
+		        if (elemArray.Length == 2) {
+		                SelectElement(elemArray[0],true);
+		                SelectElement(elemArray[1],true);
+			} else {
+		                SelectElement(elemArray[0],true); 
+		        }
+                }
+                //elemsChosen.Clear();
+
 	}
 
 	/**
@@ -135,20 +209,22 @@ public class SpellController : MonoBehaviour {
 	  */
 	int[] queueToSortedArray () {
 		int elemCount = elemsChosen.Count;
-		int[] elemArray = new int[elemCount];
-		for (int i = 0; i < elemCount; i++) {
-			elemArray[i] = (int) elemsChosen.Dequeue();
-		}
-		if (elemCount > 1) {
-			// Sorting the order of elements in order of spell number
-			// This needs to be changed to a for loop for proper sort
-			// if more than 2 elements can be combined!
-			if (elemArray[0] > elemArray[1]) {
-				int temp = elemArray[0];
-				elemArray[0] = elemArray[1];
-				elemArray[1] = temp;
+                int[] elemArray = new int[elemCount];
+                if (elemCount > 0) {
+			for (int i = 0; i < elemCount; i++) {
+				elemArray[i] = (int) elemsChosen.Dequeue();
 			}
-		}
+			if (elemCount > 1) {
+				// Sorting the order of elements in order of spell number
+				// This needs to be changed to a for loop for proper sort
+				// if more than 2 elements can be combined!
+				if (elemArray[0] > elemArray[1]) {
+					int temp = elemArray[0];
+					elemArray[0] = elemArray[1];
+					elemArray[1] = temp;
+				}
+			}
+                }
 		return elemArray;
 	}
 }

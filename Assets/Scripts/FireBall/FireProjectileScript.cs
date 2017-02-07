@@ -50,6 +50,8 @@ namespace DigitalRuby.PyroParticles
 
         private bool collided;
 
+        private PlayerScoreController playerScore;
+
         private IEnumerator SendCollisionAfterDelay()
         {
             yield return new WaitForSeconds(ProjectileColliderDelay);
@@ -64,6 +66,8 @@ namespace DigitalRuby.PyroParticles
             base.Start();
 
             StartCoroutine(SendCollisionAfterDelay());
+        
+            playerScore = FindObjectOfType<PlayerScoreController>();
         }
 
         public void HandleCollision(GameObject obj, Collision c)
@@ -96,6 +100,8 @@ namespace DigitalRuby.PyroParticles
             if (c.collider.tag.Equals("Monster"))
             {
                 Destroy(c.collider.gameObject);
+                playerScore.addScore(1);
+                
             }
 
             // if we have contacts, play the collision particle system and call the delegate

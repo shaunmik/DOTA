@@ -40,13 +40,13 @@ public static class ActionControlListener
      */
 
     // Left hand buttons
-    public static bool isFireButtonPressed()
+    public static bool isWaterButtonPressed()
     {
-        return Input.GetButtonDown("X_Button"); 
+        return Input.GetButtonDown("X_Button");
     }
-    public static bool isWindButtonPressed()
+    public static bool isEarthButtonPressed()
     {
-        return Input.GetButtonDown("Y_Button"); 
+        return Input.GetButtonDown("Y_Button");
     }
     public static bool isLeftConfirmPressed()
     {
@@ -74,13 +74,13 @@ public static class ActionControlListener
     }
 
     // Right hand buttons
-    public static bool isWaterButtonPressed()
-    {
-        return Input.GetButtonDown("A_Button");
-    }
-    public static bool isEarthButtonPressed()
+    public static bool isFireButtonPressed()
     {
         return Input.GetButtonDown("B_Button");
+    }
+    public static bool isWindButtonPressed()
+    {
+        return Input.GetButtonDown("A_Button");
     }
     public static bool isRightConfirmPressed()
     {

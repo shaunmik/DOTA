@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea2ecf1a456641d5b83323e1ec8697d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fire: {fileID: 0}
+  Fire: {fileID: 45763479}
 --- !u!1 &81576218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,7 +1015,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1843,7 +1843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e6ba0f42607477cba7884268512785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Earth: {fileID: 0}
+  Earth: {fileID: 743104465}
 --- !u!1 &821073623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,7 +2404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1087215339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2520,7 +2520,7 @@ MonoBehaviour:
   m_OnFilledClip: {fileID: 0}
   m_Slider: {fileID: 1855020182}
   m_InteractiveItem: {fileID: 1087215346}
-  m_VRInput: {fileID: 1653866279}
+  m_VRInput: {fileID: 0}
   m_BarCanvas: {fileID: 1087215338}
   m_Renderer: {fileID: 0}
   m_SelectionRadial: {fileID: 0}
@@ -2959,7 +2959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be068e5441226418799a96341f35bcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Water: {fileID: 0}
+  Water: {fileID: 1452080713}
 --- !u!1 &1462912513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3046,7 +3046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173bd912a06be4a39b06072da45722e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wind: {fileID: 0}
+  Wind: {fileID: 1462912515}
 --- !u!1 &1484780021
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,7 +3460,6 @@ GameObject:
   - component: {fileID: 1653866275}
   - component: {fileID: 1653866274}
   - component: {fileID: 1653866278}
-  - component: {fileID: 1653866279}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: MainCamera
@@ -3652,19 +3651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 2131960427}
---- !u!114 &1653866279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1653866265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8902ef04f323e444b98d2e4fd80a56ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_DoubleClickTime: 0.3
-  m_SwipeWidth: 0.3
 --- !u!114 &1661691056
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,8 +6,9 @@ public class DirectMovementMonsterScript : MonoBehaviour
 {
     public GameObject target;
     private PlayerHealthController playerHealthController;
-    private int PlayerDamage = 20;
-    private float speed = 25f;
+    public int Health = 20;
+    public int PlayerDamage = 20;
+    public float speed = 25f;
     // Use this for initialization
     void Start()
     {

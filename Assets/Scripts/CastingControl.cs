@@ -120,6 +120,7 @@ public class CastingControl : MonoBehaviour
         }
         else
         {
+            // TODO/DEBUG: TURNS OUT THIS IS ACTUALLY NEVER RAN
             // set the start point in front of the player a ways, rotated the same way as the player
             pos = bulletPoint.transform.position;
             rotation = cam.transform.rotation.eulerAngles;

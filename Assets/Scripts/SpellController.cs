@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,10 @@ using UnityEngine.UI;
 public class SpellController : MonoBehaviour {
 
 	public bool pause = false;	// Game paused or not
+        public bool fireIsEmpty = false;
+        public bool waterIsEmpty = false;
+        public bool earthIsEmpty = false;
+        public bool windIsEmpty = false;
 	public GameObject fire;
 	public GameObject water;
 	public GameObject earth;
@@ -60,9 +65,20 @@ public class SpellController : MonoBehaviour {
 		elemToGo.Add((int)Elements.wind, wind); 
 
 		elemToImg.Add((int)Elements.fire, "fire_core"); 
-		elemToImg.Add((int)Elements.water, "water_core"); 
+		elemToImg.Add((int)Elements.water, "water_core");
 		elemToImg.Add((int)Elements.earth, "earth_core"); 
-		elemToImg.Add((int)Elements.wind, "wind_core");     
+		elemToImg.Add((int)Elements.wind, "wind_core"); 
+
+                // Initialize the left hand with water element
+                leftElem[0] = ((int)Elements.water).ToString();
+	 	leftElem[1] = ((int)Spells.water).ToString();
+                ChangeImage(LeftHandElement1,(string)elemToImg[(int)Elements.water]);
+
+                // Initialize the right hand with fire element
+                rightElem[0] = ((int)Elements.fire).ToString();
+	 	rightElem[1] = ((int)Spells.fire).ToString();
+                ChangeImage(RightHandElement1,(string)elemToImg[(int)Elements.fire]); 
+
 	}
 	
 	/* Update is called once per frame
@@ -124,11 +140,11 @@ public class SpellController : MonoBehaviour {
       * SelectElement(Elements.fire, true)
       */
 	void SelectElement(int elem, bool deselect){
-            //Deselect an element -- remove the spinning circle inside the element 
+                //Deselect an element -- remove the spinning circle inside the element 
 	  	if (deselect){
 	  		((GameObject)elemToGo[elem]).SetActive(false);
 	  	} else {
-            //Select an element -- show the spinning circle inside the element 
+                //Select an element -- show the spinning circle inside the element 
 	  		((GameObject)elemToGo[elem]).SetActive(true); 
 	  	}            
 	}
@@ -156,10 +172,93 @@ public class SpellController : MonoBehaviour {
 	  }
 
       // Change the given image's source image
-	  void ChangeImage(Image img, string sourceImage){
-	  	img.sprite = Resources.Load<Sprite>(sourceImage);
+	  void ChangeImage(Image hand, string sourceImage){
+	  	hand.sprite = Resources.Load<Sprite>(sourceImage);
 	  }
 
+
+      public void RemoveElementFromHandArray(bool isLeftHand, int elementNum){
+        if (isLeftHand){
+           if (leftElem[0].Length == 1){
+              	leftElem[0] = "";
+	 	leftElem[1] = "";
+           }else{
+               int i = Math.Abs(elementNum-1);
+               leftElem[0] = (leftElem[0][i]).ToString();
+               int spell = (int) elemToSpell[leftElem[0]];
+               leftElem[1] = spell.ToString();
+            }
+        }else{
+           if (rightElem[0].Length == 1){
+              	rightElem[0] = "";
+	 	rightElem[1] = "";
+           }else{
+               int i = Math.Abs(elementNum-1);
+               rightElem[0] = (rightElem[0][i]).ToString();
+               int spell = (int) elemToSpell[rightElem[0]];
+               rightElem[1] = spell.ToString();
+           }
+        }  
+      }
+
+      // check if elem is in isLeftHand hand, returns -1 if not in the hand
+      public int ElementInOppositeHand(bool isLeftHand, string elem){
+             if (isLeftHand){
+                return leftElem[0].IndexOf(elem);
+             }else{
+                return rightElem[0].IndexOf(elem);
+            }
+      }
+
+     // Remove the element image from hand
+     public void RemoveHandElement(bool isLeftHand, string e){
+       if (isLeftHand){
+           if ((elemToImg[elemToSpell[e]]).Equals(LeftHandElement1.sprite.name)){
+               ChangeImage(LeftHandElement1,"None");
+           }else{
+               ChangeImage(LeftHandElement2,"None");
+           }
+       }else{
+           if ((elemToImg[elemToSpell[e]]).Equals(RightHandElement1.sprite.name)){
+               ChangeImage(RightHandElement1,"None");
+           }else{
+               ChangeImage(RightHandElement2,"None");
+           }
+       }
+     }
+
+      // when the element is fully depleted, remove it from the hand that has it
+      public void RemoveElementFromHand(bool isLeftHand, int elementNum, string e){
+            //Debug.Log("LeftHandElement1: " + LeftHandElement1.sprite.name);
+            RemoveHandElement(isLeftHand,e);            
+            RemoveElementFromHandArray(isLeftHand,elementNum);
+            
+            // if element is also in the opposite hand, remove it
+            int index = ElementInOppositeHand(!isLeftHand,e);
+            if (index > -1){ // if found
+		  RemoveHandElement(!isLeftHand,e);
+		  RemoveElementFromHandArray(!isLeftHand,index);
+	    }        
+    }
+
+        // remove any element that is empty
+        public int[] RemoveEmptyElements(int[] elemArray){
+                List<int> elemList = new List<int>();
+		for (int i = 0; i < elemArray.Length; i++) {
+                         int elem = elemArray[i];
+                         if (elem == 1 && !fireIsEmpty){
+                             elemList.Add(elem);
+                         }else if (elem == 2 && !waterIsEmpty){
+                             elemList.Add(elem);
+                         }else if (elem == 3 && !earthIsEmpty){
+                             elemList.Add(elem);
+                         }else if (elem == 4 && !windIsEmpty){
+                             elemList.Add(elem);
+                         }
+		}       
+                return elemList.ToArray();
+
+        }
 
 	/**
 	  * Get spell on given hand.
@@ -180,7 +279,8 @@ public class SpellController : MonoBehaviour {
 	  * ConfirmSpell(Hands.left)
 	**/
 	 void ConfirmSpell(Hands hand) {
-	 	int[] elemArray = queueToSortedArray();
+	 	int[] elemArr = queueToSortedArray();
+                int[] elemArray = RemoveEmptyElements(elemArr);
 	 	if (elemArray.Length > 0){
 	 		string spellCode = getSpell(elemArray);
 	 		int spell = (int) elemToSpell[spellCode];
@@ -197,14 +297,15 @@ public class SpellController : MonoBehaviour {
 	 		} else {
 	 			Debug.Log("ConfirmSpell was given an invalid hand.");
 	 		}
-			// Clear the current element queue
-	 		if (elemArray.Length == 2) {
-	 			SelectElement(elemArray[0],true);
-	 			SelectElement(elemArray[1],true);
-	 		} else {
-	 			SelectElement(elemArray[0],true); 
-	 		}
+
 	 	}
+                // Clear the current element queue
+ 		if (elemArr.Length == 2) {
+ 			SelectElement(elemArr[0],true);
+ 			SelectElement(elemArr[1],true);
+ 		} else if (elemArr.Length == 1){
+ 			SelectElement(elemArr[0],true); 
+ 		}
                 //elemsChosen.Clear();
 
 	 }
@@ -244,5 +345,5 @@ public class SpellController : MonoBehaviour {
 	  	}
 	  	return elemArray;
 	  }
-	}
+}
 

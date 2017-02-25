@@ -16,6 +16,7 @@ public class CastingControl : MonoBehaviour
     private WaterLevelController waterLevelController;
     private EarthLevelController earthLevelController;
     private WindLevelController windLevelController;
+    private SpellController spellController;
 
     private float nextSpellLeft;
     private float nextSpellRight;
@@ -28,6 +29,7 @@ public class CastingControl : MonoBehaviour
         waterLevelController = FindObjectOfType<WaterLevelController>();
         earthLevelController = FindObjectOfType<EarthLevelController>();
         windLevelController = FindObjectOfType<WindLevelController>();
+        spellController = FindObjectOfType<SpellController>();
         nextSpellLeft = Time.time;
         nextSpellRight = Time.time;
     }
@@ -45,29 +47,41 @@ public class CastingControl : MonoBehaviour
         }
     }
 
-
+  
     // todo: make enum for elements & use it
     // Decrement the elements by the specified amount
-    void DecrementElement(string elements, int amount)
+    void DecrementElement(string elements, int amount, bool isLeftHand)
     {
         int elemCount = elements.Length;
         for (int i = 0; i < elemCount; i++)
         {
             if (elements[i] == '1')
             {
-                fireLevelController.DecrementElement(amount);
+                if (fireLevelController.DecrementElement(amount)){
+                    spellController.RemoveElementFromHand(isLeftHand,i,"1");
+                    spellController.fireIsEmpty = true;
+                }
             }
             else if (elements[i] == '2')
             {
-                waterLevelController.DecrementElement(amount);
+                if (waterLevelController.DecrementElement(amount)){
+                    spellController.RemoveElementFromHand(isLeftHand,i,"2");
+                    spellController.waterIsEmpty = true;
+                }
             }
             else if (elements[i] == '3')
             {
-                earthLevelController.DecrementElement(amount);
+                if (earthLevelController.DecrementElement(amount)){
+                    spellController.RemoveElementFromHand(isLeftHand,i,"3");
+                    spellController.earthIsEmpty = true;
+                }
             }
             else if (elements[i] == '4')
             {
-                windLevelController.DecrementElement(amount);
+                if (windLevelController.DecrementElement(amount)){
+                    spellController.RemoveElementFromHand(isLeftHand,i,"4");
+                    spellController.windIsEmpty = true; 
+                }
             }
             //((FireLevelController)elemToCtrl[elements[i]]).DecrementElement(amount);
         }
@@ -75,23 +89,21 @@ public class CastingControl : MonoBehaviour
 
     private void CastLeftHandSpell(GameObject bulletPoint)
     {
-        nextSpellLeft = Time.time + 0.5f;
-        CastSpell(bulletPoint);
-
         if (!string.IsNullOrEmpty(SpellController.leftElem[0]))
         {
-            DecrementElement(SpellController.leftElem[0], 2);
+           nextSpellLeft = Time.time + 0.5f;
+           CastSpell(bulletPoint);
+           DecrementElement(SpellController.leftElem[0], 10, true);
         }
     }
 
     private void CastRightHandSpell(GameObject bulletPoint)
     {
-        nextSpellRight = Time.time + 0.5f;
-        CastSpell(bulletPoint);
-
         if (!string.IsNullOrEmpty(SpellController.rightElem[0]))
         {
-            DecrementElement(SpellController.rightElem[0], 2);
+            nextSpellRight = Time.time + 0.5f;
+            CastSpell(bulletPoint);
+            DecrementElement(SpellController.rightElem[0], 10, false);
         }
     }
 

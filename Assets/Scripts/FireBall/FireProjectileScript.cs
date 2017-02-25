@@ -51,6 +51,11 @@ namespace DigitalRuby.PyroParticles
         private bool collided;
 
         private PlayerScoreController playerScore;
+        private FireLevelController fireLevelController;
+    	private WaterLevelController waterLevelController;
+    	private EarthLevelController earthLevelController;
+    	private WindLevelController windLevelController;
+
 
         private IEnumerator SendCollisionAfterDelay()
         {
@@ -68,6 +73,10 @@ namespace DigitalRuby.PyroParticles
             StartCoroutine(SendCollisionAfterDelay());
         
             playerScore = FindObjectOfType<PlayerScoreController>();
+            fireLevelController = FindObjectOfType<FireLevelController>();
+            waterLevelController = FindObjectOfType<WaterLevelController>();
+            earthLevelController = FindObjectOfType<EarthLevelController>();
+            windLevelController = FindObjectOfType<WindLevelController>();
         }
 
         public void HandleCollision(GameObject obj, Collision c)
@@ -99,8 +108,15 @@ namespace DigitalRuby.PyroParticles
 
             if (c.collider.tag.Equals("Monster"))
             {
-                Destroy(c.collider.gameObject);
+                // destroy the monster
+                Destroy(c.collider.gameObject); 
+                // increament the score
                 playerScore.addScore(1);
+                // increament the level of all elements
+                fireLevelController.IncrementElement(2);
+                waterLevelController.IncrementElement(2);
+                earthLevelController.IncrementElement(2);
+                windLevelController.IncrementElement(2);
                 
             }
 

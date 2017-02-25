@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameRestartScript : MonoBehaviour {
+public class GameStartScript : MonoBehaviour {
 
         int degree = 2;
         float time = 0;

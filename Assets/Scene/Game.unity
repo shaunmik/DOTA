@@ -2597,7 +2597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.9, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 43.3, y: 26.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1076281506
@@ -4796,7 +4796,7 @@ MonoBehaviour:
   RightBulletPoint: {fileID: 492104789}
   cam: {fileID: 1653866269}
   Prefabs:
-  - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
+  - {fileID: 1850751452342440, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
 --- !u!4 &1881224605 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4326896913465000, guid: 2e979b27e2d065b458035b13b573eb87,

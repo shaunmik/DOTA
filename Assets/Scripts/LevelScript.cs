@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelScript : MonoBehaviour {
-
     public GameObject ballMonster;
     public GameObject directMovementMonster;
+
     public float spawnTime = 1f;
     private float maxTime = 2f;
     private float minTime = 1f;
@@ -43,10 +43,9 @@ public class LevelScript : MonoBehaviour {
         }
     }
 
-    //Spawns a ball monster
     void SpawnBallMonster()
     {
-        
+
         //Randomizes position of monster
         int spawnPositionX = Random.Range(-75, 75);
         var position = new Vector3(spawnPositionX, 5f, 400f);

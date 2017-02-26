@@ -26,8 +26,6 @@ public class LevelScript : MonoBehaviour {
         //When it's time to spawn another monster, does so and resets the next time to spawn
         if (time >= spawnTime)
         {
-            
-
             //Resets timer
             time = 0;
             spawnTime = Random.Range(minTime, maxTime);
@@ -51,7 +49,7 @@ public class LevelScript : MonoBehaviour {
         
         //Randomizes position of monster
         int spawnPositionX = Random.Range(-75, 75);
-        var position = new Vector3(spawnPositionX, 5f, 160f);
+        var position = new Vector3(spawnPositionX, 5f, 400f);
 
         //Creates monster
         var newBallMonster = GameObject.Instantiate(ballMonster, position, Quaternion.identity);
@@ -62,7 +60,7 @@ public class LevelScript : MonoBehaviour {
     {
         //Randomizes position of monster
         int spawnPositionX = Random.Range(-75, 75);
-        var position = new Vector3(spawnPositionX, 5f, 160f);
+        var position = new Vector3(spawnPositionX, 5f, 350f);
 
         //Creates monster
         var newDirectMovementMonster = GameObject.Instantiate(directMovementMonster, position, Quaternion.identity);

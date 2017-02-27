@@ -12,10 +12,6 @@ public class CastingControl : MonoBehaviour
     public GameObject RightBulletPoint;
     public Camera cam;
     public GameObject[] Prefabs;
-    private FireLevelController fireLevelController;
-    private WaterLevelController waterLevelController;
-    private EarthLevelController earthLevelController;
-    private WindLevelController windLevelController;
     private SpellController spellController;
 
     private float nextSpellLeft;
@@ -25,10 +21,6 @@ public class CastingControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        fireLevelController = FindObjectOfType<FireLevelController>();
-        waterLevelController = FindObjectOfType<WaterLevelController>();
-        earthLevelController = FindObjectOfType<EarthLevelController>();
-        windLevelController = FindObjectOfType<WindLevelController>();
         spellController = FindObjectOfType<SpellController>();
         nextSpellLeft = Time.time;
         nextSpellRight = Time.time;
@@ -48,63 +40,33 @@ public class CastingControl : MonoBehaviour
     }
 
   
-    // todo: make enum for elements & use it
-    // Decrement the elements by the specified amount
-    void DecrementElement(string elements, int amount, bool isLeftHand)
-    {
-        int elemCount = elements.Length;
-        for (int i = 0; i < elemCount; i++)
-        {
-            if (elements[i] == '1')
-            {
-                if (fireLevelController.DecrementElement(amount)){
-                    spellController.RemoveElementFromHand(isLeftHand,i,"1");
-                    spellController.fireIsEmpty = true;
-                }
-            }
-            else if (elements[i] == '2')
-            {
-                if (waterLevelController.DecrementElement(amount)){
-                    spellController.RemoveElementFromHand(isLeftHand,i,"2");
-                    spellController.waterIsEmpty = true;
-                }
-            }
-            else if (elements[i] == '3')
-            {
-                if (earthLevelController.DecrementElement(amount)){
-                    spellController.RemoveElementFromHand(isLeftHand,i,"3");
-                    spellController.earthIsEmpty = true;
-                }
-            }
-            else if (elements[i] == '4')
-            {
-                if (windLevelController.DecrementElement(amount)){
-                    spellController.RemoveElementFromHand(isLeftHand,i,"4");
-                    spellController.windIsEmpty = true; 
-                }
-            }
-            //((FireLevelController)elemToCtrl[elements[i]]).DecrementElement(amount);
-        }
-    }
-
     private void CastLeftHandSpell(GameObject bulletPoint)
     {
-        if (!string.IsNullOrEmpty(SpellController.leftElem[0]))
+        var elementPair = spellController.LeftHandElementsPair;
+        if (elementPair.isNonePair())
         {
-           nextSpellLeft = Time.time + 0.5f;
-           CastSpell(bulletPoint);
-           DecrementElement(SpellController.leftElem[0], 10, true);
+            return;
         }
+        
+        nextSpellLeft = Time.time + 0.5f;
+        CastSpell(bulletPoint);
+        spellController.DecrementElement(elementPair.First, 10, Hands.handEnum.left);
+        spellController.DecrementElement(elementPair.Second, 10, Hands.handEnum.left);
     }
 
     private void CastRightHandSpell(GameObject bulletPoint)
     {
-        if (!string.IsNullOrEmpty(SpellController.rightElem[0]))
+        var elementPair = spellController.RightHandElementsPair;
+        if (elementPair.isNonePair())
         {
-            nextSpellRight = Time.time + 0.5f;
-            CastSpell(bulletPoint);
-            DecrementElement(SpellController.rightElem[0], 10, false);
+            return;
         }
+
+        nextSpellRight = Time.time + 0.5f;
+        CastSpell(bulletPoint);
+        spellController.DecrementElement(elementPair.First, 10, Hands.handEnum.right);
+        spellController.DecrementElement(elementPair.Second, 10, Hands.handEnum.right);
+        
     }
 
     // TODO: this needs to take another argument of spell s.t. spell.castRate, spell.delay from spell class

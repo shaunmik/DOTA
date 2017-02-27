@@ -6,84 +6,81 @@ using UnityEngine.UI;
 
 public class SpellController : MonoBehaviour
 {
-
     public bool pause = false;	// Game paused or not
-    public bool fireIsEmpty = false;
-    public bool waterIsEmpty = false;
-    public bool earthIsEmpty = false;
-    public bool windIsEmpty = false;
-    public GameObject fire;
-    public GameObject water;
-    public GameObject earth;
-    public GameObject wind;
+
+    // game object that needs to be activated on element selection
+    public GameObject fireSelector;
+    public GameObject waterSelector;
+    public GameObject earthSelector;
+    public GameObject windSelector;
+
+    // sprites used for hand indicator
+    public Sprite emptyHandSprite;
+    public Sprite fireHandSprite;
+    public Sprite waterHandSprite;
+    public Sprite earthHandSprite;
+    public Sprite windHandSprite;
+    
+    // location of hand's spell image indicator
     public Image LeftHandElement1;
     public Image LeftHandElement2;
     public Image RightHandElement1;
     public Image RightHandElement2;
+    
+    
+    private Dictionary<Elements.elemEnum, GameObject> elementToSelectorGameObjectDict;
+    private Dictionary<Elements.elemEnum, Sprite> elementToHandSpriteDict;
 
-    public enum Elements { none, fire, water, earth, wind };    // Elements enumerator
-    public enum Spells
+    private ElementsPair leftHandElementsPair = new ElementsPair(); // Spell held on left hand
+    private ElementsPair rightHandElementsPair = new ElementsPair();// Spell held on right hand
+    private ElementsPair elemsChosen = new ElementsPair();  // Current one or two elements selected
+
+    
+    private FireLevelController fireLevelController;
+    private WaterLevelController waterLevelController;
+    private EarthLevelController earthLevelController;
+    private WindLevelController windLevelController;
+
+
+    public ElementsPair LeftHandElementsPair
     {
-        none, fire, water, earth, wind,
-        fire2, water2, earth2, wind2,
-        steam, magma, elec, mud, storm, sandstorm
-    }; // Spell enumerator
-    public enum Hands { left, right }   // Enumerator for hands
+        get { return leftHandElementsPair; }
+    }
 
-    public static string[] leftElem = new string[2]; // Spell held on left hand
-    public static string[] rightElem = new string[2];// Spell held on right hand
-    Hashtable elemToSpell;                           // Element to spell hashtable
-    Hashtable elemToGo;                              // Element to Element GameObject hashtable
-    Hashtable elemToImg;
 
-    Queue elemsChosen;  // Current one or two elements selected
+    public ElementsPair RightHandElementsPair
+    {
+        get { return rightHandElementsPair; }
+    }
+
 
     void Start()
     {
         // TODO: 
         // pause = GetComponent <Something> ();
 
-        elemsChosen = new Queue();
-        elemToSpell = new Hashtable();
-        elemToGo = new Hashtable();
-        elemToImg = new Hashtable();
+        elementToSelectorGameObjectDict = new Dictionary<Elements.elemEnum, GameObject>();
+        elementToHandSpriteDict = new Dictionary<Elements.elemEnum, Sprite>();
 
-        // Create element combination to spell conversion
-        elemToSpell.Add("1", (int)Spells.fire);
-        elemToSpell.Add("2", (int)Spells.water);
-        elemToSpell.Add("3", (int)Spells.earth);
-        elemToSpell.Add("4", (int)Spells.wind);
-        elemToSpell.Add("11", (int)Spells.fire);
-        elemToSpell.Add("22", (int)Spells.water);
-        elemToSpell.Add("33", (int)Spells.earth);
-        elemToSpell.Add("44", (int)Spells.wind);
-        elemToSpell.Add("12", (int)Spells.steam);
-        elemToSpell.Add("13", (int)Spells.magma);
-        elemToSpell.Add("14", (int)Spells.elec);
-        elemToSpell.Add("23", (int)Spells.mud);
-        elemToSpell.Add("24", (int)Spells.storm);
-        elemToSpell.Add("34", (int)Spells.sandstorm);
+        fireLevelController = FindObjectOfType<FireLevelController>();
+        waterLevelController = FindObjectOfType<WaterLevelController>();
+        earthLevelController = FindObjectOfType<EarthLevelController>();
+        windLevelController = FindObjectOfType<WindLevelController>();
 
-        elemToGo.Add((int)Elements.fire, fire);
-        elemToGo.Add((int)Elements.water, water);
-        elemToGo.Add((int)Elements.earth, earth);
-        elemToGo.Add((int)Elements.wind, wind);
+        elementToSelectorGameObjectDict = new Dictionary<Elements.elemEnum, GameObject>();
 
-        elemToImg.Add((int)Elements.fire, "fire_core");
-        elemToImg.Add((int)Elements.water, "water_core");
-        elemToImg.Add((int)Elements.earth, "earth_core");
-        elemToImg.Add((int)Elements.wind, "wind_core");
 
-        // Initialize the left hand with water element
-        leftElem[0] = ((int)Elements.water).ToString();
-        leftElem[1] = ((int)Spells.water).ToString();
-        ChangeImage(LeftHandElement1, (string)elemToImg[(int)Elements.water]);
+        elementToSelectorGameObjectDict.Add(Elements.elemEnum.none, null);
+        elementToSelectorGameObjectDict.Add(Elements.elemEnum.fire, fireSelector);
+        elementToSelectorGameObjectDict.Add(Elements.elemEnum.water, waterSelector);
+        elementToSelectorGameObjectDict.Add(Elements.elemEnum.earth, earthSelector);
+        elementToSelectorGameObjectDict.Add(Elements.elemEnum.wind, windSelector);
 
-        // Initialize the right hand with fire element
-        rightElem[0] = ((int)Elements.fire).ToString();
-        rightElem[1] = ((int)Spells.fire).ToString();
-        ChangeImage(RightHandElement1, (string)elemToImg[(int)Elements.fire]);
-
+        elementToHandSpriteDict.Add(Elements.elemEnum.none, emptyHandSprite);
+        elementToHandSpriteDict.Add(Elements.elemEnum.fire, fireHandSprite);
+        elementToHandSpriteDict.Add(Elements.elemEnum.water, windHandSprite);
+        elementToHandSpriteDict.Add(Elements.elemEnum.earth, earthHandSprite);
+        elementToHandSpriteDict.Add(Elements.elemEnum.wind, windHandSprite);
     }
 
     /* Update is called once per frame
@@ -93,28 +90,28 @@ public class SpellController : MonoBehaviour
         if (ActionControlListener.isLeftConfirmPressed())
         {
             // Confirm left hand spell choice
-            ConfirmSpell(Hands.left);
+            ConfirmSpell(Hands.handEnum.left);
         }
         if (ActionControlListener.isRightConfirmPressed())
         {
             // Confirm right hand spell
-            ConfirmSpell(Hands.right);
+            ConfirmSpell(Hands.handEnum.right);
         }
         if (ActionControlListener.isFireButtonPressed())
         {
-            QueueElement(Elements.fire);
+            QueueElement(Elements.elemEnum.fire);
         }
         if (ActionControlListener.isWaterButtonPressed())
         {
-            QueueElement(Elements.water);
+            QueueElement(Elements.elemEnum.water);
         }
         if (ActionControlListener.isWindButtonPressed())
         {
-            QueueElement(Elements.wind);
+            QueueElement(Elements.elemEnum.wind);
         }
         if (ActionControlListener.isEarthButtonPressed())
         {
-            QueueElement(Elements.earth);
+            QueueElement(Elements.elemEnum.earth);
         }
         // TODO: remove this
         // DEBUG CODE BEGINS
@@ -133,19 +130,13 @@ public class SpellController : MonoBehaviour
 	  * 
 	  * Example call:
 	  * Call this with QueueElement(Elements.fire)
-	  * Where Elements is the public enum above
+	  * Where Elements is the Element.elemEnum
 	  **/
-    void QueueElement(Elements elem)
+    void QueueElement(Elements.elemEnum elem)
     {
         // Remove all elements if there are two already
-        if (elemsChosen.Count == 2)
-        {
-            SelectElement((int)elemsChosen.Dequeue(), true);
-            SelectElement((int)elemsChosen.Dequeue(), true);
-            //elemsChosen.Clear();
-        }
-        elemsChosen.Enqueue((int)elem);
-        SelectElement((int)elem, false);
+        elemsChosen.push(elem); // this one already takes care of it
+        HighlightElementSelection(elem, true);
     }
 
     /**
@@ -154,147 +145,49 @@ public class SpellController : MonoBehaviour
       * Example call:
       * SelectElement(Elements.fire, true)
       */
-    void SelectElement(int elem, bool deselect)
+    void HighlightElementSelection(Elements.elemEnum elem, bool isSelect)
     {
-        //Deselect an element -- remove the spinning circle inside the element 
-        if (deselect)
-        {
-            ((GameObject)elemToGo[elem]).SetActive(false);
-        }
-        else
-        {
-            //Select an element -- show the spinning circle inside the element 
-            ((GameObject)elemToGo[elem]).SetActive(true);
+        GameObject highlightGameObject = elementToSelectorGameObjectDict[elem];
+        if (highlightGameObject != null) {
+            highlightGameObject.SetActive(isSelect);
         }
     }
 
     /**
-    * Update the specified hand with provided elements
+    * Update the specified hand sprite with current element
     */
-    void updateHandElements(Hands hand, int[] elems)
+    void updateHandElementsSelectionSprite(Hands.handEnum hand)
     {
-        int elemCount = elemsChosen.Count;
-        if (hand == Hands.left)
+        if (hand == Hands.handEnum.left)
         {
-            if (elems.Length == 2)
-            {
-                ChangeImage(LeftHandElement1, (string)elemToImg[elems[0]]);
-                ChangeImage(LeftHandElement2, (string)elemToImg[elems[1]]);
-            }
-            else
-            {
-                ChangeImage(LeftHandElement1, (string)elemToImg[elems[0]]);
-            }
+            ChangeImage(LeftHandElement1, elementToHandSpriteDict[leftHandElementsPair.First]);
+            ChangeImage(LeftHandElement2, elementToHandSpriteDict[leftHandElementsPair.Second]);
         }
-        else
+        else if (hand == Hands.handEnum.right)
         {
-            if (elems.Length == 2)
-            {
-                ChangeImage(RightHandElement1, (string)elemToImg[elems[0]]);
-                ChangeImage(RightHandElement2, (string)elemToImg[elems[1]]);
-            }
-            else
-            {
-                ChangeImage(RightHandElement1, (string)elemToImg[elems[0]]);
-            }
+            ChangeImage(RightHandElement1, elementToHandSpriteDict[rightHandElementsPair.First]);
+            ChangeImage(RightHandElement2, elementToHandSpriteDict[rightHandElementsPair.Second]);
         }
     }
 
     // Change the given image's source image
-    void ChangeImage(Image hand, string sourceImage)
+    void ChangeImage(Image imageObject, Sprite sourceImage)
     {
-        hand.sprite = Resources.Load<Sprite>(sourceImage);
+        imageObject.sprite = sourceImage;
     }
+    
 
-
-    public void RemoveElementFromHandArray(bool isLeftHand, int elementNum)
+    // Used when any of lements is depleted
+    public void RemoveElementsFromHand(Hands.handEnum hand)
     {
-        if (isLeftHand)
+        if (hand == Hands.handEnum.left)
         {
-            if (leftElem[0].Length == 1)
-            {
-                leftElem[0] = "";
-                leftElem[1] = "";
-            }
-            else
-            {
-                int i = Math.Abs(elementNum - 1);
-                leftElem[0] = (leftElem[0][i]).ToString();
-                int spell = (int)elemToSpell[leftElem[0]];
-                leftElem[1] = spell.ToString();
-            }
-        }
-        else
+            leftHandElementsPair.clear();
+        } else if (hand == Hands.handEnum.right)
         {
-            if (rightElem[0].Length == 1)
-            {
-                rightElem[0] = "";
-                rightElem[1] = "";
-            }
-            else
-            {
-                int i = Math.Abs(elementNum - 1);
-                rightElem[0] = (rightElem[0][i]).ToString();
-                int spell = (int)elemToSpell[rightElem[0]];
-                rightElem[1] = spell.ToString();
-            }
+            rightHandElementsPair.clear();
         }
-    }
-
-    // check if elem is in isLeftHand hand, returns -1 if not in the hand
-    public int ElementInOppositeHand(bool isLeftHand, string elem)
-    {
-        if (isLeftHand)
-        {
-            return leftElem[0].IndexOf(elem);
-        }
-        else
-        {
-            return rightElem[0].IndexOf(elem);
-        }
-    }
-
-    // Remove the element image from hand
-    public void RemoveHandElement(bool isLeftHand, string e)
-    {
-        if (isLeftHand)
-        {
-            if ((elemToImg[elemToSpell[e]]).Equals(LeftHandElement1.sprite.name))
-            {
-                ChangeImage(LeftHandElement1, "None");
-            }
-            else
-            {
-                ChangeImage(LeftHandElement2, "None");
-            }
-        }
-        else
-        {
-            if ((elemToImg[elemToSpell[e]]).Equals(RightHandElement1.sprite.name))
-            {
-                ChangeImage(RightHandElement1, "None");
-            }
-            else
-            {
-                ChangeImage(RightHandElement2, "None");
-            }
-        }
-    }
-
-    // when the element is fully depleted, remove it from the hand that has it
-    public void RemoveElementFromHand(bool isLeftHand, int elementNum, string e)
-    {
-        //Debug.Log("LeftHandElement1: " + LeftHandElement1.sprite.name);
-        RemoveHandElement(isLeftHand, e);
-        RemoveElementFromHandArray(isLeftHand, elementNum);
-
-        // if element is also in the opposite hand, remove it
-        int index = ElementInOppositeHand(!isLeftHand, e);
-        if (index > -1)
-        { // if found
-            RemoveHandElement(!isLeftHand, e);
-            RemoveElementFromHandArray(!isLeftHand, index);
-        }
+        updateHandElementsSelectionSprite(hand);
     }
 
     // remove any element that is empty
@@ -304,19 +197,19 @@ public class SpellController : MonoBehaviour
         for (int i = 0; i < elemArray.Length; i++)
         {
             int elem = elemArray[i];
-            if (elem == 1 && !fireIsEmpty)
+            if (elem == 1 && !fireLevelController.IsEmpty)
             {
                 elemList.Add(elem);
             }
-            else if (elem == 2 && !waterIsEmpty)
+            else if (elem == 2 && !fireLevelController.IsEmpty)
             {
                 elemList.Add(elem);
             }
-            else if (elem == 3 && !earthIsEmpty)
+            else if (elem == 3 && !earthLevelController.IsEmpty)
             {
                 elemList.Add(elem);
             }
-            else if (elem == 4 && !windIsEmpty)
+            else if (elem == 4 && !windLevelController.IsEmpty)
             {
                 elemList.Add(elem);
             }
@@ -330,14 +223,7 @@ public class SpellController : MonoBehaviour
 	  */
     public string GetSpell(bool isLeftHand)
     {
-        if (isLeftHand)
-        {
-            return leftElem[1];
-        }
-        else
-        {
-            return rightElem[1];
-        }
+        return "not impl";
     }
 
     /**
@@ -347,46 +233,36 @@ public class SpellController : MonoBehaviour
 	  * Example call:
 	  * ConfirmSpell(Hands.left)
 	**/
-    void ConfirmSpell(Hands hand)
+    void ConfirmSpell(Hands.handEnum hand)
     {
-        int[] elemArr = queueToSortedArray();
-        int[] elemArray = RemoveEmptyElements(elemArr);
-        if (elemArray.Length > 0)
+        if (elemsChosen.isNonePair())
         {
-            string spellCode = getSpell(elemArray);
-            int spell = (int)elemToSpell[spellCode];
-            if (hand == Hands.left)
-            {
-                //leftElem = spell;
-                leftElem[0] = spellCode;
-                leftElem[1] = spell.ToString();
-                updateHandElements(hand, elemArray);
-            }
-            else if (hand == Hands.right)
-            {
-                //rightElem = spell;
-                rightElem[0] = spellCode;
-                rightElem[1] = spell.ToString();
-                updateHandElements(hand, elemArray);
-            }
-            else
-            {
-                Debug.Log("ConfirmSpell was given an invalid hand.");
-            }
+            Debug.Log("[SpellController][ConfirmSpell] no elements are chosen");
+            return;
+        }
 
-        }
-        // Clear the current element queue
-        if (elemArr.Length == 2)
-        {
-            SelectElement(elemArr[0], true);
-            SelectElement(elemArr[1], true);
-        }
-        else if (elemArr.Length == 1)
-        {
-            SelectElement(elemArr[0], true);
-        }
-        //elemsChosen.Clear();
+        RemoveElementsFromHand(hand); // first reset hand's current selection
 
+        // todo: may want to sort? - Shaun
+        if (hand == Hands.handEnum.left)
+        {
+            leftHandElementsPair.push(elemsChosen.First);
+            leftHandElementsPair.push(elemsChosen.Second);
+        }
+        else if (hand == Hands.handEnum.right)
+        {
+            rightHandElementsPair.push(elemsChosen.First);
+            rightHandElementsPair.push(elemsChosen.Second);
+        }
+        else
+        {
+            Debug.Log("ConfirmSpell was given an invalid hand.");
+        }
+        updateHandElementsSelectionSprite(hand);
+
+        HighlightElementSelection(elemsChosen.First, false);
+        HighlightElementSelection(elemsChosen.Second, false);
+        elemsChosen.clear();
     }
 
     /**
@@ -401,35 +277,41 @@ public class SpellController : MonoBehaviour
         }
         return spell;
     }
+    
 
-    /**
-	  * Returns a array form of elements chosen queue.
-	  * Assuming the queue only has 2 elements.
-	  */
-    int[] queueToSortedArray()
+    // todo: make enum for elements & use it
+    // Decrement the elements by the specified amount
+    public void DecrementElement(Elements.elemEnum element, int amount, Hands.handEnum hand)
     {
-        int elemCount = elemsChosen.Count;
-        int[] elemArray = new int[elemCount];
-        if (elemCount > 0)
+        if (element == Elements.elemEnum.fire)
         {
-            for (int i = 0; i < elemCount; i++)
+            if (fireLevelController.DecrementElement(amount))
             {
-                elemArray[i] = (int)elemsChosen.Dequeue();
-            }
-            if (elemCount > 1)
-            {
-                // Sorting the order of elements in order of spell number
-                // This needs to be changed to a for loop for proper sort
-                // if more than 2 elements can be combined!
-                if (elemArray[0] > elemArray[1])
-                {
-                    int temp = elemArray[0];
-                    elemArray[0] = elemArray[1];
-                    elemArray[1] = temp;
-                }
+                RemoveElementsFromHand(hand);
             }
         }
-        return elemArray;
+        else if (element == Elements.elemEnum.water)
+        {
+            if (waterLevelController.DecrementElement(amount))
+            {
+                RemoveElementsFromHand(hand);
+            }
+        }
+        else if (element == Elements.elemEnum.earth)
+        {
+            if (earthLevelController.DecrementElement(amount))
+            {
+                RemoveElementsFromHand(hand);
+            }
+        }
+        else if (element == Elements.elemEnum.wind)
+        {
+            if (windLevelController.DecrementElement(amount))
+            {
+                RemoveElementsFromHand(hand);
+            }
+        }
     }
+
 }
 

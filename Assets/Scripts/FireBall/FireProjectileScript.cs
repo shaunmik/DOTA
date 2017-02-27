@@ -109,7 +109,10 @@ namespace DigitalRuby.PyroParticles
             if (c.collider.tag.Equals("Monster"))
             {
                 // destroy the monster
-                Destroy(c.collider.gameObject); 
+                //Destroy(c.collider.gameObject); 
+                Monster monster = c.collider.gameObject.GetComponent<Monster>();
+                monster.takeDamage(100);
+
                 // increament the score
                 playerScore.addScore(1);
                 // increament the level of all elements

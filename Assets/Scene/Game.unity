@@ -3212,21 +3212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  Health: 20
-  PlayerDamage: 20
+  MonsterAttackDamage: 10
   speed: 25
---- !u!114 &1335170993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1335170990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb89342124ddc74bac81f70260da345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterLife: 100
 --- !u!1 &1369013412
 GameObject:
   m_ObjectHideFlags: 0
@@ -4904,7 +4891,7 @@ MonoBehaviour:
   RightBulletPoint: {fileID: 492104789}
   cam: {fileID: 1653866269}
   Prefabs:
-  - {fileID: 1850751452342440, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
+  - {fileID: 1437006242602934, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
 --- !u!4 &1881224605 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4326896913465000, guid: 2e979b27e2d065b458035b13b573eb87,
@@ -5093,21 +5080,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1653866265}
-  Health: 20
-  PlayerDamage: 20
+  MonsterAttackDamage: 20
   speed: 25
---- !u!114 &1924712692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1924712689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb89342124ddc74bac81f70260da345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterLife: 100
 --- !u!1 &1951229878
 GameObject:
   m_ObjectHideFlags: 0

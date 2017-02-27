@@ -73,11 +73,12 @@ public class CastingControl : MonoBehaviour
             return;
         }
 
-        spellController.DecrementElement(elementPair.First, 10, hand);
-        spellController.DecrementElement(elementPair.Second, 10, hand);
 
         Spells.spellEnum spellEnum = Spells.elementsPairToSpellEnum[elementPair];
         Spells.SpellDetails spellDetail = spellEnumToSpellDetails[spellEnum];
+
+        spellController.DecrementElement(elementPair.First, spellDetail.firstElementCost, hand);
+        spellController.DecrementElement(elementPair.Second, spellDetail.secondElementCost, hand);
         // === setup done. shoot out bullet
 
         Vector3 pos = bulletPoint.transform.position;

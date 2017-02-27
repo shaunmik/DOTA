@@ -22,7 +22,6 @@ abstract public class Monster : MonoBehaviour {
     // Update is called once per frame
     protected void Update()
     {
-        checkDead();
         if (isDead()) return; // so that the object does not move
 
         try {
@@ -91,6 +90,7 @@ abstract public class Monster : MonoBehaviour {
     public void takeDamage(int damage)
     {
         MonsterHealth = MonsterHealth - damage;
+        checkDead();
     }
 
     protected void damagePlayer()

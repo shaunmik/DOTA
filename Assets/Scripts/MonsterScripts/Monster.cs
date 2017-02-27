@@ -15,7 +15,7 @@ abstract public class Monster : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.1f);
     }
 
-    public void OnDestroy()
+    public void Destroy()
     {
         //TODO add death animation here
     }

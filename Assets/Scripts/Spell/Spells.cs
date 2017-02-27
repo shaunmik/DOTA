@@ -24,46 +24,90 @@ public static class Spells {
     }; // Spell enumerator
     */
 
-    public static Dictionary<ElementsPair, spellEnum> elementCombToSpellEnum= 
-        new Dictionary<ElementsPair, spellEnum>
+    public static Dictionary<ElementsPair, spellEnum> elementsPairToSpellEnum = new Dictionary<ElementsPair, spellEnum>
     {
+        {new ElementsPair(Elements.elemEnum.none, Elements.elemEnum.none) , spellEnum.none},
+
         {new ElementsPair(Elements.elemEnum.fire, Elements.elemEnum.none) , spellEnum.fire},
         {new ElementsPair(Elements.elemEnum.water, Elements.elemEnum.none) , spellEnum.water},
         {new ElementsPair(Elements.elemEnum.earth, Elements.elemEnum.none) , spellEnum.earth},
         {new ElementsPair(Elements.elemEnum.wind, Elements.elemEnum.none) , spellEnum.wind},
+
         {new ElementsPair(Elements.elemEnum.fire, Elements.elemEnum.fire) , spellEnum.fireFire},
         {new ElementsPair(Elements.elemEnum.fire, Elements.elemEnum.water) , spellEnum.fireWater},
         {new ElementsPair(Elements.elemEnum.fire, Elements.elemEnum.earth) , spellEnum.fireEarth},
-        {new ElementsPair(Elements.elemEnum.fire, Elements.elemEnum.wind) , spellEnum.fireWind}
+        {new ElementsPair(Elements.elemEnum.fire, Elements.elemEnum.wind) , spellEnum.fireWind},
+
+
+        {new ElementsPair(Elements.elemEnum.water, Elements.elemEnum.fire) , spellEnum.waterFire},
+        {new ElementsPair(Elements.elemEnum.water, Elements.elemEnum.water) , spellEnum.waterWater},
+        {new ElementsPair(Elements.elemEnum.water, Elements.elemEnum.earth) , spellEnum.waterEarth},
+        {new ElementsPair(Elements.elemEnum.water, Elements.elemEnum.wind) , spellEnum.waterWind},
+
+        {new ElementsPair(Elements.elemEnum.earth, Elements.elemEnum.fire) , spellEnum.earthFire},
+        {new ElementsPair(Elements.elemEnum.earth, Elements.elemEnum.water) , spellEnum.earthWater},
+        {new ElementsPair(Elements.elemEnum.earth, Elements.elemEnum.earth) , spellEnum.earthEarth},
+        {new ElementsPair(Elements.elemEnum.earth, Elements.elemEnum.wind) , spellEnum.earthWind},
+
+        {new ElementsPair(Elements.elemEnum.wind, Elements.elemEnum.fire) , spellEnum.windFire},
+        {new ElementsPair(Elements.elemEnum.wind, Elements.elemEnum.water) , spellEnum.windWater},
+        {new ElementsPair(Elements.elemEnum.wind, Elements.elemEnum.earth) , spellEnum.windEarth},
+        {new ElementsPair(Elements.elemEnum.wind, Elements.elemEnum.wind) , spellEnum.windWind}
     };
+
+
+
+    public static Dictionary<spellEnum, SpellDetails> createSpellsEnumToSpellDetailsMap(List<Spells.InspectableSpellDictionaryEntry> inspectorDictionary)
+    {
+
+        var spellsEnumToSpellDetailsMap = new Dictionary<spellEnum, SpellDetails>();
+        foreach (InspectableSpellDictionaryEntry entry in inspectorDictionary)
+        {
+            var key = elementsPairToSpellEnum[new ElementsPair(entry.firstElement, entry.secondElement)];
+            if (spellsEnumToSpellDetailsMap.ContainsKey(key))
+            {
+                Debug.Log("[Spells][createSpellsEnumToSpellDetailsMap] Warning: There already exists duplicte key: " 
+                    + entry.firstElement + " | "+ entry.secondElement);
+            }
+            else
+            {
+                spellsEnumToSpellDetailsMap.Add(key, entry.spellDetails);
+            }
+        }
+
+        return spellsEnumToSpellDetailsMap;
+    }
+    
 
 
     /*
      * This is for inspector to work.
      * Use it like following:
      * [SerializeField]
-     * private List<Spell.SpellDictionaryEntry> inspectorDictionary;
+     * private List<Spells.SpellDictionaryEntry> inspectorDictionary;
      * 
      * and pass it to createSpellEnumToSpellObjectMap(List<Spell.SpellDictionaryEntry> inspectorDictionary); to create
      */
     [System.Serializable]
-    public class SpellDictionaryEntry
+    public class InspectableSpellDictionaryEntry
     {
         public Elements.elemEnum firstElement;
         public Elements.elemEnum secondElement;
-        public GameObject spellObject;
+        public SpellDetails spellDetails;
     }
 
-    public static Dictionary<spellEnum, GameObject> createSpellEnumToSpellObjectMap(List<Spells.SpellDictionaryEntry> inspectorDictionary)
+    [System.Serializable]
+    public class SpellDetails
     {
+        public int firstElementCost;
+        public int secondElementCost;
+        public GameObject spellObject;
 
-        var myDictionary = new Dictionary<spellEnum, GameObject>();
-        foreach (SpellDictionaryEntry entry in inspectorDictionary)
+        public SpellDetails(int firstElementCost, int secondElementCost, GameObject spellObject)
         {
-            var key = elementCombToSpellEnum[new ElementsPair(entry.firstElement, entry.secondElement)];
-            myDictionary.Add(key, entry.spellObject);
+            this.firstElementCost = firstElementCost;
+            this.secondElementCost = secondElementCost;
+            this.spellObject = spellObject;
         }
-
-        return myDictionary;
     }
 }

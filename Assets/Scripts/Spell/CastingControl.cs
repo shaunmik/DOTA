@@ -11,71 +11,79 @@ public class CastingControl : MonoBehaviour
     public GameObject LeftBulletPoint;
     public GameObject RightBulletPoint;
     public Camera cam;
-    public GameObject[] Prefabs;
+
+    [SerializeField]
+    private List<Spells.InspectableSpellDictionaryEntry> spellSettings;
+
     private SpellController spellController;
 
-    private float nextSpellLeft;
-    private float nextSpellRight;
+    private Dictionary<Spells.spellEnum, Spells.SpellDetails> spellEnumToSpellDetails;
+    private float nextSpellCooldownLeft;
+    private float nextSpellCooldownRight;
     private FireBaseScript prefabScript; // TODO: move this variable to a spell class placeholder
 
     // Use this for initialization
     void Start()
     {
         spellController = FindObjectOfType<SpellController>();
-        nextSpellLeft = Time.time;
-        nextSpellRight = Time.time;
+        nextSpellCooldownLeft = Time.time;
+        nextSpellCooldownRight = Time.time;
+    }
+
+    private void Awake()
+    {
+        spellEnumToSpellDetails = Spells.createSpellsEnumToSpellDetailsMap(spellSettings);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ActionControlListener.isRightTriggerFullyPressed() && Time.time > nextSpellRight)
+        if (ActionControlListener.isRightTriggerFullyPressed() && Time.time > nextSpellCooldownRight)
         {
-            CastRightHandSpell(RightBulletPoint);
+            CastSpell(Hands.handEnum.right);
         }
-        if (ActionControlListener.isLeftTriggerFullyPressed() && Time.time > nextSpellLeft)
+        if (ActionControlListener.isLeftTriggerFullyPressed() && Time.time > nextSpellCooldownLeft)
         {
-            CastLeftHandSpell(LeftBulletPoint);
+            CastSpell(Hands.handEnum.left);
         }
     }
-
-  
-    private void CastLeftHandSpell(GameObject bulletPoint)
+    
+    private void CastSpell(Hands.handEnum hand)
     {
-        var elementPair = spellController.LeftHandElementsPair;
+        ElementsPair elementPair;
+        GameObject bulletPoint;
+        if (hand == Hands.handEnum.left)
+        {
+            elementPair = spellController.LeftHandElementsPair;
+            bulletPoint = LeftBulletPoint;
+            nextSpellCooldownLeft = Time.time + 0.5f;
+        } else if (hand == Hands.handEnum.right)
+        {
+            elementPair = spellController.RightHandElementsPair;
+            bulletPoint = RightBulletPoint;
+            nextSpellCooldownRight = Time.time + 0.5f;
+        } else
+        {
+            Debug.Log("[CastingControl][CastSpell] Error: inappropriate hand is provided - " + hand);
+            return;
+        }
+
         if (elementPair.isNonePair())
         {
             return;
         }
-        
-        nextSpellLeft = Time.time + 0.5f;
-        CastSpell(bulletPoint);
-        spellController.DecrementElement(elementPair.First, 10, Hands.handEnum.left);
-        spellController.DecrementElement(elementPair.Second, 10, Hands.handEnum.left);
-    }
 
-    private void CastRightHandSpell(GameObject bulletPoint)
-    {
-        var elementPair = spellController.RightHandElementsPair;
-        if (elementPair.isNonePair())
-        {
-            return;
-        }
+        spellController.DecrementElement(elementPair.First, 10, hand);
+        spellController.DecrementElement(elementPair.Second, 10, hand);
 
-        nextSpellRight = Time.time + 0.5f;
-        CastSpell(bulletPoint);
-        spellController.DecrementElement(elementPair.First, 10, Hands.handEnum.right);
-        spellController.DecrementElement(elementPair.Second, 10, Hands.handEnum.right);
-        
-    }
+        Spells.spellEnum spellEnum = Spells.elementsPairToSpellEnum[elementPair];
+        Spells.SpellDetails spellDetail = spellEnumToSpellDetails[spellEnum];
+        // === setup done. shoot out bullet
 
-    // TODO: this needs to take another argument of spell s.t. spell.castRate, spell.delay from spell class
-    private void CastSpell(GameObject bulletPoint)
-    {
         Vector3 pos = bulletPoint.transform.position;
         Vector3 rotation = new Vector3(0, 0, 0);
 
-        var spellPrefab = GameObject.Instantiate(Prefabs[0]);
+        var spellPrefab = GameObject.Instantiate(spellDetail.spellObject);
         prefabScript = spellPrefab.GetComponent<FireConstantBaseScript>();
 
         if (prefabScript == null)

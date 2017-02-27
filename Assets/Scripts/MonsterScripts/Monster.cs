@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 abstract public class Monster : MonoBehaviour {
     public GameObject target;
-    public int MonsterHealth = 100;
+
+    public float MonsterStartHealth = 100;
+    private float MonsterHealth;
+
     public int MonsterAttackDamage = 10;
     public float speed = 25f;
+
+    [Header("Unity Stuff")]
+    public Image HealthBar;
 
     private bool dead = false;
 
@@ -17,6 +24,7 @@ abstract public class Monster : MonoBehaviour {
     {
         InitializeRotation();
         playerHealthController = intitializePlayerHealthController();
+        MonsterHealth = MonsterStartHealth;
     }
 
     // Update is called once per frame
@@ -89,7 +97,10 @@ abstract public class Monster : MonoBehaviour {
 
     public void takeDamage(int damage)
     {
-        MonsterHealth = MonsterHealth - damage;
+        MonsterHealth -= damage;
+
+        HealthBar.fillAmount = MonsterHealth / MonsterStartHealth;
+
         checkDead();
     }
 

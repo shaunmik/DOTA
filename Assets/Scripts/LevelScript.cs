@@ -6,10 +6,12 @@ public class LevelScript : MonoBehaviour {
     public GameObject ballMonster;
     public GameObject directMovementMonster;
 
-    public float spawnTime = 1f;
-    private float maxTime = 2f;
-    private float minTime = 1f;
+    private float spawnTime = 1f;
+    private float maxTime = 10f;
+    private float minTime = 5f;
     private float time = 0;
+    private float difficultyIncreaseTime=30f;
+    private float currentDifficultyIncreaseTime = 0f;
     private int amountOfEnemies=2;
 
     // Use this for initialization
@@ -22,6 +24,14 @@ public class LevelScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         time += Time.deltaTime;
+        currentDifficultyIncreaseTime += Time.deltaTime;
+        
+        if (currentDifficultyIncreaseTime>= difficultyIncreaseTime)
+        {
+            currentDifficultyIncreaseTime = 0f;
+            minTime = minTime / 2;
+            maxTime = maxTime / 2;
+        }
 
         //When it's time to spawn another monster, does so and resets the next time to spawn
         if (time >= spawnTime)

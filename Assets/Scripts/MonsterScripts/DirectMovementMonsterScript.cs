@@ -18,7 +18,7 @@ public class DirectMovementMonsterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition += transform.forward * -speed * Time.deltaTime;
+        transform.localPosition += transform.forward * -1f * Time.deltaTime;
 
         //Destroys monster once it reaches player for memory management purposes
         if (transform.localPosition.z < target.transform.position.z-2)

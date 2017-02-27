@@ -3212,6 +3212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
+  MonsterHealth: 100
   MonsterAttackDamage: 10
   speed: 25
 --- !u!1 &1369013412
@@ -4594,7 +4595,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb89342124ddc74bac81f70260da345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterLife: 100
 --- !u!1 &1821460164
 GameObject:
   m_ObjectHideFlags: 0
@@ -5080,8 +5080,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1653866265}
+  MonsterHealth: 100
   MonsterAttackDamage: 20
-  speed: 25
+  speed: 15
 --- !u!1 &1951229878
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,7 +5370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb89342124ddc74bac81f70260da345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterLife: 100
 --- !u!1 &2046484545
 GameObject:
   m_ObjectHideFlags: 0

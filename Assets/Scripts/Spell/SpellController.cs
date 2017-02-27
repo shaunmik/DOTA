@@ -33,7 +33,7 @@ public class SpellController : MonoBehaviour
 
     private ElementsPair leftHandElementsPair = new ElementsPair(); // Spell held on left hand
     private ElementsPair rightHandElementsPair = new ElementsPair();// Spell held on right hand
-    private ElementsPair elemsChosen = new ElementsPair();  // Current one or two elements selected
+    private ElementsPair elemsSelected = new ElementsPair();  // Current one or two elements selected
 
     
     private FireLevelController fireLevelController;
@@ -135,7 +135,7 @@ public class SpellController : MonoBehaviour
     void QueueElement(Elements.elemEnum elem)
     {
         // Remove all elements if there are two already
-        elemsChosen.push(elem); // this one already takes care of it
+        elemsSelected.push(elem); // this one already takes care of it
         HighlightElementSelection(elem, true);
     }
 
@@ -235,24 +235,32 @@ public class SpellController : MonoBehaviour
 	**/
     void ConfirmSpell(Hands.handEnum hand)
     {
-        if (elemsChosen.isNonePair())
+        if (elemsSelected.isNonePair())
         {
             Debug.Log("[SpellController][ConfirmSpell] no elements are chosen");
             return;
         }
+
+        foreach (Elements.elemEnum depletedElement in getDepletedElements()) {
+            if (elemsSelected.containsElement(depletedElement)) {
+                clearCurrentSelectedElements();
+                return;
+            }
+        }
+
 
         RemoveElementsFromHand(hand); // first reset hand's current selection
 
         // todo: may want to sort? - Shaun
         if (hand == Hands.handEnum.left)
         {
-            leftHandElementsPair.push(elemsChosen.First);
-            leftHandElementsPair.push(elemsChosen.Second);
+            leftHandElementsPair.push(elemsSelected.First);
+            leftHandElementsPair.push(elemsSelected.Second);
         }
         else if (hand == Hands.handEnum.right)
         {
-            rightHandElementsPair.push(elemsChosen.First);
-            rightHandElementsPair.push(elemsChosen.Second);
+            rightHandElementsPair.push(elemsSelected.First);
+            rightHandElementsPair.push(elemsSelected.Second);
         }
         else
         {
@@ -260,58 +268,69 @@ public class SpellController : MonoBehaviour
         }
         updateHandElementsSelectionSprite(hand);
 
-        HighlightElementSelection(elemsChosen.First, false);
-        HighlightElementSelection(elemsChosen.Second, false);
-        elemsChosen.clear();
-    }
-
-    /**
-	  * Get spell code from element
-	  */
-    string getSpell(int[] elemArray)
-    {
-        string spell = "";
-        for (int i = 0; i < elemArray.Length; i++)
-        {
-            spell += elemArray[i].ToString();
-        }
-        return spell;
+        clearCurrentSelectedElements();
     }
     
+    public List<Elements.elemEnum> getDepletedElements()
+    {
+        List<Elements.elemEnum> depletedElements = new List<Elements.elemEnum>();
+        if (fireLevelController.IsEmpty){
+            depletedElements.Add(Elements.elemEnum.fire);
+        }
+        if (waterLevelController.IsEmpty){
+            depletedElements.Add(Elements.elemEnum.water);
+        }
+        if (earthLevelController.IsEmpty){
+            depletedElements.Add(Elements.elemEnum.earth);
+        }
+        if (windLevelController.IsEmpty){
+            depletedElements.Add(Elements.elemEnum.wind);
+        }
+
+        return depletedElements;
+    }
 
     // todo: make enum for elements & use it
     // Decrement the elements by the specified amount
-    public void DecrementElement(Elements.elemEnum element, int amount, Hands.handEnum hand)
+    public void DecrementElement(Elements.elemEnum element, int amount)
     {
+        bool shouldRemoveSpells = false;
         if (element == Elements.elemEnum.fire)
         {
-            if (fireLevelController.DecrementElement(amount))
-            {
-                RemoveElementsFromHand(hand);
-            }
+            shouldRemoveSpells = fireLevelController.DecrementElement(amount);
         }
         else if (element == Elements.elemEnum.water)
         {
-            if (waterLevelController.DecrementElement(amount))
-            {
-                RemoveElementsFromHand(hand);
-            }
+            shouldRemoveSpells = waterLevelController.DecrementElement(amount);
         }
         else if (element == Elements.elemEnum.earth)
         {
-            if (earthLevelController.DecrementElement(amount))
-            {
-                RemoveElementsFromHand(hand);
-            }
+            shouldRemoveSpells = earthLevelController.DecrementElement(amount);
         }
         else if (element == Elements.elemEnum.wind)
         {
-            if (windLevelController.DecrementElement(amount))
+            shouldRemoveSpells = windLevelController.DecrementElement(amount);
+        }
+
+        if (shouldRemoveSpells)
+        {
+            if (leftHandElementsPair.containsElement(element))
             {
-                RemoveElementsFromHand(hand);
+                RemoveElementsFromHand(Hands.handEnum.left);
+            }
+
+            if (rightHandElementsPair.containsElement(element))
+            {
+                RemoveElementsFromHand(Hands.handEnum.right);
             }
         }
     }
 
+    private void clearCurrentSelectedElements()
+    {
+        HighlightElementSelection(elemsSelected.First, false);
+        HighlightElementSelection(elemsSelected.Second, false);
+        elemsSelected.clear();
+    }
 }
 

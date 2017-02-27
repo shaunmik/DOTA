@@ -29,6 +29,11 @@ public class ElementsPair
         return this.first == Elements.elemEnum.none && this.second == Elements.elemEnum.none;
     }
 
+    public bool containsElement(Elements.elemEnum element)
+    {
+        return this.first == element || this.second == element;
+    }
+
     public void push(Elements.elemEnum element)
     {
         if (this.first == Elements.elemEnum.none)

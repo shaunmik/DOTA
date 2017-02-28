@@ -34,7 +34,7 @@ public class ElementsPair
         return this.first == element || this.second == element;
     }
 
-    public void push(Elements.elemEnum element)
+    public void pushIfPossibleElseClearAndPush(Elements.elemEnum element)
     {
         if (this.first == Elements.elemEnum.none)
         {
@@ -48,6 +48,20 @@ public class ElementsPair
             this.first = element;
         }
 
+    }
+
+    public int getNumAssignedElements()
+    {
+        int num = 0;
+        if (this.first != Elements.elemEnum.none)
+        {
+            num++;
+        }
+        if (this.second != Elements.elemEnum.none)
+        {
+            num++;
+        }
+        return num;
     }
 
     public void clear()

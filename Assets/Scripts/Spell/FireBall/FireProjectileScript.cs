@@ -45,6 +45,9 @@ namespace DigitalRuby.PyroParticles
         [Tooltip("Particle systems to destroy upon collision.")]
         public ParticleSystem[] ProjectileDestroyParticleSystemsOnCollision;
 
+        [Tooltip("The damage of this projectile")]
+        public int bulletDamage = 100;
+
         [HideInInspector]
         public FireProjectileCollisionDelegate CollisionDelegate;
 
@@ -111,15 +114,15 @@ namespace DigitalRuby.PyroParticles
                 // destroy the monster
                 //Destroy(c.collider.gameObject); 
                 Monster monster = c.collider.gameObject.GetComponent<Monster>();
-                monster.takeDamage(100);
+                monster.takeDamage(bulletDamage);
 
                 // increament the score
                 playerScore.addScore(1);
                 // increament the level of all elements
-                fireLevelController.IncrementElement(2);
-                waterLevelController.IncrementElement(2);
-                earthLevelController.IncrementElement(2);
-                windLevelController.IncrementElement(2);
+                fireLevelController.IncrementElement(5);
+                waterLevelController.IncrementElement(5);
+                earthLevelController.IncrementElement(5);
+                windLevelController.IncrementElement(5);
             }
 
             // if we have contacts, play the collision particle system and call the delegate

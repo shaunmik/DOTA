@@ -78,7 +78,7 @@ public class SpellController : MonoBehaviour
 
         elementToHandSpriteDict.Add(Elements.elemEnum.none, emptyHandSprite);
         elementToHandSpriteDict.Add(Elements.elemEnum.fire, fireHandSprite);
-        elementToHandSpriteDict.Add(Elements.elemEnum.water, windHandSprite);
+        elementToHandSpriteDict.Add(Elements.elemEnum.water, waterHandSprite);
         elementToHandSpriteDict.Add(Elements.elemEnum.earth, earthHandSprite);
         elementToHandSpriteDict.Add(Elements.elemEnum.wind, windHandSprite);
     }
@@ -135,7 +135,11 @@ public class SpellController : MonoBehaviour
     void QueueElement(Elements.elemEnum elem)
     {
         // Remove all elements if there are two already
-        elemsSelected.push(elem); // this one already takes care of it
+        if (elemsSelected.getNumAssignedElements() == 2)
+        {
+            clearCurrentSelectedElements();
+        }
+        elemsSelected.pushIfPossibleElseClearAndPush(elem);
         HighlightElementSelection(elem, true);
     }
 
@@ -254,13 +258,15 @@ public class SpellController : MonoBehaviour
         // todo: may want to sort? - Shaun
         if (hand == Hands.handEnum.left)
         {
-            leftHandElementsPair.push(elemsSelected.First);
-            leftHandElementsPair.push(elemsSelected.Second);
+            leftHandElementsPair.clear();
+            leftHandElementsPair.pushIfPossibleElseClearAndPush(elemsSelected.First);
+            leftHandElementsPair.pushIfPossibleElseClearAndPush(elemsSelected.Second);
         }
         else if (hand == Hands.handEnum.right)
         {
-            rightHandElementsPair.push(elemsSelected.First);
-            rightHandElementsPair.push(elemsSelected.Second);
+            rightHandElementsPair.clear();
+            rightHandElementsPair.pushIfPossibleElseClearAndPush(elemsSelected.First);
+            rightHandElementsPair.pushIfPossibleElseClearAndPush(elemsSelected.Second);
         }
         else
         {

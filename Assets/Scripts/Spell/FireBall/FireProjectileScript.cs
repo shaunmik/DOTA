@@ -120,7 +120,6 @@ namespace DigitalRuby.PyroParticles
                 waterLevelController.IncrementElement(2);
                 earthLevelController.IncrementElement(2);
                 windLevelController.IncrementElement(2);
-                
             }
 
             // if we have contacts, play the collision particle system and call the delegate

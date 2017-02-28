@@ -5897,17 +5897,6 @@ CapsuleCollider:
   m_Height: 0.01581439
   m_Direction: 1
   m_Center: {x: 0.0000027505157, y: 0.009366793, z: 0.0000000037252903}
---- !u!114 &1802518939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1802518937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb89342124ddc74bac81f70260da345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1823864011
 GameObject:
   m_ObjectHideFlags: 0
@@ -6363,7 +6352,7 @@ MonoBehaviour:
   MonsterStartHealth: 100
   MonsterAttackDamage: 20
   speed: 15
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 1228327554}
 --- !u!1 &1951229878
 GameObject:
   m_ObjectHideFlags: 0
@@ -6640,17 +6629,6 @@ CapsuleCollider:
   m_Height: 0.01581439
   m_Direction: 1
   m_Center: {x: 0.0000027505157, y: 0.009366793, z: 0.0000000037252903}
---- !u!114 &2026631059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2026631057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb89342124ddc74bac81f70260da345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2046484545
 GameObject:
   m_ObjectHideFlags: 0

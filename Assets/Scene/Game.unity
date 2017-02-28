@@ -847,58 +847,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 275016892}
---- !u!1001 &283452513
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4133033086789448, guid: feccef8fcf58b9d458f935039351eda5, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133033086789448, guid: feccef8fcf58b9d458f935039351eda5, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133033086789448, guid: feccef8fcf58b9d458f935039351eda5, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133033086789448, guid: feccef8fcf58b9d458f935039351eda5, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133033086789448, guid: feccef8fcf58b9d458f935039351eda5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133033086789448, guid: feccef8fcf58b9d458f935039351eda5, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133033086789448, guid: feccef8fcf58b9d458f935039351eda5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133033086789448, guid: feccef8fcf58b9d458f935039351eda5, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 198886311020135928, guid: feccef8fcf58b9d458f935039351eda5,
-        type: 2}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198886311020135928, guid: feccef8fcf58b9d458f935039351eda5,
-        type: 2}
-      propertyPath: randomSeed
-      value: 2053839130
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: feccef8fcf58b9d458f935039351eda5, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &311287200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,7 +1751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.95, y: -9.9}
+  m_AnchoredPosition: {x: -18.5, y: -6.2}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &529415852
@@ -2331,6 +2279,10 @@ Prefab:
     - target: {fileID: 100008, guid: e41dd34bdb94a5949bd10152a1ef6b85, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: e41dd34bdb94a5949bd10152a1ef6b85, type: 3}
+      propertyPath: m_Name
+      value: Arms
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e41dd34bdb94a5949bd10152a1ef6b85, type: 3}
@@ -3003,7 +2955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.58, y: -11.9}
+  m_AnchoredPosition: {x: 16.1, y: -7}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &992137311
@@ -3544,7 +3496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25.44, y: -12.15}
+  m_AnchoredPosition: {x: -19.8, y: -8.4}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1198327048
@@ -3910,7 +3862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14, y: -9.4}
+  m_AnchoredPosition: {x: 14.7, y: -4.9}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1292393921
@@ -6194,7 +6146,7 @@ MonoBehaviour:
     spellDetails:
       firstElementCost: 5
       secondElementCost: 5
-      spellObject: {fileID: 1923750827339896, guid: feccef8fcf58b9d458f935039351eda5,
+      spellObject: {fileID: 1890280909824454, guid: feccef8fcf58b9d458f935039351eda5,
         type: 2}
   - firstElement: 2
     secondElement: 0

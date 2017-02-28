@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 114389821382231416}
   - component: {fileID: 114627395654611104}
   m_Layer: 8
-  m_Name: Fireball 1
+  m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,7 +467,7 @@ MonoBehaviour:
   ProjectileExplosionRadius: 10
   ProjectileExplosionForce: 2000
   ProjectileColliderDelay: 0
-  ProjectileColliderSpeed: 150
+  ProjectileColliderSpeed: 50
   ProjectileDirection: {x: 0, y: 0, z: 1}
   ProjectileCollisionLayers:
     serializedVersion: 2
@@ -475,6 +475,7 @@ MonoBehaviour:
   ProjectileDestroyParticleSystemsOnCollision:
   - {fileID: 198596337486800696}
   - {fileID: 198708471193023632}
+  bulletDamage: 300
 --- !u!135 &135860713529981570
 SphereCollider:
   m_ObjectHideFlags: 1

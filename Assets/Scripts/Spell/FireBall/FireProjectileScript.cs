@@ -53,7 +53,8 @@ namespace DigitalRuby.PyroParticles
 
         private bool collided;
 
-        private PlayerScoreController playerScore;
+        private GameManager gameManager;
+        //private PlayerScoreController playerScore;
         private FireLevelController fireLevelController;
     	private WaterLevelController waterLevelController;
     	private EarthLevelController earthLevelController;
@@ -74,8 +75,9 @@ namespace DigitalRuby.PyroParticles
             base.Start();
 
             StartCoroutine(SendCollisionAfterDelay());
-        
-            playerScore = FindObjectOfType<PlayerScoreController>();
+
+            gameManager = FindObjectOfType<GameManager>();
+            //playerScore = FindObjectOfType<PlayerScoreController>();
             fireLevelController = FindObjectOfType<FireLevelController>();
             waterLevelController = FindObjectOfType<WaterLevelController>();
             earthLevelController = FindObjectOfType<EarthLevelController>();
@@ -117,12 +119,13 @@ namespace DigitalRuby.PyroParticles
                 monster.takeDamage(bulletDamage);
 
                 // increament the score
-                playerScore.addScore(1);
+                gameManager.addScore(1);
+                //playerScore.addScore(1);
                 // increament the level of all elements
-                fireLevelController.IncrementElement(5);
-                waterLevelController.IncrementElement(5);
-                earthLevelController.IncrementElement(5);
-                windLevelController.IncrementElement(5);
+                fireLevelController.IncrementElement(1);
+                waterLevelController.IncrementElement(1);
+                earthLevelController.IncrementElement(1);
+                windLevelController.IncrementElement(1);
             }
 
             // if we have contacts, play the collision particle system and call the delegate

@@ -10,8 +10,8 @@ public class LevelScript : MonoBehaviour {
     private float maxTime = 10f;
     private float minTime = 5f;
     private float time = 0;
-    private float difficultyIncreaseTime=30f;
-    private float currentDifficultyIncreaseTime = 0f;
+    private float difficultyIncreaseTime=60f;
+    private float currentDifficultyIncreaseTime = 30f;
     private int amountOfEnemies=2;
 
     // Use this for initialization

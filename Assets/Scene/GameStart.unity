@@ -885,7 +885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -3.5}
   m_SizeDelta: {x: 43.3, y: 26.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1057194746
@@ -1159,10 +1159,6 @@ MonoBehaviour:
 
 
 
-
-
-
-
     Select Elements: X Y A B
 
     Make Spells: LB RB
@@ -1170,7 +1166,7 @@ MonoBehaviour:
     Cast Spells: LT RT
 
 
-    - press any button on the controller to start the game -'
+    - press any button to start the game -'
 --- !u!222 &1761573879
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1458,6 +1454,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1956304739}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2109795165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2109795167}
+  - component: {fileID: 2109795166}
+  m_Layer: 0
+  m_Name: ControlScriptContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2109795166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2109795165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae048c0cfa0eaa4da29753abc77e4be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2109795167
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2109795165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 21.83, z: -41.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2138375413
 Prefab:
   m_ObjectHideFlags: 0

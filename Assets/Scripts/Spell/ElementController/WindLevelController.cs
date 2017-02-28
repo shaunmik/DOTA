@@ -25,6 +25,7 @@ public class WindLevelController : MonoBehaviour {
     {
         CurrentLevel += Time.deltaTime * 2;
         Wind.fillAmount = CurrentLevel / StartingLevel;
+        isEmpty = false;
     }
     public bool DecrementElement(int amount) {
             if (IsEmpty)

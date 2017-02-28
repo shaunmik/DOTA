@@ -25,6 +25,7 @@ public class EarthLevelController : MonoBehaviour {
     {
         CurrentLevel += Time.deltaTime * 2;
         Earth.fillAmount = CurrentLevel / StartingLevel;
+        isEmpty = false;
     }
 
     public bool DecrementElement(int amount) {

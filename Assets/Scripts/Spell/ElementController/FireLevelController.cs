@@ -26,6 +26,7 @@ public class FireLevelController : MonoBehaviour {
     {
         CurrentLevel += Time.deltaTime*2;
         Fire.fillAmount = CurrentLevel / StartingLevel;
+        isEmpty = false;
     }
 
     public bool DecrementElement(int amount) {

@@ -25,6 +25,7 @@ public class WaterLevelController : MonoBehaviour {
     {
         CurrentLevel += Time.deltaTime * 2;
         Water.fillAmount = CurrentLevel / StartingLevel;
+        isEmpty = false;
     }
 
     public bool DecrementElement(int amount) {

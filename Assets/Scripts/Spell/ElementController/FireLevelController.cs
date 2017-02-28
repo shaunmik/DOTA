@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FireLevelController : MonoBehaviour {
 
-        private float StartingLevel = 100f;
+        private float StartingLevel = 200f;
         public Image Fire;
         private float CurrentLevel; 
         private bool isEmpty; 
@@ -21,8 +21,14 @@ public class FireLevelController : MonoBehaviour {
             CurrentLevel = StartingLevel;
             Fire.fillAmount = 1f;	
 	}
-	
-	public bool DecrementElement(int amount) {
+
+    void Update()
+    {
+        CurrentLevel += Time.deltaTime*2;
+        Fire.fillAmount = CurrentLevel / StartingLevel;
+    }
+
+    public bool DecrementElement(int amount) {
             if (IsEmpty)
                 return isEmpty;
 

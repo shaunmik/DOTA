@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EarthLevelController : MonoBehaviour {
 
-        private float StartingLevel = 100f;
+        private float StartingLevel = 200f;
         public Image Earth;
         private float CurrentLevel; 
         private bool isEmpty; 
@@ -21,8 +21,13 @@ public class EarthLevelController : MonoBehaviour {
             CurrentLevel = StartingLevel;
             Earth.fillAmount = 1f;	
 	}
-	
-	public bool DecrementElement(int amount) {
+    void Update()
+    {
+        CurrentLevel += Time.deltaTime * 2;
+        Earth.fillAmount = CurrentLevel / StartingLevel;
+    }
+
+    public bool DecrementElement(int amount) {
             if (IsEmpty)
                 return isEmpty;
 

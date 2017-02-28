@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WindLevelController : MonoBehaviour {
 
-        private float StartingLevel = 100f;
+        private float StartingLevel = 200f;
         public Image Wind;
         private float CurrentLevel; 
         private bool isEmpty; 
@@ -21,8 +21,12 @@ public class WindLevelController : MonoBehaviour {
             CurrentLevel = StartingLevel;
             Wind.fillAmount = 1f;	
 	}
-	
-	public bool DecrementElement(int amount) {
+    void Update()
+    {
+        CurrentLevel += Time.deltaTime * 2;
+        Wind.fillAmount = CurrentLevel / StartingLevel;
+    }
+    public bool DecrementElement(int amount) {
             if (IsEmpty)
                 return isEmpty;
 

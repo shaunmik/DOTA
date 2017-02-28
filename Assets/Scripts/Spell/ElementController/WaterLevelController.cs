@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WaterLevelController : MonoBehaviour {
 
-        private float StartingLevel = 100f;
+        private float StartingLevel = 200f;
         public Image Water;
         private float CurrentLevel; 
         private bool isEmpty; 
@@ -21,8 +21,13 @@ public class WaterLevelController : MonoBehaviour {
             CurrentLevel = StartingLevel;
             Water.fillAmount = 1f;	
 	}
-	
-	public bool DecrementElement(int amount) {
+    void Update()
+    {
+        CurrentLevel += Time.deltaTime * 2;
+        Water.fillAmount = CurrentLevel / StartingLevel;
+    }
+
+    public bool DecrementElement(int amount) {
             if (IsEmpty)
                 return isEmpty;
 

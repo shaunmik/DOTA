@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelScript : MonoBehaviour {
-    public GameObject ballMonster;
-    public GameObject directMovementMonster;
+    public GameObject ghostWhite;
+    public GameObject ghostViolet;
+
+    [SerializeField]
+    private List<GameObject> monsters;
 
     private float spawnTime = 1f;
     private float maxTime = 10f;
@@ -12,7 +15,7 @@ public class LevelScript : MonoBehaviour {
     private float time = 0;
     private float difficultyIncreaseTime=60f;
     private float currentDifficultyIncreaseTime = 30f;
-    private int amountOfEnemies=2;
+    private int amountOfEnemies = 2;
 
     // Use this for initialization
     void Start () {
@@ -44,35 +47,45 @@ public class LevelScript : MonoBehaviour {
             int chosenMonster = Random.Range(0, amountOfEnemies);
             if (chosenMonster == 0)
             {
-                SpawnBallMonster();
+                SpawnGhostWhite();
             }
+            //if (chosenMonster == 1)
             if (chosenMonster == 1)
             {
-                SpawnDirectMovementMonster();
+                SpawnGhostViolet();
             }
         }
     }
 
-    void SpawnBallMonster()
-    {
-
+    void GetSpawnPoint(out Vector3 spawnPos) {
         //Randomizes position of monster
-        int spawnPositionX = Random.Range(-75, 75);
-        var position = new Vector3(spawnPositionX, 5f, 400f);
-
-        //Creates monster
-        var newBallMonster = GameObject.Instantiate(ballMonster, position, Quaternion.identity);
-        newBallMonster.SetActive(true);
+        int spawnPositionX = Random.Range(16, 300);
+        spawnPos = new Vector3(spawnPositionX, 5f, 379);
+        spawnPos.y = Terrain.activeTerrain.SampleHeight(spawnPos);
     }
 
-    void SpawnDirectMovementMonster()
+    void SpawnMonster(GameObject monster, Vector3 spawnPos) {
+        GameObject newMonster = GameObject.Instantiate(monster, spawnPos, Quaternion.identity);
+        newMonster.SetActive(true);
+    }
+
+    void SpawnGhostWhite()
     {
-        //Randomizes position of monster
-        int spawnPositionX = Random.Range(-75, 75);
-        var position = new Vector3(spawnPositionX, 5f, 350f);
+        // Get monster spawn point
+        Vector3 position;
+        GetSpawnPoint(out position);
 
         //Creates monster
-        var newDirectMovementMonster = GameObject.Instantiate(directMovementMonster, position, Quaternion.identity);
-        newDirectMovementMonster.SetActive(true);
+        SpawnMonster(ghostWhite, position);
+    }
+
+    void SpawnGhostViolet()
+    {
+        // Get monster spawn point
+        Vector3 position;
+        GetSpawnPoint(out position);
+
+        //Creates monster
+        SpawnMonster(ghostViolet, position);
     }
 }

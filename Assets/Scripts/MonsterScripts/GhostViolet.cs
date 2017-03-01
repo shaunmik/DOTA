@@ -2,13 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GhostViolet : Monster
 {
 
+    protected override void monsterInit() {
+        MonsterBehavior.FollowStandingTargetStart(agent, target);
+    }
+
     protected override void monsterMovement()
     {
-        transform.localPosition += transform.forward * speed * Time.deltaTime;
+        // Do nothing
     }
 
     protected override bool playerDamageCriteria()
@@ -18,6 +23,7 @@ public class GhostViolet : Monster
 
     protected override void lookAtTarget()
     {
-        throw new NotImplementedException();
+        // Don't even need this
     }
+    
 }

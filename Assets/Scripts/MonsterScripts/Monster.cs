@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 abstract public class Monster : MonoBehaviour {
     public GameObject target;
+    public NavMeshAgent agent;
 
     public float MonsterStartHealth = 100;
     private float MonsterHealth;
@@ -22,9 +24,11 @@ abstract public class Monster : MonoBehaviour {
     // Use this for initialization
     protected void Start()
     {
+        agent = GetComponent <NavMeshAgent> ();
         InitializeRotation();
         playerHealthController = intitializePlayerHealthController();
         MonsterHealth = MonsterStartHealth;
+        monsterInit();
     }
 
     // Update is called once per frame
@@ -111,6 +115,9 @@ abstract public class Monster : MonoBehaviour {
         // Destroy the monster.
         Destroy(this.gameObject);
     }
+
+    protected abstract void monsterInit();
+
     protected abstract void monsterMovement();
 
     protected abstract bool playerDamageCriteria();

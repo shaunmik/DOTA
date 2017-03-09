@@ -12,6 +12,7 @@ public class GameOverMsgController : MonoBehaviour {
 	void Start () {
         gameManager = FindObjectOfType<GameManager>();
         int playerscore = gameManager.getScore();
+        gameManager.enterScore(playerscore);
         if (gameManager.checkIfHighscore(playerscore))
         {
             gameManager.enterHighscore(playerscore);
@@ -26,6 +27,7 @@ public class GameOverMsgController : MonoBehaviour {
         {
             score.text+="\n" +"#" +(i+1)+": " + highscores[i];
         }
+        score.text += "\n Average score: " + gameManager.getAverageScore();
 
 	}
 	

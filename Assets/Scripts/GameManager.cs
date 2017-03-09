@@ -46,7 +46,24 @@ public class GameManager : MonoBehaviour {
         }
         return(highscores);
     }
-    
+
+    public int getAverageScore()
+    {
+        return PlayerPrefs.HasKey("Average")?(int) PlayerPrefs.GetFloat("Average"):0;
+    }
+    public void enterScore(int score)
+    {
+        //Calculates average based on score, but doesn't accept 0 so that scene restarts don't count
+        if (score != 0)
+        {
+            int timesplayed = PlayerPrefs.GetInt("TimesPlayed");
+            float total = PlayerPrefs.GetFloat("Average") * timesplayed;
+            float average = (total + score) / (timesplayed + 1);
+            PlayerPrefs.SetFloat("Average", average);
+            PlayerPrefs.SetInt("TimesPlayed", timesplayed + 1);
+        }
+    }
+
     public void enterHighscore(int score)
     {
         //Saves the highscore in the correct order, if invalid highscore is passed it's not saved

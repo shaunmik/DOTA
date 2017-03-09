@@ -10,8 +10,8 @@ public class LevelScript : MonoBehaviour {
     private float maxTime = 10f;
     private float minTime = 5f;
     private float time = 0;
-    private float difficultyIncreaseTime=60f;
-    private float currentDifficultyIncreaseTime = 30f;
+    private float difficultyIncreaseTime=10f;
+    private float currentDifficultyIncreaseTime = 0f;
     private int amountOfEnemies=2;
 
     // Use this for initialization
@@ -29,8 +29,8 @@ public class LevelScript : MonoBehaviour {
         if (currentDifficultyIncreaseTime>= difficultyIncreaseTime)
         {
             currentDifficultyIncreaseTime = 0f;
-            minTime = minTime / 2;
-            maxTime = maxTime / 2;
+            minTime = minTime / 1.3f;
+            maxTime = maxTime / 1.3f;
         }
 
         //When it's time to spawn another monster, does so and resets the next time to spawn

@@ -109,6 +109,20 @@ namespace DigitalRuby.PyroParticles
                     collisionForwarder.CollisionHandler = handler;
                 }
             }
+
+
+
+            // If we implement the ITriggerHandler interface, see if any of the children are forwarding
+            // collision events. If they are, hook into them.
+            ITriggerHandler triggerHandler = (this as ITriggerHandler);
+            if (triggerHandler != null)
+            {
+                TriggerForwardScript triggerForwarder = GetComponentInChildren<TriggerForwardScript>();
+                if (triggerForwarder != null)
+                {
+                    triggerForwarder.TriggerHandler = triggerHandler;
+                }
+            }
         }
 
         protected virtual void Update()

@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114261961791149328}
   - component: {fileID: 82033601747736866}
   - component: {fileID: 82070291433240686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Waterbolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4176150509161658}
   - component: {fileID: 198371608579969974}
   - component: {fileID: 199185370130206040}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaterboltParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 114448243672035610}
   - component: {fileID: 54297386671065200}
   - component: {fileID: 108622929738293804}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaterboltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,6 +416,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   ProjectileDestroyParticleSystemsOnCollision:
   - {fileID: 198371608579969974}
+  bulletDamage: 100
 --- !u!114 &114261961791149328
 MonoBehaviour:
   m_ObjectHideFlags: 1

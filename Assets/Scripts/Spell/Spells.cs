@@ -102,12 +102,5 @@ public static class Spells {
         public int firstElementCost;
         public int secondElementCost;
         public GameObject spellObject;
-
-        public SpellDetails(int firstElementCost, int secondElementCost, GameObject spellObject)
-        {
-            this.firstElementCost = firstElementCost;
-            this.secondElementCost = secondElementCost;
-            this.spellObject = spellObject;
-        }
     }
 }

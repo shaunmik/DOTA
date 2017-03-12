@@ -7,12 +7,15 @@ using UnityEngine.AI;
 abstract public class Monster : MonoBehaviour {
     public GameObject target;
     public NavMeshAgent agent;
+    protected Animator anim;
 
     public float MonsterStartHealth = 100;
     private float MonsterHealth;
 
     public int MonsterAttackDamage = 10;
     //public float speed = 25f;
+
+    public Vector3 translation = Vector3.zero;
 
     [Header("Unity Stuff")]
     public Image HealthBar;
@@ -29,6 +32,7 @@ abstract public class Monster : MonoBehaviour {
         InitializeRotation();
         playerHealthController = intitializePlayerHealthController();
         MonsterHealth = MonsterStartHealth;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,9 +62,10 @@ abstract public class Monster : MonoBehaviour {
 
     protected void playDead()
     {
-        Animator anim = GetComponent<Animator>();
-        anim.Play("ghost_die", 0);
+        // TODO: change this so that it works for not just ghosts
+        //anim.Play("ghost_die", 0);
     }
+
 
     protected void InitializeRotation()
     {

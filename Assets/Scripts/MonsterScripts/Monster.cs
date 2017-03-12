@@ -16,12 +16,14 @@ abstract public class Monster : MonoBehaviour {
     public Image HealthBar;
 
     private bool dead = false;
+    private float originalSpeed;
 
     protected PlayerHealthController playerHealthController;
 
     // Use this for initialization
     protected void Start()
     {
+        originalSpeed = speed;
         InitializeRotation();
         playerHealthController = intitializePlayerHealthController();
         MonsterHealth = MonsterStartHealth;
@@ -101,6 +103,15 @@ abstract public class Monster : MonoBehaviour {
             }
             
         }
+    }
+
+    public void applySpeedChange(float speedMultiplier, Elements.elemEnum elementType) {
+        speed *= speedMultiplier;
+    }
+
+    public void resetSpeed()
+    {
+        speed = originalSpeed;
     }
 
     public void takeDamage(int damage)

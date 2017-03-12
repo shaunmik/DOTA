@@ -97,14 +97,13 @@ namespace DigitalRuby.PyroParticles
 
 
 
-        private GameManager gameManager;
-        //private PlayerScoreController playerScore;
-        private FireLevelController fireLevelController;
-        private WaterLevelController waterLevelController;
-        private EarthLevelController earthLevelController;
-        private WindLevelController windLevelController;
+        protected GameManager gameManager;
+        protected FireLevelController fireLevelController;
+        protected WaterLevelController waterLevelController;
+        protected EarthLevelController earthLevelController;
+        protected WindLevelController windLevelController;
 
-        private float nextTickTimer;
+        protected float nextTickTimer;
 
         protected override void Awake()
         {

@@ -38,6 +38,7 @@ public class TutorialManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         spellController = cam.GetComponent<SpellController>();
+        spellController.setIsControlDisabled(true);
 
         for (int i = 0; i < dialogs.Length; i++)
         {
@@ -73,6 +74,7 @@ public class TutorialManager : MonoBehaviour {
 
             if (!training_MakeSpell_Completed && dialogs[dialogIndex - 1].gameObject.name == "dialogQueue_MakeSpells")
             {
+                spellController.setIsControlDisabled(false);
                 training_MakeSpell_Started = true;
                 if (checkHandSpellSingleHand())
                 {

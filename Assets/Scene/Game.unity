@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37305668, g: 0.38068944, b: 0.3587173, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5141,10 +5141,6 @@ GameObject:
   - component: {fileID: 1653866271}
   - component: {fileID: 1653866272}
   - component: {fileID: 1653866273}
-  - component: {fileID: 1653866277}
-  - component: {fileID: 1653866276}
-  - component: {fileID: 1653866275}
-  - component: {fileID: 1653866274}
   - component: {fileID: 1653866278}
   m_Layer: 0
   m_Name: PlayerCam
@@ -5279,54 +5275,6 @@ MonoBehaviour:
   LeftHandElement2: {fileID: 529415852}
   RightHandElement1: {fileID: 992137311}
   RightHandElement2: {fileID: 1292393921}
---- !u!114 &1653866274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1653866265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be068e5441226418799a96341f35bcaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Water: {fileID: 0}
---- !u!114 &1653866275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1653866265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e6ba0f42607477cba7884268512785, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Earth: {fileID: 0}
---- !u!114 &1653866276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1653866265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 173bd912a06be4a39b06072da45722e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Wind: {fileID: 0}
---- !u!114 &1653866277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1653866265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ea2ecf1a456641d5b83323e1ec8697d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Fire: {fileID: 0}
 --- !u!114 &1653866278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6031,7 +5979,8 @@ MonoBehaviour:
     spellDetails:
       firstElementCost: 5
       secondElementCost: 5
-      spellObject: {fileID: 164416, guid: 8aeb2c0224fe763499eed3ec0587162b, type: 2}
+      spellObject: {fileID: 1890280909824454, guid: feccef8fcf58b9d458f935039351eda5,
+        type: 2}
   - firstElement: 2
     secondElement: 0
     spellDetails:

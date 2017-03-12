@@ -160,7 +160,7 @@ namespace DigitalRuby.PyroParticles
                     monster.takeDamage(dotDamage);
                     
                     // increament the score
-                    gameManager.addScore(dotScore);
+                    //gameManager.addScore(dotScore);
 
                     // increament the level of all elements
                     fireLevelController.IncrementElement(dotFireGain);

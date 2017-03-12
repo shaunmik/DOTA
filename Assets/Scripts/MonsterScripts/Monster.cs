@@ -16,12 +16,13 @@ abstract public class Monster : MonoBehaviour {
     public Image HealthBar;
 
     private bool dead = false;
-
+    private GameManager gameManager;
     protected PlayerHealthController playerHealthController;
 
     // Use this for initialization
     protected void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         InitializeRotation();
         playerHealthController = intitializePlayerHealthController();
         MonsterHealth = MonsterStartHealth;
@@ -90,6 +91,9 @@ abstract public class Monster : MonoBehaviour {
     {
         if (MonsterHealth <= 0)
         {
+            if(!dead)
+                // increament the score
+                gameManager.addScore(1);
             dead = true;
             if (GetComponent<Animator>() != null)
             {

@@ -118,9 +118,6 @@ namespace DigitalRuby.PyroParticles
                 Monster monster = c.collider.gameObject.GetComponent<Monster>();
                 monster.takeDamage(bulletDamage);
 
-                // increament the score
-                gameManager.addScore(1);
-                //playerScore.addScore(1);
                 // increament the level of all elements
                 fireLevelController.IncrementElement(1);
                 waterLevelController.IncrementElement(1);

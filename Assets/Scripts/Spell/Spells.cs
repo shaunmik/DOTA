@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public static class Spells {
+public static class Spells
+{
 
     [System.Serializable]
-    public enum spellEnum { 
+    public enum spellEnum
+    {
         none,
         fire, water, earth, wind,
-        fireFire,   fireWater,  fireEarth,  fireWind,
-        waterFire,  waterWater, waterEarth, waterWind,
-        earthFire,  earthWater, earthEarth, earthWind,
-        windFire,   windWater,  windEarth,  windWind
+        fireFire, fireWater, fireEarth, fireWind,
+        waterFire, waterWater, waterEarth, waterWind,
+        earthFire, earthWater, earthEarth, earthWind,
+        windFire, windWater, windEarth, windWind
     }; // Spell enumerator.
 
 
@@ -61,23 +63,33 @@ public static class Spells {
     {
 
         var spellsEnumToSpellDetailsMap = new Dictionary<spellEnum, SpellDetails>();
+        int i = 0;
         foreach (InspectableSpellDictionaryEntry entry in inspectorDictionary)
         {
             var key = elementsPairToSpellEnum[new ElementsPair(entry.firstElement, entry.secondElement)];
             if (spellsEnumToSpellDetailsMap.ContainsKey(key))
             {
-                Debug.Log("[Spells][createSpellsEnumToSpellDetailsMap] Warning: There already exists duplicte key: " 
-                    + entry.firstElement + " | "+ entry.secondElement);
+                Debug.Log("[Spells][createSpellsEnumToSpellDetailsMap] Warning: There exists duplicte key for element " + i + ": "
+                    + entry.firstElement + " | " + entry.secondElement);
             }
             else
             {
                 spellsEnumToSpellDetailsMap.Add(key, entry.spellDetails);
+
+                // below is a way to ignore order of spells
+                if (entry.secondElement != Elements.elemEnum.none && entry.firstElement != entry.secondElement)
+                {
+                    var secondkey = elementsPairToSpellEnum[new ElementsPair(entry.secondElement, entry.firstElement)];
+                    var secondSpellDetails = new SpellDetails(entry.spellDetails.secondElementCost, entry.spellDetails.firstElementCost, entry.spellDetails.spellObject);
+                    spellsEnumToSpellDetailsMap.Add(secondkey, secondSpellDetails);
+                }
             }
+            i++;
         }
 
         return spellsEnumToSpellDetailsMap;
     }
-    
+
 
 
     /*
@@ -102,5 +114,12 @@ public static class Spells {
         public int firstElementCost;
         public int secondElementCost;
         public GameObject spellObject;
+
+        public SpellDetails(int firstElementCost, int secondElementCost, GameObject spellObject)
+        {
+            this.firstElementCost = firstElementCost;
+            this.secondElementCost = secondElementCost;
+            this.spellObject = spellObject;
+        }
     }
 }

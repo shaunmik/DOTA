@@ -6198,6 +6198,13 @@ MonoBehaviour:
       secondElementCost: 50
       spellObject: {fileID: 1251627228565434, guid: d3f5d277690565147aeb66cf4d8aa30e,
         type: 2}
+  - firstElement: 2
+    secondElement: 3
+    spellDetails:
+      firstElementCost: 50
+      secondElementCost: 50
+      spellObject: {fileID: 1761009667793884, guid: 0003afd7cd690f04d9f089a0d503e34d,
+        type: 2}
 --- !u!114 &1872655522
 MonoBehaviour:
   m_ObjectHideFlags: 0

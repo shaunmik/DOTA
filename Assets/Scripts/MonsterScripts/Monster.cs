@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-abstract public class Monster : MonoBehaviour {
+abstract public class Monster : MonoBehaviour
+{
     public GameObject target;
 
     public float MonsterStartHealth = 100;
@@ -16,12 +17,14 @@ abstract public class Monster : MonoBehaviour {
     public Image HealthBar;
 
     private bool dead = false;
+    private float originalSpeed;
     private GameManager gameManager;
     protected PlayerHealthController playerHealthController;
 
     // Use this for initialization
     protected void Start()
     {
+        originalSpeed = speed;
         gameManager = FindObjectOfType<GameManager>();
         InitializeRotation();
         playerHealthController = intitializePlayerHealthController();
@@ -33,7 +36,8 @@ abstract public class Monster : MonoBehaviour {
     {
         if (isDead()) return; // so that the object does not move
 
-        try {
+        try
+        {
             lookAtTarget();
         }
         catch { } // this will ignore the unimplemented exception
@@ -48,7 +52,7 @@ abstract public class Monster : MonoBehaviour {
         }
     }
 
-    protected PlayerHealthController intitializePlayerHealthController ()
+    protected PlayerHealthController intitializePlayerHealthController()
     {
         return FindObjectOfType<PlayerHealthController>();
     }
@@ -69,7 +73,7 @@ abstract public class Monster : MonoBehaviour {
         transform.rotation = new Quaternion(0, 180, 0, 0);
     }
 
-    protected void LookAt (Vector3 direction)
+    protected void LookAt(Vector3 direction)
     {
         direction.y = 0;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.1f);
@@ -91,7 +95,7 @@ abstract public class Monster : MonoBehaviour {
     {
         if (MonsterHealth <= 0)
         {
-            if(!dead)
+            if (!dead)
                 // increament the score
                 gameManager.addScore(1);
             dead = true;
@@ -103,8 +107,18 @@ abstract public class Monster : MonoBehaviour {
             {
                 Destroy(this.gameObject);
             }
-            
+
         }
+    }
+
+    public void applySpeedChange(float speedMultiplier, Elements.elemEnum elementType)
+    {
+        speed *= speedMultiplier;
+    }
+
+    public void resetSpeed()
+    {
+        speed = originalSpeed;
     }
 
     public void takeDamage(int damage)

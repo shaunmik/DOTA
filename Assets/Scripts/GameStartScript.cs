@@ -19,7 +19,6 @@ public class GameStartScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // Rotate the camera around its local Y axis at 2 degree per second back and forth
         if (time <= 10)
         {

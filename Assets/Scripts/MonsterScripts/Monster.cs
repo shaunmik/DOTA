@@ -91,7 +91,15 @@ abstract public class Monster : MonoBehaviour {
         if (MonsterHealth <= 0)
         {
             dead = true;
-            destroySelf();
+            if (GetComponent<Animator>() != null)
+            {
+                destroySelf();
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+            
         }
     }
 

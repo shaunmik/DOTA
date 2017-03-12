@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LevelScript : MonoBehaviour {
     public GameObject ghostWhite;
     public GameObject ghostViolet;
-
-    [SerializeField]
-    private List<GameObject> monsters;
+    public GameObject rabbitYellow;
 
     private float spawnTime = 1f;
     private float maxTime = 10f;
@@ -15,13 +14,16 @@ public class LevelScript : MonoBehaviour {
     private float time = 0;
     private float difficultyIncreaseTime=60f;
     private float currentDifficultyIncreaseTime = 30f;
-    private int amountOfEnemies = 2;
+    private int amountOfEnemies = 3;
 
-    // Use this for initialization
+    private Dictionary<GameObject, Vector3> MonsterToSpawnOffsetMap;
+
     void Start () {
         //Sets when the monster should first spawn
-        spawnTime = Random.Range(minTime, maxTime);
+        spawnTime = 0; //TODO: Random.Range(minTime, maxTime);
         Cursor.visible = false;
+
+        MonsterToSpawnOffsetMap = Monsters.createMonsterToSpawnOffsetMap();
     }
 	
 	// Update is called once per frame
@@ -45,47 +47,51 @@ public class LevelScript : MonoBehaviour {
 
             //Randomly picks monster to spawn and spawns it
             int chosenMonster = Random.Range(0, amountOfEnemies);
+            
             if (chosenMonster == 0)
             {
-                SpawnGhostWhite();
+                SpawnMonster(ghostWhite);
             }
-            //if (chosenMonster == 1)
+            
             if (chosenMonster == 1)
             {
-                SpawnGhostViolet();
+                SpawnMonster(ghostViolet);
+            }
+
+            if (chosenMonster == 2)
+            {
+                SpawnMonster(rabbitYellow);
+            }
+
+            if (chosenMonster == 3)
+            {
+                Debug.Log("DEBUG: 3 came up");
             }
         }
     }
 
-    void GetSpawnPoint(out Vector3 spawnPos) {
-        //Randomizes position of monster
-        int spawnPositionX = Random.Range(16, 300);
-        spawnPos = new Vector3(spawnPositionX, 5f, 379);
-        spawnPos.y = Terrain.activeTerrain.SampleHeight(spawnPos);
+    void GetSpawnPoint(out Vector3 spawnPos, GameObject monster) {
+        // Randomizes position of monster
+        // TODO: replace this function with actual spawn points or range as param
+        int spawnPositionX = Random.Range(16, 250);
+        spawnPos = new Vector3(spawnPositionX, 5f, 379f);
+        // REMOVED: spawnPos.y = Terrain.activeTerrain.SampleHeight(spawnPos);
+
+        NavMeshHit navHit;
+ 
+        NavMesh.SamplePosition (spawnPos, out navHit, 15.0f, 1 << NavMesh.GetAreaFromName("Walkable"));
+
+        spawnPos = navHit.position + MonsterToSpawnOffsetMap[monster];
     }
 
-    void SpawnMonster(GameObject monster, Vector3 spawnPos) {
-        GameObject newMonster = GameObject.Instantiate(monster, spawnPos, Quaternion.identity);
+    void SpawnMonster(GameObject monster) {
+        // Get monster spawn point
+        Vector3 position;
+        GetSpawnPoint(out position, monster);
+
+        // Instantiate monster
+        GameObject newMonster = GameObject.Instantiate(monster, position, Quaternion.identity);
         newMonster.SetActive(true);
     }
 
-    void SpawnGhostWhite()
-    {
-        // Get monster spawn point
-        Vector3 position;
-        GetSpawnPoint(out position);
-
-        //Creates monster
-        SpawnMonster(ghostWhite, position);
-    }
-
-    void SpawnGhostViolet()
-    {
-        // Get monster spawn point
-        Vector3 position;
-        GetSpawnPoint(out position);
-
-        //Creates monster
-        SpawnMonster(ghostViolet, position);
-    }
 }

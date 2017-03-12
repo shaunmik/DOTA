@@ -11,7 +11,7 @@ public class MonsterBehavior : MonoBehaviour {
 
 	public static void FollowStandingTargetStart (NavMeshAgent agent, GameObject target) 
 	{
-		agent.destination = target.transform.position;
+		agent.SetDestination(target.transform.position);
 	}
 
 	/**
@@ -41,34 +41,40 @@ public class MonsterBehavior : MonoBehaviour {
 	  **/
 
 	// TODO: finish this bunny related thing
-	// LayerMask mask = LayerMask.NameToLayer("SnowTerrain");
-	public static void WanderingStart (NavMeshAgent agent, 
-									   GameObject self,
-									   LayerMask mask,
-									   float wanderRadius, 
-									   float destChangeRate, 
-									   ref float nextDestChange) 
-	{
-		if (Time.time >= nextDestChange) {
+	// LayerMask mask = LayerMask.NameToLayer("Walkable");
+	
+    public static void Wander (NavMeshAgent agent, 
+							   GameObject self,
+							   int mask,
+							   float wanderRadius, 
+							   float destChangeRate, 
+							   ref float nextDestChange) 
+    {
+    	if (Time.time >= nextDestChange) {
 			nextDestChange += destChangeRate;
-     		Vector3 dest = RandomNavSphere(self.transform.position, wanderRadius, mask.value);
-	     	agent.SetDestination(dest);
-		}
-	}
+     		Vector3 dest = RandomNavSphere(self.transform.position, wanderRadius, mask);
 
-	// Extracted from https://forum.unity3d.com/threads/solved-random-wander-ai-using-navmesh.327950/
-	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
+	     	agent.SetDestination(dest);
+	     	nextDestChange += destChangeRate;
+		}
+    }
+
+    // Extracted from https://forum.unity3d.com/threads/solved-random-wander-ai-using-navmesh.327950/
+	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int mask) {
         Vector3 randDirection = Random.insideUnitSphere * dist;
- 
-        randDirection += origin;
+
+        // Ensure Z position decreases, i.e. approaches the player
+ 		if (randDirection.z > 0) {
+ 			randDirection.Set(randDirection.x, randDirection.y, randDirection.z * -1);
+ 		}
+
+        randDirection += origin;       
  
         NavMeshHit navHit;
  
-        NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
- 
-        return navHit.position;
-    }
-	
+        NavMesh.SamplePosition (randDirection, out navHit, dist, 1 << mask);
 
+        return navHit.position;        
+    }
 	
 }

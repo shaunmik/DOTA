@@ -12,7 +12,7 @@ abstract public class Monster : MonoBehaviour {
     private float MonsterHealth;
 
     public int MonsterAttackDamage = 10;
-    public float speed = 25f;
+    //public float speed = 25f;
 
     [Header("Unity Stuff")]
     public Image HealthBar;
@@ -25,21 +25,16 @@ abstract public class Monster : MonoBehaviour {
     protected void Start()
     {
         agent = GetComponent <NavMeshAgent> ();
+        monsterInit();
         InitializeRotation();
         playerHealthController = intitializePlayerHealthController();
         MonsterHealth = MonsterStartHealth;
-        monsterInit();
     }
 
     // Update is called once per frame
     protected void Update()
     {
         if (isDead()) return; // so that the object does not move
-
-        try {
-            lookAtTarget();
-        }
-        catch { } // this will ignore the unimplemented exception
 
         //Moves monster towards target
         monsterMovement();
@@ -122,5 +117,4 @@ abstract public class Monster : MonoBehaviour {
 
     protected abstract bool playerDamageCriteria();
 
-    protected abstract void lookAtTarget();
 }

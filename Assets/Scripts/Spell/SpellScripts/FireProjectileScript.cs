@@ -60,7 +60,6 @@ namespace DigitalRuby.PyroParticles
     	private EarthLevelController earthLevelController;
     	private WindLevelController windLevelController;
 
-        enum Elements {Fire,Wind,Earth,Water };
         private IEnumerator SendCollisionAfterDelay()
         {
             yield return new WaitForSeconds(ProjectileColliderDelay);
@@ -114,19 +113,18 @@ namespace DigitalRuby.PyroParticles
 
             if (c.collider.tag.Equals("Monster"))
             {
-                
                 // destroy the monster
                 //Destroy(c.collider.gameObject);
-                string firstElement="";
-                string secondElement="";
+                Spells.spellEnum firstElement = Spells.spellEnum.none;
+                Spells.spellEnum secondElement = Spells.spellEnum.none;
                 if (obj.name == "WindboltCollider")
-                    firstElement = "Wind";
+                    firstElement = Spells.spellEnum.wind;
                 else if (obj.name == "FireboltCollider")
-                    firstElement = "Fire";
+                    firstElement = Spells.spellEnum.fire;
                 else if (obj.name == "EarthboltCollider")
-                    firstElement = "Earth";
+                    firstElement = Spells.spellEnum.earth;
                 else if (obj.name == "WaterboltCollider")
-                    firstElement = "Water";
+                    firstElement = Spells.spellEnum.water;
 
 
                 Monster monster = c.collider.gameObject.GetComponent<Monster>();

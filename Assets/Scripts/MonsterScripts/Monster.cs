@@ -97,8 +97,12 @@ abstract public class Monster : MonoBehaviour
         if (MonsterHealth <= 0)
         {
             if (!dead)
-                // increament the score
-                gameManager.addScore(1);
+            {
+                if (gameManager != null) 
+                    // increament the score
+                    gameManager.addScore(1);
+            }
+
             dead = true;
             if (GetComponent<Animator>() != null)
             {

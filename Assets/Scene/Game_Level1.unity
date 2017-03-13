@@ -248,6 +248,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -1600,6 +1604,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -5389,6 +5397,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 50
+  waterResistance: -50
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 300
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -5878,6 +5890,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -6293,6 +6309,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -7215,6 +7235,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -8216,6 +8240,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -8754,6 +8782,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 20
   translation: {x: 0, y: 0, z: 0}
@@ -9203,6 +9235,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}

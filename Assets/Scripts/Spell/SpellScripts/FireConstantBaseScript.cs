@@ -156,7 +156,7 @@ namespace DigitalRuby.PyroParticles
                 {
                     // damage the monster
                     Monster monster = c.gameObject.GetComponent<Monster>();
-                    monster.takeDamage(dotDamage);
+                    //monster.takeDamage(dotDamage);
                     
                     // increament the score
                     //gameManager.addScore(dotScore);

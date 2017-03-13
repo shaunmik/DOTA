@@ -134,21 +134,21 @@ abstract public class Monster : MonoBehaviour
         agent.speed = originalSpeed;
     }
 
-    public float damageMultiplier (Spells.spellEnum element)
+    public float damageMultiplier (Elements.elemEnum element)
     {
-        if (element == Spells.spellEnum.fire)
+        if (element == Elements.elemEnum.fire)
         {
             return (100f - fireResistance) / 100f;
         }
-        else if (element == Spells.spellEnum.water)
+        else if (element == Elements.elemEnum.water)
         {
             return (100f - waterResistance) / 100f;
         }
-        else if (element == Spells.spellEnum.earth)
+        else if (element == Elements.elemEnum.earth)
         {
             return (100f - fireResistance) / 100f;
         }
-        else if (element == Spells.spellEnum.wind)
+        else if (element == Elements.elemEnum.wind)
         {
             return (100f - windResistance) / 100f;
         }
@@ -157,7 +157,7 @@ abstract public class Monster : MonoBehaviour
             return 1f;
         }
     }
-    public void takeDamage(int damage, Spells.spellEnum firstElement, Spells.spellEnum secondElement)
+    public void takeDamage(int damage, Elements.elemEnum firstElement, Elements.elemEnum secondElement)
     {
         MonsterHealth -= damage*damageMultiplier(firstElement)*damageMultiplier(secondElement);
 

@@ -6,11 +6,6 @@ using UnityEngine.AI;
 public class LevelScript : MonoBehaviour {
     public GameObject[] monsters;
 
-    /*
-    public GameObject ghostWhite;
-    public GameObject ghostViolet;
-    public GameObject rabbitYellow;
-    */
     private float spawnTime = 1f;
     private float maxTime = 10f;
     private float minTime = 5f;

@@ -9,6 +9,7 @@ abstract public class Monster : MonoBehaviour
     public GameObject target;
     public NavMeshAgent agent;
     protected Animator anim;
+    protected PlayerHealthController playerHealthController;
 
     public float fireResistance = 0f;
     public float waterResistance = 0f;
@@ -28,7 +29,10 @@ abstract public class Monster : MonoBehaviour
     private bool dead = false;
     private float originalSpeed;
     private GameManager gameManager;
-    protected PlayerHealthController playerHealthController;
+    private float resumeTime;
+
+    protected bool paused = false;
+    
 
     // Use this for initialization
     protected void Start()
@@ -54,7 +58,7 @@ abstract public class Monster : MonoBehaviour
         monsterMovement();
 
         //Destroys monster once it reaches player for memory management purposes
-        if (playerDamageCriteria())
+        if (!dead && playerDamageCriteria())
         {
             damagePlayer();
         }
@@ -69,12 +73,6 @@ abstract public class Monster : MonoBehaviour
     {
         return dead;
     }
-
-    protected void playDead()
-    {
-        if (anim != null) anim.SetTrigger("Die");
-    }
-
 
     protected void InitializeRotation()
     {
@@ -94,8 +92,10 @@ abstract public class Monster : MonoBehaviour
 
     IEnumerator playDeathAnimation()
     {
-        playDead();
-        yield return new WaitForSeconds(1.5f);
+        if (anim != null) {
+            anim.SetTrigger("Die");
+            yield return new WaitForSeconds(1.5f);
+        }
         Destroy(this.gameObject);
     }
 
@@ -104,21 +104,23 @@ abstract public class Monster : MonoBehaviour
         if (MonsterHealth <= 0)
         {
             if (!dead) {
+                dead = true;
+                
                 if (gameManager != null) {
                     // increament the score
                     gameManager.addScore(1);
                 }
-                dead = true;
+
                 // Stop the monster from moving
-                agent.Stop();
-            }
+                agent.enabled = false;
 
-            if (anim != null) {
-                destroySelf();
-            } else {
-                Destroy(this.gameObject);
+                // Destroy the monster with/without animation
+                if (anim != null) {
+                    destroySelf();
+                } else {
+                    Destroy(this.gameObject);
+                }
             }
-
         }
     }
 
@@ -163,17 +165,44 @@ abstract public class Monster : MonoBehaviour
 
         checkDead();
 
+        // Animate the damage taking
         if (!dead && anim != null) {
+            agent.Stop();
+            paused = true;
             anim.SetTrigger("TakeDamage");
+            StartCoroutine(resumeMovementPostAnimation());
+        }
+    }
+
+    IEnumerator resumeMovementPostAnimation()
+    {
+        resumeTime = Time.time + 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        if (Time.time >= resumeTime) {
+            agent.Resume();
+            paused = false;
         }
     }
 
     protected void damagePlayer()
     {
-        // Damage the player.
+        // Damage the player
         playerHealthController.TakeDamage(MonsterAttackDamage);
-        // Destroy the monster.
-        Destroy(this.gameObject);
+
+        // Denote that despawning sequence initiated
+        dead = true;
+
+        // Play the attack animation and clean up
+        StartCoroutine(playAttackAnimation());
+    }
+
+    IEnumerator playAttackAnimation()
+    {
+        if (anim != null) {
+            anim.SetTrigger("Attack");
+            yield return new WaitForSeconds(1.0f);
+        }
+        destroySelf();
     }
 
     protected abstract void monsterInit();

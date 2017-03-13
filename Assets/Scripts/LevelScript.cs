@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class LevelScript : MonoBehaviour {
+    public GameObject[] monsters;
+
+    /*
     public GameObject ghostWhite;
     public GameObject ghostViolet;
     public GameObject rabbitYellow;
-
+    */
     private float spawnTime = 1f;
     private float maxTime = 10f;
     private float minTime = 5f;
@@ -15,7 +18,7 @@ public class LevelScript : MonoBehaviour {
     
     private float difficultyIncreaseTime=60f;
     private float currentDifficultyIncreaseTime = 30f;
-    private int amountOfEnemies = 3;
+    private int amountOfEnemies;
 
     private Dictionary<GameObject, Vector3> MonsterToSpawnOffsetMap;
 
@@ -23,7 +26,7 @@ public class LevelScript : MonoBehaviour {
         //Sets when the monster should first spawn
         spawnTime = 0; //TODO: Random.Range(minTime, maxTime);
         Cursor.visible = false;
-
+        amountOfEnemies = monsters.Length;
         MonsterToSpawnOffsetMap = Monsters.createMonsterToSpawnOffsetMap();
     }
 	
@@ -49,32 +52,14 @@ public class LevelScript : MonoBehaviour {
             //Randomly picks monster to spawn and spawns it
             int chosenMonster = Random.Range(0, amountOfEnemies);
             
-            if (chosenMonster == 0)
-            {
-                SpawnMonster(ghostWhite);
-            }
-            
-            if (chosenMonster == 1)
-            {
-                SpawnMonster(ghostViolet);
-            }
-
-            if (chosenMonster == 2)
-            {
-                SpawnMonster(rabbitYellow);
-            }
-
-            if (chosenMonster == 3)
-            {
-                Debug.Log("DEBUG: 3 came up");
-            }
+            SpawnMonster(monsters[chosenMonster]);
         }
     }
 
     void GetSpawnPoint(out Vector3 spawnPos, GameObject monster) {
         // Randomizes position of monster
         // TODO: replace this function with actual spawn points or range as param
-        int spawnPositionX = Random.Range(16, 250);
+        int spawnPositionX = Random.Range(-70, 70);
         spawnPos = new Vector3(spawnPositionX, 5f, 379f);
         // REMOVED: spawnPos.y = Terrain.activeTerrain.SampleHeight(spawnPos);
 

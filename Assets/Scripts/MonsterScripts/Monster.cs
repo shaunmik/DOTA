@@ -132,8 +132,9 @@ abstract public class Monster : MonoBehaviour
 
         checkDead();
 
-        if (!dead) 
+        if (!dead) {
             anim.SetTrigger("TakeDamage");
+        }
     }
 
     protected void damagePlayer()

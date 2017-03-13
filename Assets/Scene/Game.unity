@@ -211,9 +211,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.010662464
-  m_Height: 0.025016362
+  m_Height: 0.037521582
   m_Direction: 1
-  m_Center: {x: 0, y: 0.012, z: 0}
+  m_Center: {x: 0, y: 0.017, z: 0}
 --- !u!195 &27980596
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1609,9 +1609,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.010662464
-  m_Height: 0.025016362
+  m_Height: 0.037521582
   m_Direction: 1
-  m_Center: {x: 0, y: 0.012, z: 0}
+  m_Center: {x: 0, y: 0.017, z: 0}
 --- !u!4 &426677529 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4326896913465000, guid: 2e979b27e2d065b458035b13b573eb87,
@@ -5843,9 +5843,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.010662464
-  m_Height: 0.025016362
+  m_Height: 0.037521582
   m_Direction: 1
-  m_Center: {x: 0, y: 0.012, z: 0}
+  m_Center: {x: 0, y: 0.017, z: 0}
 --- !u!1 &1484780021
 GameObject:
   m_ObjectHideFlags: 0
@@ -6736,9 +6736,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.010662464
-  m_Height: 0.025016362
+  m_Height: 0.037521582
   m_Direction: 1
-  m_Center: {x: 0, y: 0.012, z: 0}
+  m_Center: {x: 0, y: 0.017, z: 0}
 --- !u!1 &1633518851
 GameObject:
   m_ObjectHideFlags: 0

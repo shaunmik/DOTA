@@ -11,6 +11,8 @@ public class Rabbit : Monster
     protected float maxDestChangeRate = 3;
     protected float nextDestChange = 0;
     protected int mask;
+
+    protected float targetPlayerDist = 70;
     private bool targetPlayer = false;
 
     protected override void monsterInit() {
@@ -26,7 +28,7 @@ public class Rabbit : Monster
             Vector3 closestCastlePos = new Vector3(transform.position.x, 
                                                    transform.position.y, 
                                                    target.transform.position.z);
-            if (Vector3.Distance(transform.position, closestCastlePos) < 70) {
+            if (Vector3.Distance(transform.position, closestCastlePos) < targetPlayerDist) {
                 MonsterBehavior.FollowStandingTargetStart(agent, target.transform.position);
                 targetPlayer = true;
             } else if (!paused) {

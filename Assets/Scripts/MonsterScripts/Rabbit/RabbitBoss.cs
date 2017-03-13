@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class RabbitBoss : Rabbit 
+{
+	protected override void monsterInit() {
+        targetPlayerDist = 130;
+        base.monsterInit();
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	protected override bool playerDamageCriteria()
+    {
+       return (transform.position.z <= target.transform.position.z + 60f && agent.remainingDistance < 60f);
+    }
 }

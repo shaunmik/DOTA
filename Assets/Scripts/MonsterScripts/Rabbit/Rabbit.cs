@@ -37,13 +37,12 @@ public class Rabbit : Monster
             }
         }
 
-        // Commented out since this is work in progress!
-        /*// Update animator parameter to denote movement
+        // Update animator parameter to denote movement
         if (Vector3.Distance(agent.velocity, Vector3.zero) != 0.0) {
             anim.SetBool("Moving", true);
         } else {
             anim.SetBool("Moving", false);
-        }*/
+        }
     }
 
     protected override bool playerDamageCriteria()

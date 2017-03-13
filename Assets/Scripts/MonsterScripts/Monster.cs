@@ -13,7 +13,6 @@ abstract public class Monster : MonoBehaviour {
     private float MonsterHealth;
 
     public int MonsterAttackDamage = 10;
-    //public float speed = 25f;
 
     public Vector3 translation = Vector3.zero;
 
@@ -62,8 +61,7 @@ abstract public class Monster : MonoBehaviour {
 
     protected void playDead()
     {
-        // TODO: change this so that it works for not just ghosts
-        //anim.Play("ghost_die", 0);
+        anim.SetTrigger("Die");
     }
 
 
@@ -106,6 +104,8 @@ abstract public class Monster : MonoBehaviour {
         HealthBar.fillAmount = MonsterHealth / MonsterStartHealth;
 
         checkDead();
+
+        anim.SetTrigger("TakeDamage");
     }
 
     protected void damagePlayer()

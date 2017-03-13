@@ -129,10 +129,10 @@ public class Level1Script : MonoBehaviour {
             }
             else if (!isLevel3Completed)
             {
-                isLevel3Completed = true;
-                maxMonsterCount = levelBossMonsterCount;
                 minTime = levelBossMinTime;
                 maxTime = levelBossMaxTime;
+                isLevel3Completed = true;
+                maxMonsterCount = levelBossMonsterCount;
                 monsters = monstersLevelBoss;
                 levelBossIndicator.SetActive(true);
                 Wait(secondsToWait);

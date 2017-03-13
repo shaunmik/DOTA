@@ -115,16 +115,16 @@ namespace DigitalRuby.PyroParticles
             {
                 // destroy the monster
                 //Destroy(c.collider.gameObject);
-                Spells.spellEnum firstElement = Spells.spellEnum.none;
-                Spells.spellEnum secondElement = Spells.spellEnum.none;
+                Elements.elemEnum firstElement = Elements.elemEnum.none;
+                Elements.elemEnum secondElement = Elements.elemEnum.none;
                 if (obj.name == "WindboltCollider")
-                    firstElement = Spells.spellEnum.wind;
+                    firstElement = Elements.elemEnum.wind;
                 else if (obj.name == "FireboltCollider")
-                    firstElement = Spells.spellEnum.fire;
+                    firstElement = Elements.elemEnum.fire;
                 else if (obj.name == "EarthboltCollider")
-                    firstElement = Spells.spellEnum.earth;
+                    firstElement = Elements.elemEnum.earth;
                 else if (obj.name == "WaterboltCollider")
-                    firstElement = Spells.spellEnum.water;
+                    firstElement = Elements.elemEnum.water;
 
 
                 Monster monster = c.collider.gameObject.GetComponent<Monster>();

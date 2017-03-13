@@ -36,10 +36,20 @@ public class PlayerHealthController : MonoBehaviour {
             // If the current health is approximately equal to zero
             if (Mathf.Abs(CurrentHealth) < float.Epsilon){
                 isDead = true;
+                Wait(2);
                 GameOver();
             }
 		
 	}
+
+    public void Wait(float seconds)
+    {
+        StartCoroutine(_wait(seconds));
+    }
+    IEnumerator _wait(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
 
     public void GameOver()
     {

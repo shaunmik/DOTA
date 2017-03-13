@@ -60,7 +60,7 @@ namespace DigitalRuby.PyroParticles
     	private EarthLevelController earthLevelController;
     	private WindLevelController windLevelController;
 
-
+        enum Elements {Fire,Wind,Earth,Water };
         private IEnumerator SendCollisionAfterDelay()
         {
             yield return new WaitForSeconds(ProjectileColliderDelay);
@@ -86,6 +86,7 @@ namespace DigitalRuby.PyroParticles
 
         public void HandleCollision(GameObject obj, Collision c)
         {
+            
             if (collided)
             {
                 // already collided, don't do anything
@@ -113,10 +114,23 @@ namespace DigitalRuby.PyroParticles
 
             if (c.collider.tag.Equals("Monster"))
             {
+                
                 // destroy the monster
-                //Destroy(c.collider.gameObject); 
+                //Destroy(c.collider.gameObject);
+                string firstElement="";
+                string secondElement="";
+                if (obj.name == "WindboltCollider")
+                    firstElement = "Wind";
+                else if (obj.name == "FireboltCollider")
+                    firstElement = "Fire";
+                else if (obj.name == "EarthboltCollider")
+                    firstElement = "Earth";
+                else if (obj.name == "WaterboltCollider")
+                    firstElement = "Water";
+
+
                 Monster monster = c.collider.gameObject.GetComponent<Monster>();
-                monster.takeDamage(bulletDamage);
+                monster.takeDamage(bulletDamage, firstElement,secondElement);
 
                 // increament the level of all elements
                 fireLevelController.IncrementElement(1);

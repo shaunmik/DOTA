@@ -11,6 +11,11 @@ abstract public class Monster : MonoBehaviour
     protected Animator anim;
     protected PlayerHealthController playerHealthController;
 
+    public float fireResistance = 0f;
+    public float waterResistance = 0f;
+    public float windResistance = 0f;
+    public float earthResistance = 0f;
+
     public float MonsterStartHealth = 100;
     private float MonsterHealth;
 
@@ -129,9 +134,32 @@ abstract public class Monster : MonoBehaviour
         agent.speed = originalSpeed;
     }
 
-    public void takeDamage(int damage)
+    public float damageMultiplier (string element)
     {
-        MonsterHealth -= damage;
+        if (element == "Fire")
+        {
+            return (100f - fireResistance) / 100f;
+        }
+        else if (element == "Water")
+        {
+            return (100f - waterResistance) / 100f;
+        }
+        else if (element == "Earth")
+        {
+            return (100f - fireResistance) / 100f;
+        }
+        else if (element == "Wind")
+        {
+            return (100f - windResistance) / 100f;
+        }
+        else
+        {
+            return 1f;
+        }
+    }
+    public void takeDamage(int damage,string firstElement, string secondElement)
+    {
+        MonsterHealth -= damage*damageMultiplier(firstElement)*damageMultiplier(secondElement);
 
         HealthBar.fillAmount = MonsterHealth / MonsterStartHealth;
 

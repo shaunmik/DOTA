@@ -96,10 +96,12 @@ abstract public class Monster : MonoBehaviour
     {
         if (MonsterHealth <= 0)
         {
-            if (!dead)
+            if (!dead) {
                 // increament the score
                 gameManager.addScore(1);
-            dead = true;
+                dead = true;
+                agent.Stop();
+            }
             if (GetComponent<Animator>() != null)
             {
                 destroySelf();
@@ -130,7 +132,8 @@ abstract public class Monster : MonoBehaviour
 
         checkDead();
 
-        anim.SetTrigger("TakeDamage");
+        if (!dead) 
+            anim.SetTrigger("TakeDamage");
     }
 
     protected void damagePlayer()

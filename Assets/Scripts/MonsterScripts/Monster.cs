@@ -29,13 +29,15 @@ abstract public class Monster : MonoBehaviour
     protected void Start()
     {
         agent = GetComponent <NavMeshAgent> ();
+        anim = GetComponent<Animator>();
         monsterInit();
-        originalSpeed = agent.speed;
+        
         gameManager = FindObjectOfType<GameManager>();
         InitializeRotation();
         playerHealthController = intitializePlayerHealthController();
         MonsterHealth = MonsterStartHealth;
-        anim = GetComponent<Animator>();
+
+        originalSpeed = agent.speed;
     }
 
     // Update is called once per frame
@@ -65,7 +67,7 @@ abstract public class Monster : MonoBehaviour
 
     protected void playDead()
     {
-        anim.SetTrigger("Die");
+        if (anim != null) anim.SetTrigger("Die");
     }
 
 
@@ -96,22 +98,19 @@ abstract public class Monster : MonoBehaviour
     {
         if (MonsterHealth <= 0)
         {
-            if (!dead)
-            {
+            if (!dead) {
                 if (gameManager != null) {
                     // increament the score
                     gameManager.addScore(1);
                 }
                 dead = true;
+                // Stop the monster from moving
                 agent.Stop();
             }
 
-            if (GetComponent<Animator>() != null)
-            {
+            if (anim != null) {
                 destroySelf();
-            }
-            else
-            {
+            } else {
                 Destroy(this.gameObject);
             }
 
@@ -136,7 +135,7 @@ abstract public class Monster : MonoBehaviour
 
         checkDead();
 
-        if (!dead) {
+        if (!dead && anim != null) {
             anim.SetTrigger("TakeDamage");
         }
     }

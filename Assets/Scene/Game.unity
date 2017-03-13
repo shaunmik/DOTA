@@ -250,7 +250,7 @@ MonoBehaviour:
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 1295004837}
   wanderRadius: 50
   minDestChangeRate: 4
   maxDestChangeRate: 6
@@ -1675,7 +1675,7 @@ MonoBehaviour:
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 1654295834}
   wanderRadius: 50
   minDestChangeRate: 4
   maxDestChangeRate: 6
@@ -5733,7 +5733,7 @@ MonoBehaviour:
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 651869888}
   wanderRadius: 50
   minDestChangeRate: 4
   maxDestChangeRate: 6
@@ -6626,7 +6626,7 @@ MonoBehaviour:
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 1960960779}
   wanderRadius: 50
   minDestChangeRate: 4
   maxDestChangeRate: 6

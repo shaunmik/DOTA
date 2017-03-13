@@ -6,7 +6,7 @@ using UnityEngine;
 public class Cube : Monster {
 
     protected override void monsterInit() {
-        MonsterBehavior.FollowStandingTargetStart(agent, target);
+        MonsterBehavior.FollowStandingTargetStart(agent, target.transform.position);
     }
 
     protected override void monsterMovement()

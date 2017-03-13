@@ -8,8 +8,8 @@ public class Ghost : Monster {
 
 	public static Vector3 spawnOffset = Vector3.up * 3.3f;
 
-	protected override void monsterInit() {
-        MonsterBehavior.FollowStandingTargetStart(agent, target);
+    protected override void monsterInit() {
+        // overridden
     }
 
     protected override void monsterMovement()

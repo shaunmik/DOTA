@@ -98,12 +98,14 @@ abstract public class Monster : MonoBehaviour
         {
             if (!dead)
             {
-                if (gameManager != null) 
+                if (gameManager != null) {
                     // increament the score
                     gameManager.addScore(1);
+                }
+                dead = true;
+                agent.Stop();
             }
 
-            dead = true;
             if (GetComponent<Animator>() != null)
             {
                 destroySelf();
@@ -134,7 +136,9 @@ abstract public class Monster : MonoBehaviour
 
         checkDead();
 
-        anim.SetTrigger("TakeDamage");
+        if (!dead) {
+            anim.SetTrigger("TakeDamage");
+        }
     }
 
     protected void damagePlayer()

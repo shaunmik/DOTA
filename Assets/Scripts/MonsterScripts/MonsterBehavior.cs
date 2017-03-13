@@ -9,9 +9,9 @@ public class MonsterBehavior : MonoBehaviour {
 	  * Below is the behavior for monsters chasing a standing target. Usually player.
 	  **/
 
-	public static void FollowStandingTargetStart (NavMeshAgent agent, GameObject target) 
+	public static void FollowStandingTargetStart (NavMeshAgent agent, Vector3 dest) 
 	{
-		agent.SetDestination(target.transform.position);
+		agent.SetDestination(dest);
 	}
 
 	/**

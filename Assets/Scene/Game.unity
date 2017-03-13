@@ -3286,9 +3286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72bfbb568ed5f34595abd281487ce72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostWhite: {fileID: 1335170990}
-  ghostViolet: {fileID: 1924712689}
-  rabbitYellow: {fileID: 27980594}
+  monsters:
+  - {fileID: 1335170990}
+  - {fileID: 1924712689}
+  - {fileID: 27980594}
 --- !u!4 &821073625
 Transform:
   m_ObjectHideFlags: 0

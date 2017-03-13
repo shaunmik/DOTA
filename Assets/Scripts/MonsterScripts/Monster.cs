@@ -9,6 +9,7 @@ abstract public class Monster : MonoBehaviour
     public GameObject target;
     public NavMeshAgent agent;
     protected Animator anim;
+    protected PlayerHealthController playerHealthController;
 
     public float MonsterStartHealth = 100;
     private float MonsterHealth;
@@ -21,9 +22,10 @@ abstract public class Monster : MonoBehaviour
     public Image HealthBar;
 
     private bool dead = false;
+    private bool despawn = false;
     private float originalSpeed;
     private GameManager gameManager;
-    protected PlayerHealthController playerHealthController;
+    
 
     // Use this for initialization
     protected void Start()
@@ -49,7 +51,7 @@ abstract public class Monster : MonoBehaviour
         monsterMovement();
 
         //Destroys monster once it reaches player for memory management purposes
-        if (playerDamageCriteria())
+        if (!despawn && playerDamageCriteria())
         {
             damagePlayer();
         }
@@ -64,12 +66,6 @@ abstract public class Monster : MonoBehaviour
     {
         return dead;
     }
-
-    protected void playDead()
-    {
-        if (anim != null) anim.SetTrigger("Die");
-    }
-
 
     protected void InitializeRotation()
     {
@@ -89,8 +85,10 @@ abstract public class Monster : MonoBehaviour
 
     IEnumerator playDeathAnimation()
     {
-        playDead();
-        yield return new WaitForSeconds(1.5f);
+        if (anim != null) {
+            anim.SetTrigger("Die");
+            yield return new WaitForSeconds(1.5f);
+        }
         Destroy(this.gameObject);
     }
 
@@ -108,7 +106,8 @@ abstract public class Monster : MonoBehaviour
                 agent.Stop();
             }
 
-            if (anim != null) {
+            if (anim != null && !despawn) {
+                despawn = true;
                 destroySelf();
             } else {
                 Destroy(this.gameObject);
@@ -144,8 +143,19 @@ abstract public class Monster : MonoBehaviour
     {
         // Damage the player.
         playerHealthController.TakeDamage(MonsterAttackDamage);
-        // Destroy the monster.
-        Destroy(this.gameObject);
+
+        despawn = true;
+        // Play the attack animation and clean up
+        StartCoroutine(playAttackAnimation());
+    }
+
+    IEnumerator playAttackAnimation()
+    {
+        if (anim != null) {
+            anim.SetTrigger("Attack");
+            yield return new WaitForSeconds(0.9f);
+        }
+        destroySelf();
     }
 
     protected abstract void monsterInit();

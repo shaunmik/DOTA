@@ -62,12 +62,16 @@ public class MonsterBehavior : MonoBehaviour {
     // Extracted from https://forum.unity3d.com/threads/solved-random-wander-ai-using-navmesh.327950/
 	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int mask) {
         Vector3 randDirection = Random.insideUnitSphere * dist;
+        float destZPos = randDirection.z;
 
-        // Ensure Z position decreases, i.e. approaches the player
- 		if (randDirection.z > 0) {
- 			randDirection.Set(randDirection.x, randDirection.y, randDirection.z * -1);
+        // Ensure Z position decreases by a certain threshold, so that it approaches the player
+ 		if (Mathf.Abs(destZPos) < dist/2) {
+ 			destZPos = -dist/2;
+ 		} else if (randDirection.z > 0) {
+ 			destZPos *= -1;
  		}
 
+		randDirection.Set(randDirection.x, randDirection.y, destZPos);
         randDirection += origin;       
  
         NavMeshHit navHit;

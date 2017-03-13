@@ -6,16 +6,16 @@ using UnityEngine;
 public class Cube : Monster {
 
     protected override void monsterInit() {
-        MonsterBehavior.FollowStandingTargetStart(agent, target.transform.position);
+        // do nothing
     }
 
     protected override void monsterMovement()
     {
-        throw new NotImplementedException();
+        // do nothing
     }
 
     protected override bool playerDamageCriteria()
     {
-        throw new NotImplementedException();
+        return false;
     }
 }

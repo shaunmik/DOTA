@@ -2362,13 +2362,14 @@ GameObject:
   - component: {fileID: 684454023}
   - component: {fileID: 684454022}
   - component: {fileID: 684454026}
+  - component: {fileID: 684454027}
   m_Layer: 9
   m_Name: TrainingCube
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &684454022
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2445,10 +2446,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  agent: {fileID: 0}
   MonsterStartHealth: 1
   MonsterAttackDamage: 10
-  speed: 25
+  translation: {x: 0, y: 0, z: 0}
   HealthBar: {fileID: 1845431901}
+--- !u!195 &684454027
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 684454021}
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &698325562
 GameObject:
   m_ObjectHideFlags: 0

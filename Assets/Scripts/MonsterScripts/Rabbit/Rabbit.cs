@@ -29,7 +29,7 @@ public class Rabbit : Monster
             if (Vector3.Distance(transform.position, closestCastlePos) < 70) {
                 MonsterBehavior.FollowStandingTargetStart(agent, target.transform.position);
                 targetPlayer = true;
-            } else {
+            } else if (!paused) {
                 Wander();
             }
         }

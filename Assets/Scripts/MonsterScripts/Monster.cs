@@ -25,6 +25,9 @@ abstract public class Monster : MonoBehaviour
     private bool despawn = false;
     private float originalSpeed;
     private GameManager gameManager;
+    private float resumeTime;
+
+    protected bool paused = false;
     
 
     // Use this for initialization
@@ -134,8 +137,24 @@ abstract public class Monster : MonoBehaviour
 
         checkDead();
 
+        // Animate the damage taking
         if (!dead && anim != null) {
+            agent.Stop();
+            paused = true;
+            // agent.enabled = false;
             anim.SetTrigger("TakeDamage");
+            StartCoroutine(resumeMovementPostAnimation());
+        }
+    }
+
+    IEnumerator resumeMovementPostAnimation()
+    {
+        resumeTime = Time.time + 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        if (Time.time >= resumeTime) {
+            agent.Resume();
+            paused = false;
+            // agent.enabled = true;
         }
     }
 

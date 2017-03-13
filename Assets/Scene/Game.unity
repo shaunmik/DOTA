@@ -252,10 +252,6 @@ MonoBehaviour:
   translation: {x: 0, y: 0, z: 0}
   HealthBar: {fileID: 1295004837}
   wanderRadius: 50
-  minDestChangeRate: 4
-  maxDestChangeRate: 6
-  nextDestChange: 0
-  mask: 0
 --- !u!1 &45763477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,10 +1571,6 @@ MonoBehaviour:
   translation: {x: 0, y: 0, z: 0}
   HealthBar: {fileID: 1654295834}
   wanderRadius: 50
-  minDestChangeRate: 4
-  maxDestChangeRate: 6
-  nextDestChange: 0
-  mask: 0
 --- !u!195 &416243422
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3827,7 +3819,6 @@ Transform:
   - {fileID: 1474918257}
   - {fileID: 416243419}
   - {fileID: 1619067134}
-  - {fileID: 1377317154}
   m_Father: {fileID: 499887827}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5205,19 +5196,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1032687539}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4000013669607808, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 202
+      value: 45.4
       objectReference: {fileID: 0}
     - target: {fileID: 4000013669607808, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -34
+      value: -0.6055527
       objectReference: {fileID: 0}
     - target: {fileID: 4000013669607808, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 503.5
+      value: 57.8
       objectReference: {fileID: 0}
     - target: {fileID: 4000013669607808, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5237,7 +5228,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013669607808, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4000013669607808, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_LocalScale.x
@@ -5395,10 +5386,6 @@ MonoBehaviour:
   translation: {x: 0, y: 0, z: 0}
   HealthBar: {fileID: 1059550308}
   wanderRadius: 50
-  minDestChangeRate: 4
-  maxDestChangeRate: 6
-  nextDestChange: 0
-  mask: 0
 --- !u!195 &1377317157
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5810,10 +5797,6 @@ MonoBehaviour:
   translation: {x: 0, y: 0, z: 0}
   HealthBar: {fileID: 651869888}
   wanderRadius: 50
-  minDestChangeRate: 4
-  maxDestChangeRate: 6
-  nextDestChange: 0
-  mask: 0
 --- !u!195 &1474918260
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6703,10 +6686,6 @@ MonoBehaviour:
   translation: {x: 0, y: 0, z: 0}
   HealthBar: {fileID: 1960960779}
   wanderRadius: 50
-  minDestChangeRate: 4
-  maxDestChangeRate: 6
-  nextDestChange: 0
-  mask: 0
 --- !u!195 &1619067137
 NavMeshAgent:
   m_ObjectHideFlags: 0

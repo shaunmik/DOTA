@@ -247,6 +247,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -1634,6 +1638,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -3929,8 +3937,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 5000
-  MonsterAttackDamage: 95
+  MonsterAttackDamage: 100
   translation: {x: 0, y: 0, z: 0}
   HealthBar: {fileID: 1745999178}
 --- !u!195 &967198241
@@ -5527,6 +5539,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 300
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -5984,6 +6000,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -6395,6 +6415,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -7284,6 +7308,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -8139,7 +8167,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013669607808, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 374.3
+      value: 282.6
       objectReference: {fileID: 0}
     - target: {fileID: 4000013669607808, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8179,7 +8207,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011046516534, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011313051588, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
       propertyPath: m_Layer
@@ -8312,8 +8340,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 5000
-  MonsterAttackDamage: 95
+  MonsterAttackDamage: 100
   translation: {x: 0, y: 0, z: 0}
   HealthBar: {fileID: 356827027}
   wanderRadius: 50
@@ -8577,6 +8609,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -9115,6 +9151,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 20
   translation: {x: 0, y: 0, z: 0}
@@ -9564,6 +9604,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 100
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}

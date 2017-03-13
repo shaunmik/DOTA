@@ -27,7 +27,6 @@ abstract public class Monster : MonoBehaviour
     public Image HealthBar;
 
     private bool dead = false;
-    private bool despawn = false;
     private float originalSpeed;
     private GameManager gameManager;
     private float resumeTime;
@@ -59,7 +58,7 @@ abstract public class Monster : MonoBehaviour
         monsterMovement();
 
         //Destroys monster once it reaches player for memory management purposes
-        if (!despawn && playerDamageCriteria())
+        if (!dead && playerDamageCriteria())
         {
             damagePlayer();
         }
@@ -105,22 +104,23 @@ abstract public class Monster : MonoBehaviour
         if (MonsterHealth <= 0)
         {
             if (!dead) {
+                dead = true;
+                
                 if (gameManager != null) {
                     // increament the score
                     gameManager.addScore(1);
                 }
-                dead = true;
+
                 // Stop the monster from moving
-                agent.Stop();
-            }
+                agent.enabled = false;
 
-            if (anim != null && !despawn) {
-                despawn = true;
-                destroySelf();
-            } else {
-                Destroy(this.gameObject);
+                // Destroy the monster with/without animation
+                if (anim != null) {
+                    destroySelf();
+                } else {
+                    Destroy(this.gameObject);
+                }
             }
-
         }
     }
 
@@ -169,7 +169,6 @@ abstract public class Monster : MonoBehaviour
         if (!dead && anim != null) {
             agent.Stop();
             paused = true;
-            // agent.enabled = false;
             anim.SetTrigger("TakeDamage");
             StartCoroutine(resumeMovementPostAnimation());
         }
@@ -182,16 +181,17 @@ abstract public class Monster : MonoBehaviour
         if (Time.time >= resumeTime) {
             agent.Resume();
             paused = false;
-            // agent.enabled = true;
         }
     }
 
     protected void damagePlayer()
     {
-        // Damage the player.
+        // Damage the player
         playerHealthController.TakeDamage(MonsterAttackDamage);
 
-        despawn = true;
+        // Denote that despawning sequence initiated
+        dead = true;
+
         // Play the attack animation and clean up
         StartCoroutine(playAttackAnimation());
     }
@@ -200,7 +200,7 @@ abstract public class Monster : MonoBehaviour
     {
         if (anim != null) {
             anim.SetTrigger("Attack");
-            yield return new WaitForSeconds(0.9f);
+            yield return new WaitForSeconds(1.0f);
         }
         destroySelf();
     }

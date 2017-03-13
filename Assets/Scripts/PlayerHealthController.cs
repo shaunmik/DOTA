@@ -37,7 +37,6 @@ public class PlayerHealthController : MonoBehaviour {
             if (Mathf.Abs(CurrentHealth) < float.Epsilon){
                 isDead = true;
                 Wait(2);
-                GameOver();
             }
 		
 	}
@@ -49,6 +48,7 @@ public class PlayerHealthController : MonoBehaviour {
     IEnumerator _wait(float time)
     {
         yield return new WaitForSeconds(time);
+        GameOver();
     }
 
     public void GameOver()

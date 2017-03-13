@@ -13,6 +13,8 @@ public class CastingControl : MonoBehaviour
     public Camera cam;
 
     [SerializeField]
+    private LayerMask laycastLayerMask;
+    [SerializeField]
     private List<Spells.InspectableSpellDictionaryEntry> spellSettings;
 
     private SpellController spellController;
@@ -77,8 +79,9 @@ public class CastingControl : MonoBehaviour
         Spells.spellEnum spellEnum = Spells.elementsPairToSpellEnum[elementPair];
         Spells.SpellDetails spellDetail = spellEnumToSpellDetails[spellEnum];
 
+        Elements.elemEnum curSecondElement = elementPair.Second; // this is because "DecrementElement" may modify this
         spellController.DecrementElement(elementPair.First, spellDetail.firstElementCost);
-        spellController.DecrementElement(elementPair.Second, spellDetail.secondElementCost);
+        spellController.DecrementElement(curSecondElement, spellDetail.secondElementCost);
         // === setup done. shoot out bullet
 
         Vector3 pos = bulletPoint.transform.position;
@@ -96,18 +99,22 @@ public class CastingControl : MonoBehaviour
                 // set the start point near the hand
                 rotation = cam.transform.rotation.eulerAngles;
             }
-            else
-            {
-                prefabScript = spellPrefab.GetComponent<FireConstantBaseScript>();
-            }
         }
         else
         {
-            // TODO/DEBUG: TURNS OUT THIS IS ACTUALLY NEVER RAN
+            // TODO: Not sure if this way of checking for spell type is good idea. Maybe it is better to add "isProjectile" variable to Spells, but w/e
             // set the start point in front of the player a ways, rotated the same way as the player
+            RaycastHit hit;
+
             pos = bulletPoint.transform.position;
             rotation = cam.transform.rotation.eulerAngles;
-            pos.y = 0.0f;
+            rotation.x = 0; // this sets the spell up virtically
+            pos.y = 0.0f; 
+
+            Physics.Raycast(bulletPoint.transform.position, cam.transform.forward, out hit, 9000000f, laycastLayerMask);
+            pos = hit.point;
+
+
         }
 
         spellPrefab.transform.position = pos;

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114026857953405174}
   - component: {fileID: 82833796229314580}
   - component: {fileID: 82395233505759322}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Windbolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4154654501549178}
   - component: {fileID: 198085163354142962}
   - component: {fileID: 199542219073726660}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WindboltParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 114925319185582710}
   - component: {fileID: 54473725072290586}
   - component: {fileID: 108768092150396840}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WindboltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ MonoBehaviour:
   ProjectileCollisionSound: {fileID: 82833796229314580}
   ProjectileExplosionParticleSystem: {fileID: 198876316176620478}
   ProjectileExplosionRadius: 3
-  ProjectileExplosionForce: 500
+  ProjectileExplosionForce: 0
   ProjectileColliderDelay: 0
   ProjectileColliderSpeed: 120
   ProjectileDirection: {x: 0, y: 0, z: 1}
@@ -432,6 +432,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   ProjectileDestroyParticleSystemsOnCollision:
   - {fileID: 198085163354142962}
+  bulletDamage: 100
 --- !u!114 &114925319185582710
 MonoBehaviour:
   m_ObjectHideFlags: 1

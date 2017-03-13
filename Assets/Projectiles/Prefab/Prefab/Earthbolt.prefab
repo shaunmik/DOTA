@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114597994853978016}
   - component: {fileID: 54065155805133620}
   - component: {fileID: 108576698465686778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EarthboltCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114848665828075120}
   - component: {fileID: 82207254076235902}
   - component: {fileID: 82552415400929220}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Earthbolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 4116045150659778}
   - component: {fileID: 198851679735457538}
   - component: {fileID: 199376119191823348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EarthboltParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ MonoBehaviour:
   ProjectileCollisionSound: {fileID: 82207254076235902}
   ProjectileExplosionParticleSystem: {fileID: 198587704491116084}
   ProjectileExplosionRadius: 3
-  ProjectileExplosionForce: 500
+  ProjectileExplosionForce: 0
   ProjectileColliderDelay: 0
   ProjectileColliderSpeed: 120
   ProjectileDirection: {x: 0, y: 0, z: 1}
@@ -416,6 +416,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   ProjectileDestroyParticleSystemsOnCollision:
   - {fileID: 198851679735457538}
+  bulletDamage: 100
 --- !u!114 &114597994853978016
 MonoBehaviour:
   m_ObjectHideFlags: 1

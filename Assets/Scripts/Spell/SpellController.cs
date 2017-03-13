@@ -41,6 +41,12 @@ public class SpellController : MonoBehaviour
     private EarthLevelController earthLevelController;
     private WindLevelController windLevelController;
 
+    private bool isControlDisabled;
+
+    public void setIsControlDisabled(bool b)
+    {
+        isControlDisabled = b;
+    }
 
     public ElementsPair LeftHandElementsPair
     {
@@ -87,6 +93,10 @@ public class SpellController : MonoBehaviour
 	*/
     void Update()
     {
+        if (isControlDisabled)
+        {
+            return;
+        }
         if (ActionControlListener.isLeftConfirmPressed())
         {
             // Confirm left hand spell choice

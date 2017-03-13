@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-abstract public class Monster : MonoBehaviour {
+abstract public class Monster : MonoBehaviour
+{
     public GameObject target;
     public NavMeshAgent agent;
     protected Animator anim;
@@ -20,7 +21,8 @@ abstract public class Monster : MonoBehaviour {
     public Image HealthBar;
 
     private bool dead = false;
-
+    private float originalSpeed;
+    private GameManager gameManager;
     protected PlayerHealthController playerHealthController;
 
     // Use this for initialization
@@ -28,6 +30,8 @@ abstract public class Monster : MonoBehaviour {
     {
         agent = GetComponent <NavMeshAgent> ();
         monsterInit();
+        originalSpeed = agent.speed;
+        gameManager = FindObjectOfType<GameManager>();
         InitializeRotation();
         playerHealthController = intitializePlayerHealthController();
         MonsterHealth = MonsterStartHealth;
@@ -49,7 +53,7 @@ abstract public class Monster : MonoBehaviour {
         }
     }
 
-    protected PlayerHealthController intitializePlayerHealthController ()
+    protected PlayerHealthController intitializePlayerHealthController()
     {
         return FindObjectOfType<PlayerHealthController>();
     }
@@ -70,7 +74,7 @@ abstract public class Monster : MonoBehaviour {
         transform.rotation = new Quaternion(0, 180, 0, 0);
     }
 
-    protected void LookAt (Vector3 direction)
+    protected void LookAt(Vector3 direction)
     {
         direction.y = 0;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.1f);
@@ -92,9 +96,30 @@ abstract public class Monster : MonoBehaviour {
     {
         if (MonsterHealth <= 0)
         {
+            if (!dead)
+                // increament the score
+                gameManager.addScore(1);
             dead = true;
-            destroySelf();
+            if (GetComponent<Animator>() != null)
+            {
+                destroySelf();
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+
         }
+    }
+
+    public void applySpeedChange(float speedMultiplier, Elements.elemEnum elementType)
+    {
+        agent.speed *= speedMultiplier;
+    }
+
+    public void resetSpeed()
+    {
+        agent.speed = originalSpeed;
     }
 
     public void takeDamage(int damage)

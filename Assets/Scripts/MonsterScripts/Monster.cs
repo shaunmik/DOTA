@@ -124,7 +124,7 @@ abstract public class Monster : MonoBehaviour
         }
     }
 
-    public void applySpeedChange(float speedMultiplier, Elements.elemEnum elementType)
+    public void applySpeedChange(float speedMultiplier)
     {
         agent.speed *= speedMultiplier;
     }

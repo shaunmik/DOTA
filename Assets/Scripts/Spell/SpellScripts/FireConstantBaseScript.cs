@@ -78,8 +78,6 @@ namespace DigitalRuby.PyroParticles
 
         [Tooltip("Damage of this spell.")]
         public int dotDamage = 50;
-        [Tooltip("Score gained on every enemy hit.")]
-        public int dotScore = 1; // todo: this probablly need revisit for valance adjustment
 
         [Tooltip("Fire element gained on every enemy hit.")]
         public int dotFireGain = 0;

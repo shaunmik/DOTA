@@ -132,7 +132,6 @@ public class Level1Script : MonoBehaviour {
                 monsters = monstersLevelBoss;
                 levelBossIndicator.SetActive(true);
                 Wait(secondsToWait);
-                Debug.Log(monsterLevelBoss);
                 SpawnMonster(monsterLevelBoss);
             }
             else if (!isLevelBossCompleted)

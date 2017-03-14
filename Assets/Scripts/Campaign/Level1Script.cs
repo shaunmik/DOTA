@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class Level1Script : MonoBehaviour {
     [Header("Level 1")]
     public GameObject[] monstersLevel1;
-    public GameObject level1Boss;
     public float level1MaxTime = 10f;
     public float level1MinTime = 5f;
     public int level1MonsterCount = 25;
@@ -16,7 +15,6 @@ public class Level1Script : MonoBehaviour {
 
     [Header("Level 2")]
     public GameObject[] monstersLevel2;
-    public GameObject level2Boss;
     public float level2MaxTime = 7.5f;
     public float level2MinTime = 4f;
     public int level2MonsterCount = 25;
@@ -24,7 +22,6 @@ public class Level1Script : MonoBehaviour {
 
     [Header("Level 3")]
     public GameObject[] monstersLevel3;
-    public GameObject level3Boss;
     public float level3MaxTime = 6f;
     public float level3MinTime = 3f;
     public int level3MonsterCount = 25;
@@ -101,7 +98,6 @@ public class Level1Script : MonoBehaviour {
             
             SpawnMonster(monsters[chosenMonster]);
             monsterCount++;
-            SpawnMonster(monsterLevelBoss);
         }
         if (monsterCount >= maxMonsterCount && GameObject.FindGameObjectsWithTag("Monster").Length <= 0)
         {
@@ -136,6 +132,7 @@ public class Level1Script : MonoBehaviour {
                 monsters = monstersLevelBoss;
                 levelBossIndicator.SetActive(true);
                 Wait(secondsToWait);
+                Debug.Log(monsterLevelBoss);
                 SpawnMonster(monsterLevelBoss);
             }
             else if (!isLevelBossCompleted)

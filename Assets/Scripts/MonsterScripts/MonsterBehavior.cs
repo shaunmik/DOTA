@@ -36,13 +36,15 @@ public class MonsterBehavior : MonoBehaviour {
 	}
 
 	/**
-	  * 
-	  * 
+	  * Wander is meant for rabbits.
+	  * Wander causes agent to change destination to a random direction from 
+	  * current position that within approximately wanderRadius.
+	  * This destination can only change every destChangeRate seconds.
+	  *
+	  * For mask, you can do
+	  * 	int mask = NavMesh.GetAreaFromName("Walkable");
 	  **/
 
-	// TODO: finish this bunny related thing
-	// LayerMask mask = LayerMask.NameToLayer("Walkable");
-	
     public static void Wander (NavMeshAgent agent, 
 							   GameObject self,
 							   int mask,
@@ -59,7 +61,13 @@ public class MonsterBehavior : MonoBehaviour {
 		}
     }
 
-    // Extracted from https://forum.unity3d.com/threads/solved-random-wander-ai-using-navmesh.327950/
+    /**
+      *	Given origin location, dist, and mask, return a location on layer specified
+      * by mask that is dist away from location.
+	  *
+      * Extracted from https://forum.unity3d.com/threads/solved-random-wander-ai-using-navmesh.327950/
+      *
+      **/
 	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int mask) {
         Vector3 randDirection = Random.insideUnitSphere * dist;
         float destZPos = randDirection.z;

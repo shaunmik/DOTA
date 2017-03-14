@@ -10,7 +10,8 @@ public static class Monsters {
 	public static Dictionary<GameObject, Vector3> createMonsterToSpawnOffsetMap() {
 		GameObject ghostWhite = GameObject.Find("Monsters/Ghost/Ghost_White");
 		GameObject ghostViolet = GameObject.Find("Monsters/Ghost/Ghost_Violet");
-		GameObject ghostBoss = GameObject.Find("Monsters/Ghost/Ghost_Boss");
+        GameObject ghostGreen = GameObject.Find("Monsters/Ghost/Ghost_Green");
+        GameObject ghostBoss = GameObject.Find("Monsters/Ghost/Ghost_Boss");
 		GameObject rabbitYellow = GameObject.Find("Monsters/Rabbit/Rabbit_Yellow");
 
 
@@ -19,7 +20,8 @@ public static class Monsters {
 		mobToOffsetDict.Add(ghostWhite, Ghost.getSpawnOffset());
 		mobToOffsetDict.Add(ghostBoss, Ghost.getSpawnOffset());
 		mobToOffsetDict.Add(ghostViolet, Ghost.getSpawnOffset());
-		mobToOffsetDict.Add(rabbitYellow, Vector3.zero);
+        mobToOffsetDict.Add(ghostGreen, Ghost.getSpawnOffset());
+        mobToOffsetDict.Add(rabbitYellow, Vector3.zero);
 
 		return mobToOffsetDict;
 	}

@@ -7487,7 +7487,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2079799078
+  randomSeed: 1068634687
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12468,7 +12468,7 @@ MonoBehaviour:
   cam: {fileID: 1653866269}
   laycastLayerMask:
     serializedVersion: 2
-    m_Bits: 4294965499
+    m_Bits: 51
   spellSettings:
   - firstElement: 1
     secondElement: 0
@@ -12543,28 +12543,31 @@ MonoBehaviour:
   - firstElement: 3
     secondElement: 4
     spellDetails:
-      firstElementCost: 10
-      secondElementCost: 10
+      firstElementCost: 50
+      secondElementCost: 50
       spellObject: {fileID: 1501113832315326, guid: 20e9b53ed9598bb4f8501fc476396ced,
         type: 2}
   - firstElement: 2
     secondElement: 4
     spellDetails:
-      firstElementCost: 10
-      secondElementCost: 10
-      spellObject: {fileID: 0}
+      firstElementCost: 50
+      secondElementCost: 50
+      spellObject: {fileID: 1682049296898110, guid: bade2c52ee4b0a341ae128cb5710f522,
+        type: 2}
   - firstElement: 1
     secondElement: 4
     spellDetails:
-      firstElementCost: 10
-      secondElementCost: 10
-      spellObject: {fileID: 0}
+      firstElementCost: 100
+      secondElementCost: 100
+      spellObject: {fileID: 1519587383364116, guid: 608f92466c7759148ba2d3f9a7d46fe1,
+        type: 2}
   - firstElement: 1
     secondElement: 2
     spellDetails:
-      firstElementCost: 10
-      secondElementCost: 10
-      spellObject: {fileID: 0}
+      firstElementCost: 40
+      secondElementCost: 40
+      spellObject: {fileID: 1597792108280998, guid: 51e7f5a43ebe5d14c9e09ace01c7cec1,
+        type: 2}
 --- !u!114 &1872655522
 MonoBehaviour:
   m_ObjectHideFlags: 0

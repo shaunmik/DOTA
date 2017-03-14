@@ -5738,6 +5738,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1228327552}
+--- !u!1001 &1264177538
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4897842714804436, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897842714804436, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897842714804436, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 152.50781
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897842714804436, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897842714804436, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897842714804436, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897842714804436, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897842714804436, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262091564426692, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+      propertyPath: m_Name
+      value: SteamSpell(WaterFire)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 34469d93aaf78724bacdcc2556d6eb80, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1265365517
 GameObject:
   m_ObjectHideFlags: 0
@@ -7461,7 +7507,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1750148908
+  randomSeed: 408300654
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12486,9 +12532,10 @@ MonoBehaviour:
   - firstElement: 1
     secondElement: 2
     spellDetails:
-      firstElementCost: 10
-      secondElementCost: 10
-      spellObject: {fileID: 0}
+      firstElementCost: 40
+      secondElementCost: 40
+      spellObject: {fileID: 1262091564426692, guid: 34469d93aaf78724bacdcc2556d6eb80,
+        type: 2}
 --- !u!114 &1872655522
 MonoBehaviour:
   m_ObjectHideFlags: 0

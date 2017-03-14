@@ -4,8 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Monster
   - Button
+  - Monster
+  - NewGame
+  - Tutorial
+  - HighScores
+  - Exit
+  - Campaign
+  - ExitGame
+  - ResumeGame
+  - QuitGame
   layers:
   - Default
   - TransparentFX

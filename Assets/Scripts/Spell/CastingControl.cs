@@ -49,7 +49,7 @@ public class CastingControl : MonoBehaviour
             CastSpell(Hands.handEnum.left);
         }
     }
-    
+
     private void CastSpell(Hands.handEnum hand)
     {
         ElementsPair elementPair;
@@ -59,12 +59,14 @@ public class CastingControl : MonoBehaviour
             elementPair = spellController.LeftHandElementsPair;
             bulletPoint = LeftBulletPoint;
             nextSpellCooldownLeft = Time.time + 0.5f;
-        } else if (hand == Hands.handEnum.right)
+        }
+        else if (hand == Hands.handEnum.right)
         {
             elementPair = spellController.RightHandElementsPair;
             bulletPoint = RightBulletPoint;
             nextSpellCooldownRight = Time.time + 0.5f;
-        } else
+        }
+        else
         {
             Debug.Log("[CastingControl][CastSpell] Error: inappropriate hand is provided - " + hand);
             return;
@@ -79,22 +81,19 @@ public class CastingControl : MonoBehaviour
         Spells.spellEnum spellEnum = Spells.elementsPairToSpellEnum[elementPair];
         Spells.SpellDetails spellDetail = spellEnumToSpellDetails[spellEnum];
 
-        Elements.elemEnum curSecondElement = elementPair.Second; // this is because "DecrementElement" may modify this
-        spellController.DecrementElement(elementPair.First, spellDetail.firstElementCost);
-        spellController.DecrementElement(curSecondElement, spellDetail.secondElementCost);
+        bool shouldCreateBullet = true;
         // === setup done. shoot out bullet
 
         Vector3 pos = bulletPoint.transform.position;
         Vector3 rotation = new Vector3(0, 0, 0);
 
-        var spellPrefab = GameObject.Instantiate(spellDetail.spellObject);
-        prefabScript = spellPrefab.GetComponent<FireConstantBaseScript>();
+        prefabScript = spellDetail.spellObject.GetComponent<FireConstantBaseScript>();
 
         if (prefabScript == null)
         {
             // temporary effect, like a fireball
-            prefabScript = spellPrefab.GetComponent<FireBaseScript>();
-            if (spellPrefab.GetComponent<FireBaseScript>().IsProjectile)
+            prefabScript = spellDetail.spellObject.GetComponent<FireBaseScript>();
+            if (spellDetail.spellObject.GetComponent<FireBaseScript>().IsProjectile)
             {
                 // set the start point near the hand
                 rotation = cam.transform.rotation.eulerAngles;
@@ -109,15 +108,26 @@ public class CastingControl : MonoBehaviour
             pos = bulletPoint.transform.position;
             rotation = cam.transform.rotation.eulerAngles;
             rotation.x = 0; // this sets the spell up virtically
-            pos.y = 0.0f; 
+            pos.y = 0.0f;
 
             Physics.Raycast(bulletPoint.transform.position, cam.transform.forward, out hit, 9000000f, laycastLayerMask);
+            if (hit.collider == null)
+            {
+                shouldCreateBullet = false;
+            }
+
             pos = hit.point;
 
 
         }
 
-        spellPrefab.transform.position = pos;
-        spellPrefab.transform.eulerAngles = rotation;
+        if (shouldCreateBullet)
+        {
+            var spellPrefab = GameObject.Instantiate(spellDetail.spellObject, pos, Quaternion.Euler(rotation));
+
+            Elements.elemEnum curSecondElement = elementPair.Second; // this is because "DecrementElement" may modify this
+            spellController.DecrementElement(elementPair.First, spellDetail.firstElementCost);
+            spellController.DecrementElement(curSecondElement, spellDetail.secondElementCost);
+        }
     }
 }

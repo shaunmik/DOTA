@@ -81,7 +81,7 @@ public class CastingControl : MonoBehaviour
         Spells.spellEnum spellEnum = Spells.elementsPairToSpellEnum[elementPair];
         Spells.SpellDetails spellDetail = spellEnumToSpellDetails[spellEnum];
 
-        bool shouldCreateBullet = true;
+        bool shouldCreateBullet = spellController;
         // === setup done. shoot out bullet
 
         Vector3 pos = bulletPoint.transform.position;
@@ -121,7 +121,7 @@ public class CastingControl : MonoBehaviour
 
         }
 
-        if (shouldCreateBullet)
+        if (shouldCreateBullet && spellController.hasEnoughResourceToCast(elementPair, spellDetail.firstElementCost, spellDetail.secondElementCost))
         {
             var spellPrefab = GameObject.Instantiate(spellDetail.spellObject, pos, Quaternion.Euler(rotation));
 

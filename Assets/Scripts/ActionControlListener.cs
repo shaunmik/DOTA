@@ -90,6 +90,7 @@ public static class ActionControlListener
     {
         return Input.GetButtonDown("Start_Button");
     }
+   
     /// <summary>
     /// The return value is 1 when trigger is fully pressed down </summary>
     public static float RightTrigger()

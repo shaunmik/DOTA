@@ -14,6 +14,4 @@ public class GhostViolet : Ghost
     {
        return (transform.position.z <= target.transform.position.z + 15f && agent.remainingDistance < 0.5f);
     }
-
-    // TODO: resistances
 }

@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WindParticleFlameSheetMaterial
+  m_Name: WindWindParticleFlameSheetMaterial
   m_Shader: {fileID: 4800000, guid: 246a7a15f0e80a64c8cb5b2f79bbd616, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5

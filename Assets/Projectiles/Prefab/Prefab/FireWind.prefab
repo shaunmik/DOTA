@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 19800006}
   - component: {fileID: 19900006}
   m_Layer: 0
-  m_Name: WhityBomb
+  m_Name: FireWind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

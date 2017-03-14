@@ -51,6 +51,11 @@ namespace DigitalRuby.PyroParticles
         [HideInInspector]
         public FireProjectileCollisionDelegate CollisionDelegate;
 
+        [Tooltip("Element type of the spell. Used for resistance setting.")]
+        public Elements.elemEnum firstElementType;
+        [Tooltip("Element type of the spell. Used for resistance setting.")]
+        public Elements.elemEnum secondElementType;
+
         private bool collided;
         
         private FireLevelController fireLevelController;
@@ -110,22 +115,9 @@ namespace DigitalRuby.PyroParticles
 
             if (c.collider.tag.Equals("Monster"))
             {
-                // destroy the monster
-                //Destroy(c.collider.gameObject);
-                Elements.elemEnum firstElement = Elements.elemEnum.none;
-                Elements.elemEnum secondElement = Elements.elemEnum.none;
-                if (obj.name == "WindboltCollider")
-                    firstElement = Elements.elemEnum.wind;
-                else if (obj.name == "FireboltCollider")
-                    firstElement = Elements.elemEnum.fire;
-                else if (obj.name == "EarthboltCollider")
-                    firstElement = Elements.elemEnum.earth;
-                else if (obj.name == "WaterboltCollider")
-                    firstElement = Elements.elemEnum.water;
-
 
                 Monster monster = c.collider.gameObject.GetComponent<Monster>();
-                monster.takeDamage(bulletDamage, firstElement,secondElement);
+                monster.takeDamage(bulletDamage, firstElementType,secondElementType);
 
                 // increament the level of all elements
                 fireLevelController.IncrementElement(1);

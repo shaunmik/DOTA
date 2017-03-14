@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198709582912903858}
   - component: {fileID: 199019170117492472}
   m_Layer: 8
-  m_Name: Snow
+  m_Name: Snow (WaterWind)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.78039217, g: 0.8980392, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.972549, b: 0, a: 1}
       minMaxState: 0
     startSize:
       scalar: 1

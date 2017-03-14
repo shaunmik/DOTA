@@ -432,7 +432,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   ProjectileDestroyParticleSystemsOnCollision:
   - {fileID: 198085163354142962}
-  bulletDamage: 100
+  bulletDamage: 300
 --- !u!114 &114925319185582710
 MonoBehaviour:
   m_ObjectHideFlags: 1

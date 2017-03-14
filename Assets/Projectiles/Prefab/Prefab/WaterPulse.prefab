@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 82033601747736866}
   - component: {fileID: 82070291433240686}
   m_Layer: 8
-  m_Name: Waterbolt
+  m_Name: WaterPulse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 198371608579969974}
   - component: {fileID: 199185370130206040}
   m_Layer: 8
-  m_Name: WaterboltParticle
+  m_Name: WaterPulseParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -269,7 +269,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 1.63
   MinDistance: 1
   MaxDistance: 250
   Pan2D: 0
@@ -284,35 +284,35 @@ AudioSource:
       time: 0.004
       value: 0.99683
       inSlope: 0
-      outSlope: -1.004016
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
       time: 0.18509033
       value: 0.9100903
-      inSlope: -0.0962615
-      outSlope: -0.0962615
+      inSlope: -1.5243349
+      outSlope: -1.5243349
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.41638598
-      value: 0.49863774
-      inSlope: -4.861736
-      outSlope: -4.861736
+      time: 0.4608886
+      value: 0.65688336
+      inSlope: 1.5695032
+      outSlope: 1.5695032
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.6766128
-      value: 0.08242076
-      inSlope: -0.09983778
-      outSlope: -0.09983778
+      time: 0.78917825
+      value: 0.5571576
+      inSlope: -4.7216935
+      outSlope: -4.7216935
       tangentMode: 0
     - serializedVersion: 2
       time: 1
       value: 0
       inSlope: -1.004016
-      outSlope: 0
+      outSlope: -1.004016
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -330,13 +330,13 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 0.2361111
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -416,7 +416,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   ProjectileDestroyParticleSystemsOnCollision:
   - {fileID: 198371608579969974}
-  bulletDamage: 100
+  bulletDamage: 300
 --- !u!114 &114261961791149328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -464,7 +464,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1277519329882178}
   serializedVersion: 5
   lengthInSec: 0.5
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -3005,7 +3005,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1748909928382278}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -5594,7 +5594,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: e71b9f16620495b429fa3166d7ab7c8e, type: 2}
+  - {fileID: 2100000, guid: b10e0600618619f43819a5c922ce7996, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

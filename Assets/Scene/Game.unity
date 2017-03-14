@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872692, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -6764,7 +6764,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1544919469}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -6811,7 +6811,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -18061558
+  randomSeed: -1268740158
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11671,12 +11671,19 @@ MonoBehaviour:
       secondElementCost: 50
       spellObject: {fileID: 1761009667793884, guid: 0003afd7cd690f04d9f089a0d503e34d,
         type: 2}
-  - firstElement: 3
-    secondElement: 3
+  - firstElement: 4
+    secondElement: 4
     spellDetails:
-      firstElementCost: 50
-      secondElementCost: 50
-      spellObject: {fileID: 1954881533814520, guid: 845e6913be7318d4b8367e8fd960f4d9,
+      firstElementCost: 10
+      secondElementCost: 10
+      spellObject: {fileID: 1215648155877260, guid: ecc19e5841ae49d41b15fe76391c4207,
+        type: 2}
+  - firstElement: 2
+    secondElement: 2
+    spellDetails:
+      firstElementCost: 10
+      secondElementCost: 10
+      spellObject: {fileID: 1599310093402444, guid: 0dd1cbecffd667f4c9f6c2e369a44b64,
         type: 2}
 --- !u!114 &1872655522
 MonoBehaviour:

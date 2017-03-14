@@ -12,10 +12,12 @@ public class GameOverMenuHover : MonoBehaviour
     public GameObject MainMenuObj;
     public GameObject HighScoreObj;
 
+    private GameManager gameManager;
     void Start()
     {
         survival = FindObjectOfType<Survival>();
         back = FindObjectOfType<MenuGame>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -30,6 +32,7 @@ public class GameOverMenuHover : MonoBehaviour
 
                 if (back.load())
                 {
+                    gameManager.resetGame();
                     SceneManager.LoadScene("GameStart");
                 }
             }

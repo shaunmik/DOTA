@@ -20,12 +20,11 @@ public class DamageEffect : MonoBehaviour
         {
             Debug.LogError("Error: No image on " + this.name);
         }
-        if (isFadeIn)
-        {
-            Color c = this.image.color;
-            c.a = 0f;
-            this.image.color = c;
-        }
+
+        Color c = this.image.color;
+        c.a = 0f;
+        this.image.color = c;
+
         this.targetAlpha = this.image.color.a;
     }
 
@@ -55,8 +54,6 @@ public class DamageEffect : MonoBehaviour
             curColor.a = Mathf.Lerp(curColor.a, targetAlpha, this.FadeRate * Time.deltaTime);
             this.image.color = curColor;
         }
-
-        if (this.image.color.a <= 0.01 && isFadeOut && !isFadeIn) this.gameObject.SetActive(false);
     }
 
     public void FadeOut()
@@ -66,6 +63,8 @@ public class DamageEffect : MonoBehaviour
 
     public void FadeIn()
     {
+        isFadeIn = true;
+        isFadeOut = false;
         this.targetAlpha = 1.0f;
     }
 }

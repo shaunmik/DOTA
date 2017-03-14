@@ -4,42 +4,55 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealthController : MonoBehaviour {
+public class PlayerHealthController : MonoBehaviour
+{
 
-        private float StartingHealth = 100f;
-        public Image HealthBar;
-        private float CurrentHealth; 
-        private bool isDead; 
+    private float StartingHealth = 100f;
+    public Image HealthBar;
+    public Image PainEffect;
 
-        public bool IsDead { get { return isDead; } }
+    private float CurrentHealth;
+    private bool isDead;
 
-        //Initialize the variables.
-	void Start() {
-            isDead = false;
-            CurrentHealth = StartingHealth;
-            HealthBar.fillAmount = 1f;	
-	}
-	
-        //Damage control.
-	public void TakeDamage(int damage) {
-            if (IsDead) {
-                return;
-            }
+    public bool IsDead { get { return isDead; } }
 
-            // Decrement the current health by the damage but make sure it stays between the min and max.
-            CurrentHealth -= damage;
-            CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, StartingHealth);
+    private DamageEffect dmgEffect;
 
-            // Set the health bar to show the normalised health amount.
-            HealthBar.fillAmount = CurrentHealth / StartingHealth;
+    //Initialize the variables.
+    void Start()
+    {
+        isDead = false;
+        CurrentHealth = StartingHealth;
+        HealthBar.fillAmount = 1f;
 
-            // If the current health is approximately equal to zero
-            if (Mathf.Abs(CurrentHealth) < float.Epsilon){
-                isDead = true;
-                Wait(2);
-            }
-		
-	}
+        dmgEffect = PainEffect.GetComponent<DamageEffect>();
+    }
+
+    //Damage control.
+    public void TakeDamage(int damage)
+    {
+        if (IsDead)
+        {
+            return;
+        }
+
+        dmgEffect.FadeIn();
+
+        // Decrement the current health by the damage but make sure it stays between the min and max.
+        CurrentHealth -= damage;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, StartingHealth);
+
+        // Set the health bar to show the normalised health amount.
+        HealthBar.fillAmount = CurrentHealth / StartingHealth;
+
+        // If the current health is approximately equal to zero
+        if (Mathf.Abs(CurrentHealth) < float.Epsilon)
+        {
+            isDead = true;
+            Wait(2);
+        }
+
+    }
 
     public void Wait(float seconds)
     {

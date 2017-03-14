@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExitGame : MonoBehaviour
+public class MenuVRLook : MonoBehaviour
 {
 
     private float StartingLoadLevel = 0f;
-    public Image Exit;
+    public Image FillImage;
     private float CurrentLoadLevel;
     private bool loaded;
 
@@ -15,14 +15,14 @@ public class ExitGame : MonoBehaviour
     {
         loaded = false;
         CurrentLoadLevel = StartingLoadLevel;
-        Exit.fillAmount = 0f;
+        FillImage.fillAmount = 0f;
     }
     public bool load()
     {
         if (loaded)
             return loaded;
         CurrentLoadLevel += 0.01f;
-        Exit.fillAmount = CurrentLoadLevel;
+        FillImage.fillAmount = CurrentLoadLevel;
         if (CurrentLoadLevel >= 1f)
         {
             loaded = true;
@@ -32,7 +32,7 @@ public class ExitGame : MonoBehaviour
     public void unload()
     {
         CurrentLoadLevel = StartingLoadLevel;
-        Exit.fillAmount = CurrentLoadLevel;
+        FillImage.fillAmount = CurrentLoadLevel;
         loaded = false;
     }
 }

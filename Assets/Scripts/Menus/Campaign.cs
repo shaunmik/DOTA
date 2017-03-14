@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewGame : MonoBehaviour {
+public class Campaign : MonoBehaviour {
 
       private float StartingLoadLevel = 0f;
       public Image Game;

@@ -7461,7 +7461,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1566930769
+  randomSeed: -26685025
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12465,16 +12465,17 @@ MonoBehaviour:
   - firstElement: 3
     secondElement: 4
     spellDetails:
-      firstElementCost: 10
-      secondElementCost: 10
+      firstElementCost: 50
+      secondElementCost: 50
       spellObject: {fileID: 1501113832315326, guid: 20e9b53ed9598bb4f8501fc476396ced,
         type: 2}
   - firstElement: 2
     secondElement: 4
     spellDetails:
-      firstElementCost: 10
-      secondElementCost: 10
-      spellObject: {fileID: 0}
+      firstElementCost: 60
+      secondElementCost: 50
+      spellObject: {fileID: 1682049296898110, guid: bade2c52ee4b0a341ae128cb5710f522,
+        type: 2}
   - firstElement: 1
     secondElement: 4
     spellDetails:

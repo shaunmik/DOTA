@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -9586,7 +9586,7 @@ MonoBehaviour:
   cam: {fileID: 1653866269}
   laycastLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967035
+    m_Bits: 4294966011
   spellSettings:
   - firstElement: 1
     secondElement: 0

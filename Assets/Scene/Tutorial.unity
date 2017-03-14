@@ -2447,6 +2447,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 0}
+  fireResistance: 0
+  waterResistance: 0
+  windResistance: 0
+  earthResistance: 0
   MonsterStartHealth: 1
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
@@ -5824,7 +5828,7 @@ MonoBehaviour:
   cam: {fileID: 900618179}
   laycastLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294966011
   spellSettings:
   - firstElement: 1
     secondElement: 0
@@ -5832,13 +5836,6 @@ MonoBehaviour:
       firstElementCost: 5
       secondElementCost: 0
       spellObject: {fileID: 1437006242602934, guid: 369eee557c4d41c479225bf744fa6a5f,
-        type: 2}
-  - firstElement: 1
-    secondElement: 1
-    spellDetails:
-      firstElementCost: 5
-      secondElementCost: 5
-      spellObject: {fileID: 1890280909824454, guid: feccef8fcf58b9d458f935039351eda5,
         type: 2}
   - firstElement: 2
     secondElement: 0
@@ -5860,6 +5857,27 @@ MonoBehaviour:
       firstElementCost: 5
       secondElementCost: 0
       spellObject: {fileID: 1215648155877260, guid: a38bfc1925712ec4f9d4d9106ead2f6e,
+        type: 2}
+  - firstElement: 1
+    secondElement: 1
+    spellDetails:
+      firstElementCost: 10
+      secondElementCost: 10
+      spellObject: {fileID: 1890280909824454, guid: feccef8fcf58b9d458f935039351eda5,
+        type: 2}
+  - firstElement: 1
+    secondElement: 3
+    spellDetails:
+      firstElementCost: 50
+      secondElementCost: 50
+      spellObject: {fileID: 1251627228565434, guid: d3f5d277690565147aeb66cf4d8aa30e,
+        type: 2}
+  - firstElement: 2
+    secondElement: 3
+    spellDetails:
+      firstElementCost: 50
+      secondElementCost: 50
+      spellObject: {fileID: 1761009667793884, guid: 0003afd7cd690f04d9f089a0d503e34d,
         type: 2}
 --- !u!4 &1789406032
 Transform:

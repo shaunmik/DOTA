@@ -6815,7 +6815,7 @@ MonoBehaviour:
   cam: {fileID: 900618179}
   laycastLayerMask:
     serializedVersion: 2
-    m_Bits: 4294966011
+    m_Bits: 51
   spellSettings:
   - firstElement: 1
     secondElement: 0
@@ -6865,6 +6865,55 @@ MonoBehaviour:
       firstElementCost: 50
       secondElementCost: 50
       spellObject: {fileID: 1761009667793884, guid: 0003afd7cd690f04d9f089a0d503e34d,
+        type: 2}
+  - firstElement: 4
+    secondElement: 4
+    spellDetails:
+      firstElementCost: 10
+      secondElementCost: 10
+      spellObject: {fileID: 1215648155877260, guid: ecc19e5841ae49d41b15fe76391c4207,
+        type: 2}
+  - firstElement: 2
+    secondElement: 2
+    spellDetails:
+      firstElementCost: 10
+      secondElementCost: 10
+      spellObject: {fileID: 1599310093402444, guid: 0dd1cbecffd667f4c9f6c2e369a44b64,
+        type: 2}
+  - firstElement: 3
+    secondElement: 3
+    spellDetails:
+      firstElementCost: 10
+      secondElementCost: 10
+      spellObject: {fileID: 1713857105451462, guid: c3eece0cf6a59964da72427e560aba7b,
+        type: 2}
+  - firstElement: 3
+    secondElement: 4
+    spellDetails:
+      firstElementCost: 50
+      secondElementCost: 50
+      spellObject: {fileID: 1501113832315326, guid: 20e9b53ed9598bb4f8501fc476396ced,
+        type: 2}
+  - firstElement: 2
+    secondElement: 4
+    spellDetails:
+      firstElementCost: 50
+      secondElementCost: 50
+      spellObject: {fileID: 1682049296898110, guid: bade2c52ee4b0a341ae128cb5710f522,
+        type: 2}
+  - firstElement: 1
+    secondElement: 4
+    spellDetails:
+      firstElementCost: 100
+      secondElementCost: 100
+      spellObject: {fileID: 1519587383364116, guid: 608f92466c7759148ba2d3f9a7d46fe1,
+        type: 2}
+  - firstElement: 1
+    secondElement: 2
+    spellDetails:
+      firstElementCost: 40
+      secondElementCost: 40
+      spellObject: {fileID: 1597792108280998, guid: 51e7f5a43ebe5d14c9e09ace01c7cec1,
         type: 2}
 --- !u!4 &1789406032
 Transform:

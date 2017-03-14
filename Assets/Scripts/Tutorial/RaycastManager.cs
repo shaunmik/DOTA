@@ -20,9 +20,13 @@ public class RaycastManager : MonoBehaviour {
 
         if (Physics.Raycast (rayOrigin,cam.transform.forward, out hit, 300f))
         {
+            if (hit.collider != null)
+            {
+                Destroy(hit.collider.gameObject);
+                cubeCount++;
+            }
             if (hit.collider.transform.parent.name.Equals("PauseMenu")) { return; }
-            Destroy(hit.collider.gameObject);
-            cubeCount++;
+
         }
 
         if (cubeCount > 5)

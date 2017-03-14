@@ -8934,7 +8934,7 @@ MonoBehaviour:
   cam: {fileID: 1653866269}
   laycastLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967035
+    m_Bits: 4294966011
   spellSettings:
   - firstElement: 1
     secondElement: 0

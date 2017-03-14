@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4774196956820630}
   - component: {fileID: 114313510356460222}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: SlowMod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 23373188877024550}
   - component: {fileID: 54673902227215224}
   - component: {fileID: 114019076085261708}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,6 +163,8 @@ MonoBehaviour:
   dotWaterGain: 0
   dotEarthGain: 0
   dotWindGain: 0
+  firstElementType: 2
+  secondElementType: 3
   dotTickRateSeconds: 0.5
   speedMultiplier: 0.5
   elementType: 0

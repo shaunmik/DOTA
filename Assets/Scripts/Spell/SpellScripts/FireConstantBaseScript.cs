@@ -90,6 +90,11 @@ namespace DigitalRuby.PyroParticles
         [Tooltip("Wind element gained on every enemy hit.")]
         public int dotWindGain = 0;
 
+        [Tooltip("Element type of the spell. Used for resistance setting.")]
+        public Elements.elemEnum firstElementType;
+        [Tooltip("Element type of the spell. Used for resistance setting.")]
+        public Elements.elemEnum secondElementType;
+
 
 
         [Tooltip("how often should the damage apply in Seconds.")]
@@ -156,16 +161,14 @@ namespace DigitalRuby.PyroParticles
                 {
                     // damage the monster
                     Monster monster = c.gameObject.GetComponent<Monster>();
-                    //monster.takeDamage(dotDamage);
-                    
-                    // increament the score
-                    //gameManager.addScore(dotScore);
-
-                    // increament the level of all elements
-                    fireLevelController.IncrementElement(dotFireGain);
-                    waterLevelController.IncrementElement(dotWaterGain);
-                    earthLevelController.IncrementElement(dotEarthGain);
-                    windLevelController.IncrementElement(dotWindGain);
+                    if (dotDamage != 0) {
+                        monster.takeDamage(dotDamage, firstElementType, secondElementType);
+                        // increament the level of all elements
+                        fireLevelController.IncrementElement(dotFireGain);
+                        waterLevelController.IncrementElement(dotWaterGain);
+                        earthLevelController.IncrementElement(dotEarthGain);
+                        windLevelController.IncrementElement(dotWindGain);
+                    }
                 }
 
                 nextTickTimer = Time.time + dotTickRateSeconds;

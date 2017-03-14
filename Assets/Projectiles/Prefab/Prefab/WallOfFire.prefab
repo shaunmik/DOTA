@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4254480838400112}
   - component: {fileID: 108471253940097432}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WallOfFireLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4619243859489670}
   - component: {fileID: 198547049591914426}
   - component: {fileID: 199530294538793962}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WallOfFireSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4094270220385970}
   - component: {fileID: 82332188384883010}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WallOfFireSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4280276238341150}
   - component: {fileID: 114485465456762614}
   - component: {fileID: 114965793262251114}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WallOfFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 65615591586157358}
   - component: {fileID: 114701903965209756}
   - component: {fileID: 54989772445469688}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WallOfFireFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4683917499233424}
   - component: {fileID: 198905955663409890}
   - component: {fileID: 199395930693687016}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WallOfFireSecondaryFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 4291421935108890}
   - component: {fileID: 198929009136159754}
   - component: {fileID: 199469455093729692}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WallOfFireSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,6 +457,8 @@ MonoBehaviour:
   dotWaterGain: 0
   dotEarthGain: 0
   dotWindGain: 0
+  firstElementType: 1
+  secondElementType: 2
   dotTickRateSeconds: 0.2
 --- !u!198 &198547049591914426
 ParticleSystem:

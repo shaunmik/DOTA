@@ -52,9 +52,7 @@ namespace DigitalRuby.PyroParticles
         public FireProjectileCollisionDelegate CollisionDelegate;
 
         private bool collided;
-
-        private GameManager gameManager;
-        //private PlayerScoreController playerScore;
+        
         private FireLevelController fireLevelController;
     	private WaterLevelController waterLevelController;
     	private EarthLevelController earthLevelController;
@@ -74,8 +72,7 @@ namespace DigitalRuby.PyroParticles
             base.Start();
 
             StartCoroutine(SendCollisionAfterDelay());
-
-            gameManager = FindObjectOfType<GameManager>();
+            
             //playerScore = FindObjectOfType<PlayerScoreController>();
             fireLevelController = FindObjectOfType<FireLevelController>();
             waterLevelController = FindObjectOfType<WaterLevelController>();

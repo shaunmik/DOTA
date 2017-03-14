@@ -20,7 +20,7 @@ public class RaycastManager : MonoBehaviour {
 
         if (Physics.Raycast (rayOrigin,cam.transform.forward, out hit, 300f))
         {
-            if (hit.collider != null)
+            if (hit.collider.transform.parent == null && hit.collider.transform.name.StartsWith("TrainingCube"))
             {
                 Destroy(hit.collider.gameObject);
                 cubeCount++;

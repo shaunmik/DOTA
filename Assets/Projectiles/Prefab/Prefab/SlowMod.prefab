@@ -163,6 +163,8 @@ MonoBehaviour:
   dotWaterGain: 0
   dotEarthGain: 0
   dotWindGain: 0
+  firstElementType: 0
+  secondElementType: 0
   dotTickRateSeconds: 0.5
   speedMultiplier: 0.5
   elementType: 0

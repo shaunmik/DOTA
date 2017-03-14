@@ -7467,7 +7467,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2145638872
+  randomSeed: -1223656488
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11088,7 +11088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed91c6b45d9c5d48bd685635d458747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseLookEnabled: 0
+  mouseLookEnabled: 1
   pitchYawEnabled: 1
   enableYaw: 1
   autoRecenterPitch: 0
@@ -12399,7 +12399,7 @@ MonoBehaviour:
   cam: {fileID: 1653866269}
   laycastLayerMask:
     serializedVersion: 2
-    m_Bits: 4294966011
+    m_Bits: 4294965499
   spellSettings:
   - firstElement: 1
     secondElement: 0

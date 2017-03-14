@@ -10,10 +10,12 @@ public class MainMenuHover : MonoBehaviour
     private QuitGame quit;
     private MenuGame menu;
     private PauseGameController pgc;
+    private GameManager gameManager;
 
     void Start()
     {
         pgc = FindObjectOfType<PauseGameController>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -45,6 +47,7 @@ public class MainMenuHover : MonoBehaviour
                     {
                         pgc.inactivatePauseMenu();
                         Time.timeScale = 1;
+                        gameManager.resetGame();
                         SceneManager.LoadScene("GameStart");
                     }
                 }

@@ -3833,7 +3833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed91c6b45d9c5d48bd685635d458747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseLookEnabled: 1
+  mouseLookEnabled: 0
   pitchYawEnabled: 1
   enableYaw: 1
   autoRecenterPitch: 0

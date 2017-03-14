@@ -127,7 +127,7 @@ abstract public class Monster : MonoBehaviour
         }
     }
 
-    public void applySpeedChange(float speedMultiplier, Elements.elemEnum elementType)
+    public void applySpeedChange(float speedMultiplier)
     {
         agent.speed *= speedMultiplier;
     }
@@ -183,7 +183,7 @@ abstract public class Monster : MonoBehaviour
     {
         resumeTime = Time.time + 0.5f;
         yield return new WaitForSeconds(0.5f);
-        if (Time.time >= resumeTime) {
+        if (Time.time >= resumeTime && agent != null) {
             agent.Resume();
             staggered = false;
         }

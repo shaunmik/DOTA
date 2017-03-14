@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 54563035340522020}
   - component: {fileID: 135909782057582512}
   m_Layer: 10
-  m_Name: FireWind
+  m_Name: FireWind(FireWind)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

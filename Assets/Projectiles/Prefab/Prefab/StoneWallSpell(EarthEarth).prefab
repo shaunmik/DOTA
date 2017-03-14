@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 4002917152243510}
   - component: {fileID: 114535954785351522}
   m_Layer: 10
-  m_Name: StoneWallSpell
+  m_Name: StoneWallSpell(EarthEarth)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -780,7 +780,6 @@ MonoBehaviour:
   IsProjectile: 0
   ManualParticleSystems: []
   dotDamage: 0
-  dotScore: 1
   dotFireGain: 0
   dotWaterGain: 0
   dotEarthGain: 0

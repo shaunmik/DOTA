@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 114485465456762614}
   - component: {fileID: 114965793262251114}
   m_Layer: 10
-  m_Name: WallOfFire
+  m_Name: WallOfFire(FireWater)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,7 +452,6 @@ MonoBehaviour:
   IsProjectile: 0
   ManualParticleSystems: []
   dotDamage: 20
-  dotScore: 1
   dotFireGain: 0
   dotWaterGain: 0
   dotEarthGain: 0

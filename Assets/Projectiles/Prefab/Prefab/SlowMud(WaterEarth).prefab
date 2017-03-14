@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4774196956820630}
   - component: {fileID: 114313510356460222}
   m_Layer: 10
-  m_Name: SlowMod
+  m_Name: SlowMud(WaterEarth)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

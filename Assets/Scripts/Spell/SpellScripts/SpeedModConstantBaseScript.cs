@@ -13,7 +13,6 @@ namespace DigitalRuby.PyroParticles
 
         [Tooltip("how should speed of enemies change in the area.")]
         public float speedMultiplier = 0.5f;
-        public Elements.elemEnum elementType;
 
         private List<Monster> affectedMonsters = new List<Monster>();
 
@@ -25,7 +24,7 @@ namespace DigitalRuby.PyroParticles
             if (c.tag.Equals("Monster"))
             {
                 Monster monster = c.gameObject.GetComponent<Monster>();
-                monster.applySpeedChange(speedMultiplier, elementType);
+                monster.applySpeedChange(speedMultiplier);
                 affectedMonsters.Add(monster);
             }
         }
@@ -38,7 +37,7 @@ namespace DigitalRuby.PyroParticles
             if (c.tag.Equals("Monster"))
             {
                 Monster monster = c.gameObject.GetComponent<Monster>();
-                monster.applySpeedChange(1 / speedMultiplier, elementType);
+                monster.applySpeedChange(1 / speedMultiplier);
                 affectedMonsters.Remove(monster);
             }
         }
@@ -48,7 +47,7 @@ namespace DigitalRuby.PyroParticles
             Debug.Log("OnDestroy");
             foreach (Monster monster in affectedMonsters)
             {
-                monster.applySpeedChange(1 / speedMultiplier, elementType);
+                monster.applySpeedChange(1 / speedMultiplier);
             }
         }
 

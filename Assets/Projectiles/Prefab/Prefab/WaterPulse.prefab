@@ -409,7 +409,7 @@ MonoBehaviour:
   ProjectileExplosionRadius: 3
   ProjectileExplosionForce: 0
   ProjectileColliderDelay: 0
-  ProjectileColliderSpeed: 120
+  ProjectileColliderSpeed: 50
   ProjectileDirection: {x: 0, y: 0, z: 1}
   ProjectileCollisionLayers:
     serializedVersion: 2
@@ -464,7 +464,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1277519329882178}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -3005,7 +3005,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1748909928382278}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0

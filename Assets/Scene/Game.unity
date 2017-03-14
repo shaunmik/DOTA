@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
   windResistance: 0
@@ -1802,7 +1801,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
   windResistance: 0
@@ -4404,7 +4402,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
   windResistance: 0
@@ -6280,7 +6277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  agent: {fileID: 0}
   fireResistance: 50
   waterResistance: -50
   windResistance: 0
@@ -6741,7 +6737,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
   windResistance: 0
@@ -7156,7 +7151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
   windResistance: 0
@@ -7420,7 +7414,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1544919469}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -10730,7 +10724,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
   windResistance: 0
@@ -11808,11 +11801,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
-  windResistance: 0
-  earthResistance: 0
+  windResistance: -50
+  earthResistance: 50
   MonsterStartHealth: 5000
   MonsterAttackDamage: 100
   translation: {x: 0, y: 0, z: 0}
@@ -12155,7 +12147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
   windResistance: 0
@@ -12821,7 +12812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1884113802}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
   windResistance: 0
@@ -13274,7 +13264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  agent: {fileID: 0}
   fireResistance: 0
   waterResistance: 0
   windResistance: 0

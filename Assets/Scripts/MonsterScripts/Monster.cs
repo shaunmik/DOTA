@@ -7,7 +7,7 @@ using UnityEngine.AI;
 abstract public class Monster : MonoBehaviour
 {
     public GameObject target;
-    public NavMeshAgent agent;
+    protected NavMeshAgent agent;
     protected Animator anim;
     protected PlayerHealthController playerHealthController;
 
@@ -27,11 +27,14 @@ abstract public class Monster : MonoBehaviour
     public Image HealthBar;
 
     private bool dead = false;
+    protected bool staggered = false;  // Whether this monster is currently staggered; 
+                                       // Used to prevent new destination to be assigned to agent
     private float originalSpeed;
     private GameManager gameManager;
     private float resumeTime;
-
-    protected bool paused = false;
+    private int staggerThreshold = 100;  // Damage above or equal to this number 
+                                         // will stagger the monster
+    
     
 
     // Use this for initialization
@@ -165,12 +168,14 @@ abstract public class Monster : MonoBehaviour
 
         checkDead();
 
-        // Animate the damage taking
+        // Animate the damage taking and stagger according to damage threshold
         if (!dead && anim != null) {
-            agent.Stop();
-            paused = true;
             anim.SetTrigger("TakeDamage");
-            StartCoroutine(resumeMovementPostAnimation());
+            if (damage >= staggerThreshold) {
+                agent.Stop();
+                staggered = true;
+                StartCoroutine(resumeMovementPostAnimation());
+            }
         }
     }
 
@@ -180,7 +185,7 @@ abstract public class Monster : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (Time.time >= resumeTime) {
             agent.Resume();
-            paused = false;
+            staggered = false;
         }
     }
 

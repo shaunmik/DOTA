@@ -17,6 +17,7 @@ using UnityEngine;
 
 public static class ActionControlListener
 {
+    
     // Main joystick
     public static float MainHorizontal()
     {

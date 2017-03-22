@@ -27,25 +27,72 @@ public class CastingControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         spellController = FindObjectOfType<SpellController>();
         nextSpellCooldownLeft = Time.time;
         nextSpellCooldownRight = Time.time;
+        
+    }
+
+    // 1
+
+    private SteamVR_TrackedObject trackedObj;
+    // 2
+    private SteamVR_Controller.Device Controller
+    {
+        get { Debug.Log("creTWS"); return SteamVR_Controller.Input((int)trackedObj.index); }
+
     }
 
     private void Awake()
     {
         spellEnumToSpellDetails = Spells.createSpellsEnumToSpellDetailsMap(spellSettings);
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        Debug.Log("tes1t2");
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Controller.GetAxis() != Vector2.zero)
+        {
+            Debug.Log(gameObject.name + Controller.GetAxis());
+        }
+
+        // 2
+        if (Controller.GetHairTriggerDown())
+        {
+            Debug.Log(gameObject.name + " Trigger press");
+            //CastSpell(Hands.handEnum.right);
+        }
+
+        // 3
+        if (Controller.GetHairTriggerUp())
+        {
+            Debug.Log(gameObject.name + " Trigger Release");
+        }
+
+        // 4
+        if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        {
+            Debug.Log(gameObject.name + " Grip Press");
+        }
+
+        // 5
+        if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+        {
+            Debug.Log(gameObject.name + " Grip Release");
+        }
+
         if (ActionControlListener.isRightTriggerFullyPressed() && Time.time > nextSpellCooldownRight)
         {
+            Debug.Log("testleft");
             CastSpell(Hands.handEnum.right);
         }
         if (ActionControlListener.isLeftTriggerFullyPressed() && Time.time > nextSpellCooldownLeft)
         {
+            Debug.Log("testright");
             CastSpell(Hands.handEnum.left);
         }
     }
@@ -96,7 +143,7 @@ public class CastingControl : MonoBehaviour
             if (spellDetail.spellObject.GetComponent<FireBaseScript>().IsProjectile)
             {
                 // set the start point near the hand
-                rotation = cam.transform.rotation.eulerAngles;
+                rotation = trackedObj.transform.rotation.eulerAngles;
             }
         }
         else
@@ -106,11 +153,11 @@ public class CastingControl : MonoBehaviour
             RaycastHit hit;
 
             pos = bulletPoint.transform.position;
-            rotation = cam.transform.rotation.eulerAngles;
+            rotation = trackedObj.transform.rotation.eulerAngles;
             rotation.x = 0; // this sets the spell up virtically
             pos.y = 0.0f;
 
-            Physics.Raycast(bulletPoint.transform.position, cam.transform.forward, out hit, 9000000f, laycastLayerMask);
+            Physics.Raycast(bulletPoint.transform.position, trackedObj.transform.forward, out hit, 9000000f, laycastLayerMask);
             if (hit.collider == null)
             {
                 shouldCreateBullet = false;

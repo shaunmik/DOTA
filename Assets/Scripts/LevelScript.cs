@@ -7,8 +7,8 @@ public class LevelScript : MonoBehaviour {
     public GameObject[] monsters;
 
     private float spawnTime = 1f;
-    private float maxTime = 10f;
-    private float minTime = 5f;
+    private float maxTime = 4f;
+    private float minTime = 2f;
     private float time = 0;
     
     private float difficultyIncreaseTime=60f;

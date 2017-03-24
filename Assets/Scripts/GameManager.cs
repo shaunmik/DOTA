@@ -7,16 +7,19 @@ public class GameManager : MonoBehaviour {
     public static int score = 0;
 
     private PlayerScoreController playerScore;
+    private ElementsPair elemsSelected = new ElementsPair();  // Current one or two elements selected
+
 
     // Use this for initialization
     void Start () {
         playerScore = FindObjectOfType<PlayerScoreController>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+    public ElementsPair getElemsSelected()
+    {
+        return elemsSelected;
+    }
 
     public void addScore(int scoreToAdd)
     {

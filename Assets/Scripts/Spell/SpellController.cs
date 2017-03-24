@@ -7,8 +7,9 @@ using UnityEngine.UI;
 
 public class SpellController : MonoBehaviour
 {
-    public bool pause = false;	// Game paused or not
-
+    public bool pause = false;  // Game paused or not
+    public bool isLeftHand = false;
+   
     // game object that needs to be activated on element selection
     public GameObject fireSelector;
     public GameObject waterSelector;
@@ -32,8 +33,10 @@ public class SpellController : MonoBehaviour
     private Dictionary<Elements.elemEnum, GameObject> elementToSelectorGameObjectDict;
     private Dictionary<Elements.elemEnum, Sprite> elementToHandSpriteDict;
 
+
     private ElementsPair leftHandElementsPair = new ElementsPair(); // Spell held on left hand
     private ElementsPair rightHandElementsPair = new ElementsPair();// Spell held on right hand
+
     private ElementsPair elemsSelected = new ElementsPair();  // Current one or two elements selected
 
 
@@ -41,6 +44,8 @@ public class SpellController : MonoBehaviour
     private WaterLevelController waterLevelController;
     private EarthLevelController earthLevelController;
     private WindLevelController windLevelController;
+
+    private GameManager gameManager;
 
     private bool isControlDisabled;
 
@@ -60,9 +65,23 @@ public class SpellController : MonoBehaviour
         get { return rightHandElementsPair; }
     }
 
+    private SteamVR_TrackedObject trackedObj;
+    // 2
+    private SteamVR_Controller.Device Controller
+    {
+        get { return SteamVR_Controller.Input((int)trackedObj.index); }
 
+    }
+
+    private void Awake()
+    {
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        isLeftHand = gameObject.name.Contains("left");
+    }
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        elemsSelected = gameManager.getElemsSelected();
         // TODO: 
         // pause = GetComponent <Something> ();
 
@@ -91,12 +110,53 @@ public class SpellController : MonoBehaviour
     }
 
     /* Update is called once per frame
-	*/
+    */
     void Update()
     {
         if (isControlDisabled)
         {
             return;
+        }
+        if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+        {
+            if (Controller.GetAxis() != Vector2.zero)
+            {
+
+                //Debug.Log(gameObject.name + Controller.GetAxis());
+                Vector2 touchpad = Controller.GetAxis();
+                if (touchpad.y > 0.7f)
+                {
+                    QueueElement(Elements.elemEnum.fire);
+                }
+
+                else if (touchpad.y < -0.7f)
+                {
+                    QueueElement(Elements.elemEnum.water);
+                }
+
+                if (touchpad.x > 0.7f)
+                {
+                    QueueElement(Elements.elemEnum.wind);
+
+                }
+                else if (touchpad.x < -0.7f)
+                {
+                    QueueElement(Elements.elemEnum.earth);
+                }
+
+            }
+            else
+            {
+                //Debug.Log("i think this is the fking problem");
+                //clearCurrentSelectedElements();
+            }
+        }
+        if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        {
+            if (isLeftHand)
+                ConfirmSpell(Hands.handEnum.left);
+            else
+                ConfirmSpell(Hands.handEnum.right);
         }
         if (ActionControlListener.isLeftConfirmPressed())
         {
@@ -134,24 +194,28 @@ public class SpellController : MonoBehaviour
 
 
     /**
-	  * Add element to the element queue.
-	  * Max 2 elements; adding element when the queue
-	  * has 2 already results in removal of the least
-	  * recently added element.
-	  * 
-	  * Example call:
-	  * Call this with QueueElement(Elements.fire)
-	  * Where Elements is the Element.elemEnum
-	  **/
+      * Add element to the element queue.
+      * Max 2 elements; adding element when the queue
+      * has 2 already results in removal of the least
+      * recently added element.
+      * 
+      * Example call:
+      * Call this with QueueElement(Elements.fire)
+      * Where Elements is the Element.elemEnum
+      **/
     void QueueElement(Elements.elemEnum elem)
     {
+        Debug.Log(elemsSelected.getNumAssignedElements());
         // Remove all elements if there are two already
         if (elemsSelected.getNumAssignedElements() == 2)
         {
+
             clearCurrentSelectedElements();
         }
         elemsSelected.pushIfPossibleElseClearAndPush(elem);
         HighlightElementSelection(elem, true);
+
+
     }
 
     /**
@@ -165,6 +229,7 @@ public class SpellController : MonoBehaviour
         GameObject highlightGameObject = elementToSelectorGameObjectDict[elem];
         if (highlightGameObject != null)
         {
+            //Debug.Log(highlightGameObject.ToString() + " is set active");
             highlightGameObject.SetActive(isSelect);
         }
     }
@@ -263,26 +328,26 @@ public class SpellController : MonoBehaviour
         {
             hasEnoughResource = false;
         }
-        
+
 
         return hasEnoughResource;
     }
 
     /**
-	  * Get spell on given hand.
-	  */
+      * Get spell on given hand.
+      */
     public string GetSpell(bool isLeftHand)
     {
         return "not impl";
     }
 
     /**
-	  * Change the spell held in given hand to the spell 
-	  * according to element(s) in queue 
-	  * 
-	  * Example call:
-	  * ConfirmSpell(Hands.left)
-	**/
+      * Change the spell held in given hand to the spell 
+      * according to element(s) in queue 
+      * 
+      * Example call:
+      * ConfirmSpell(Hands.left)
+    **/
     void ConfirmSpell(Hands.handEnum hand)
     {
         if (elemsSelected.isNonePair())
@@ -363,6 +428,8 @@ public class SpellController : MonoBehaviour
 
     private void clearCurrentSelectedElements()
     {
+        Debug.Log("cleared" + elemsSelected.First.ToString() + " " + elemsSelected.Second.ToString());
+
         HighlightElementSelection(elemsSelected.First, false);
         HighlightElementSelection(elemsSelected.Second, false);
         elemsSelected.clear();

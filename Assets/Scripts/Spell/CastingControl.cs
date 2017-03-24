@@ -18,6 +18,7 @@ public class CastingControl : MonoBehaviour
     private List<Spells.InspectableSpellDictionaryEntry> spellSettings;
 
     private SpellController spellController;
+ 
 
     private Dictionary<Spells.spellEnum, Spells.SpellDetails> spellEnumToSpellDetails;
     private float nextSpellCooldownLeft;
@@ -28,7 +29,7 @@ public class CastingControl : MonoBehaviour
     void Start()
     {
         
-        spellController = FindObjectOfType<SpellController>();
+        spellController = GetComponent< SpellController >();
         nextSpellCooldownLeft = Time.time;
         nextSpellCooldownRight = Time.time;
         
@@ -40,15 +41,17 @@ public class CastingControl : MonoBehaviour
     // 2
     private SteamVR_Controller.Device Controller
     {
-        get { Debug.Log("creTWS"); return SteamVR_Controller.Input((int)trackedObj.index); }
+        get
+        {
+            return SteamVR_Controller.Input((int)trackedObj.index);
+        }
 
     }
 
-    private void Awake()
+    private void Awake() 
     {
         spellEnumToSpellDetails = Spells.createSpellsEnumToSpellDetailsMap(spellSettings);
         trackedObj = GetComponent<SteamVR_TrackedObject>();
-        Debug.Log("tes1t2");
     }
 
     // Update is called once per frame
@@ -57,7 +60,7 @@ public class CastingControl : MonoBehaviour
 
         if (Controller.GetAxis() != Vector2.zero)
         {
-            Debug.Log(gameObject.name + Controller.GetAxis());
+            //Debug.Log(gameObject.name + Controller.GetAxis());
         }
 
         // 2
@@ -87,12 +90,12 @@ public class CastingControl : MonoBehaviour
 
         if (ActionControlListener.isRightTriggerFullyPressed() && Time.time > nextSpellCooldownRight)
         {
-            Debug.Log("testleft");
+            Debug.Log("testright");
             CastSpell(Hands.handEnum.right);
         }
         if (ActionControlListener.isLeftTriggerFullyPressed() && Time.time > nextSpellCooldownLeft)
         {
-            Debug.Log("testright");
+            Debug.Log("testleft");
             CastSpell(Hands.handEnum.left);
         }
     }
@@ -103,12 +106,15 @@ public class CastingControl : MonoBehaviour
         GameObject bulletPoint;
         if (hand == Hands.handEnum.left)
         {
+            Debug.Log("Left hand cast");
+            Debug.Log(spellController.LeftHandElementsPair.First.ToString() + " " + spellController.LeftHandElementsPair.Second.ToString());
             elementPair = spellController.LeftHandElementsPair;
             bulletPoint = LeftBulletPoint;
             nextSpellCooldownLeft = Time.time + 0.5f;
         }
         else if (hand == Hands.handEnum.right)
         {
+            Debug.Log("Right hand cast");
             elementPair = spellController.RightHandElementsPair;
             bulletPoint = RightBulletPoint;
             nextSpellCooldownRight = Time.time + 0.5f;

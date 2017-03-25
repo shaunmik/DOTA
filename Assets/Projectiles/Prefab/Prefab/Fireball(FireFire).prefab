@@ -476,8 +476,8 @@ MonoBehaviour:
   - {fileID: 198596337486800696}
   - {fileID: 198708471193023632}
   bulletDamage: 300
-  firstElementType: 0
-  secondElementType: 0
+  firstElementType: 1
+  secondElementType: 1
 --- !u!135 &135860713529981570
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -411,8 +411,8 @@ MonoBehaviour:
   dotWaterGain: 0
   dotEarthGain: 0
   dotWindGain: 0
-  firstElementType: 0
-  secondElementType: 0
+  firstElementType: 2
+  secondElementType: 1
   dotTickRateSeconds: 0.5
   speedMultiplier: 1
 --- !u!135 &135651078128213792

@@ -157,14 +157,14 @@ MonoBehaviour:
   ForceRadius: 0
   IsProjectile: 0
   ManualParticleSystems: []
-  dotDamage: 0
+  dotDamage: 10
   dotFireGain: 0
   dotWaterGain: 0
   dotEarthGain: 0
   dotWindGain: 0
-  firstElementType: 0
-  secondElementType: 0
-  dotTickRateSeconds: 0.5
+  firstElementType: 2
+  secondElementType: 3
+  dotTickRateSeconds: 1
   speedMultiplier: 0.5
 --- !u!135 &135068544728215324
 SphereCollider:

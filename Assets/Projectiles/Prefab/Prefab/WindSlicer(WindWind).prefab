@@ -433,8 +433,8 @@ MonoBehaviour:
   ProjectileDestroyParticleSystemsOnCollision:
   - {fileID: 198085163354142962}
   bulletDamage: 300
-  firstElementType: 0
-  secondElementType: 0
+  firstElementType: 4
+  secondElementType: 4
 --- !u!114 &114925319185582710
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -445,7 +445,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1348402218
+  randomSeed: -1547929256
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3592,6 +3592,134 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 240915623}
+--- !u!43 &253884941
+Mesh:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 8
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
+  m_Skin: []
+  m_VertexData:
+    m_CurrentChannels: 13
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshOptimized: 0
 --- !u!1 &254937712
 GameObject:
   m_ObjectHideFlags: 0
@@ -4669,7 +4797,7 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 363374319}
-  m_Mesh: {fileID: 964886347}
+  m_Mesh: {fileID: 253884941}
 --- !u!23 &363374323
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4684,7 +4812,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 387550172}
+  - {fileID: 1816857647}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5070,35 +5198,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 381782044}
---- !u!21 &387550172
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-    - first:
-        name: _MainTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - first:
-        name: PixelSnap
-      second: 0
-    m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &388241880
 GameObject:
   m_ObjectHideFlags: 0
@@ -5743,7 +5842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseMode: 0
-  LeftBulletPoint: {fileID: 0}
+  LeftBulletPoint: {fileID: 1866044118}
   RightBulletPoint: {fileID: 1576228225}
   cam: {fileID: 998336832}
   laycastLayerMask:
@@ -5753,28 +5852,28 @@ MonoBehaviour:
   - firstElement: 1
     secondElement: 0
     spellDetails:
-      firstElementCost: 5
+      firstElementCost: 8
       secondElementCost: 0
       spellObject: {fileID: 1437006242602934, guid: 369eee557c4d41c479225bf744fa6a5f,
         type: 2}
   - firstElement: 2
     secondElement: 0
     spellDetails:
-      firstElementCost: 5
+      firstElementCost: 8
       secondElementCost: 0
       spellObject: {fileID: 1599310093402444, guid: 992516b34c4d1444aa95af5e9ad557db,
         type: 2}
   - firstElement: 3
     secondElement: 0
     spellDetails:
-      firstElementCost: 5
+      firstElementCost: 8
       secondElementCost: 0
       spellObject: {fileID: 1262273229598256, guid: 5c830205fefcce445893cc4c0905c949,
         type: 2}
   - firstElement: 4
     secondElement: 0
     spellDetails:
-      firstElementCost: 5
+      firstElementCost: 8
       secondElementCost: 0
       spellObject: {fileID: 1215648155877260, guid: a38bfc1925712ec4f9d4d9106ead2f6e,
         type: 2}
@@ -5788,15 +5887,15 @@ MonoBehaviour:
   - firstElement: 1
     secondElement: 3
     spellDetails:
-      firstElementCost: 50
-      secondElementCost: 50
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1251627228565434, guid: d3f5d277690565147aeb66cf4d8aa30e,
         type: 2}
   - firstElement: 2
     secondElement: 3
     spellDetails:
-      firstElementCost: 50
-      secondElementCost: 50
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1761009667793884, guid: 0003afd7cd690f04d9f089a0d503e34d,
         type: 2}
   - firstElement: 4
@@ -5823,29 +5922,29 @@ MonoBehaviour:
   - firstElement: 3
     secondElement: 4
     spellDetails:
-      firstElementCost: 50
-      secondElementCost: 50
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1501113832315326, guid: 20e9b53ed9598bb4f8501fc476396ced,
         type: 2}
   - firstElement: 2
     secondElement: 4
     spellDetails:
-      firstElementCost: 50
-      secondElementCost: 50
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1682049296898110, guid: bade2c52ee4b0a341ae128cb5710f522,
         type: 2}
   - firstElement: 1
     secondElement: 4
     spellDetails:
-      firstElementCost: 100
-      secondElementCost: 100
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1519587383364116, guid: 608f92466c7759148ba2d3f9a7d46fe1,
         type: 2}
   - firstElement: 1
     secondElement: 2
     spellDetails:
-      firstElementCost: 40
-      secondElementCost: 40
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1597792108280998, guid: 51e7f5a43ebe5d14c9e09ace01c7cec1,
         type: 2}
 --- !u!114 &483981949
@@ -6634,6 +6733,18 @@ Prefab:
     - target: {fileID: 400000, guid: ca03084cfa4bdb348bb24f827a335077, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ca03084cfa4bdb348bb24f827a335077, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ca03084cfa4bdb348bb24f827a335077, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ca03084cfa4bdb348bb24f827a335077, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca03084cfa4bdb348bb24f827a335077, type: 2}
@@ -7838,30 +7949,30 @@ MonoBehaviour:
   - {fileID: 1924712689}
   - {fileID: 1924712689}
   - {fileID: 1924712689}
-  level1MaxTime: 6
-  level1MinTime: 4
+  level1MaxTime: 5
+  level1MinTime: 3
   level1MonsterCount: 15
   level1Indicator: {fileID: 692509446}
   monstersLevel2:
   - {fileID: 1335170990}
   - {fileID: 1924712689}
-  level2MaxTime: 6
-  level2MinTime: 3
+  level2MaxTime: 4
+  level2MinTime: 2
   level2MonsterCount: 20
   level2Indicator: {fileID: 178620819}
   monstersLevel3:
   - {fileID: 1335170990}
   - {fileID: 1924712689}
-  level3MaxTime: 5
-  level3MinTime: 3
+  level3MaxTime: 3
+  level3MinTime: 1
   level3MonsterCount: 25
   level3Indicator: {fileID: 1537212305}
   monsterLevelBoss: {fileID: 2117208115}
   monstersLevelBoss:
   - {fileID: 1335170990}
   - {fileID: 1924712689}
-  levelBossMaxTime: 4
-  levelBossMinTime: 2
+  levelBossMaxTime: 2
+  levelBossMinTime: 1
   levelBossMonsterCount: 30
   levelBossIndicator: {fileID: 27642205}
 --- !u!4 &821073625
@@ -8291,134 +8402,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 937451972}
---- !u!43 &964886347
-Mesh:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  serializedVersion: 8
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
-  m_Skin: []
-  m_VertexData:
-    m_CurrentChannels: 13
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshOptimized: 0
 --- !u!1 &978005551
 GameObject:
   m_ObjectHideFlags: 0
@@ -11931,7 +11914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseMode: 0
-  LeftBulletPoint: {fileID: 1927387658}
+  LeftBulletPoint: {fileID: 1565436351}
   RightBulletPoint: {fileID: 0}
   cam: {fileID: 998336832}
   laycastLayerMask:
@@ -11941,28 +11924,28 @@ MonoBehaviour:
   - firstElement: 1
     secondElement: 0
     spellDetails:
-      firstElementCost: 5
+      firstElementCost: 8
       secondElementCost: 0
       spellObject: {fileID: 1437006242602934, guid: 369eee557c4d41c479225bf744fa6a5f,
         type: 2}
   - firstElement: 2
     secondElement: 0
     spellDetails:
-      firstElementCost: 5
+      firstElementCost: 8
       secondElementCost: 0
       spellObject: {fileID: 1599310093402444, guid: 992516b34c4d1444aa95af5e9ad557db,
         type: 2}
   - firstElement: 3
     secondElement: 0
     spellDetails:
-      firstElementCost: 5
+      firstElementCost: 8
       secondElementCost: 0
       spellObject: {fileID: 1262273229598256, guid: 5c830205fefcce445893cc4c0905c949,
         type: 2}
   - firstElement: 4
     secondElement: 0
     spellDetails:
-      firstElementCost: 5
+      firstElementCost: 8
       secondElementCost: 0
       spellObject: {fileID: 1215648155877260, guid: a38bfc1925712ec4f9d4d9106ead2f6e,
         type: 2}
@@ -11976,15 +11959,15 @@ MonoBehaviour:
   - firstElement: 1
     secondElement: 3
     spellDetails:
-      firstElementCost: 50
-      secondElementCost: 50
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1251627228565434, guid: d3f5d277690565147aeb66cf4d8aa30e,
         type: 2}
   - firstElement: 2
     secondElement: 3
     spellDetails:
-      firstElementCost: 50
-      secondElementCost: 50
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1761009667793884, guid: 0003afd7cd690f04d9f089a0d503e34d,
         type: 2}
   - firstElement: 4
@@ -12011,29 +11994,29 @@ MonoBehaviour:
   - firstElement: 3
     secondElement: 4
     spellDetails:
-      firstElementCost: 50
-      secondElementCost: 50
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1501113832315326, guid: 20e9b53ed9598bb4f8501fc476396ced,
         type: 2}
   - firstElement: 2
     secondElement: 4
     spellDetails:
-      firstElementCost: 50
-      secondElementCost: 50
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1682049296898110, guid: bade2c52ee4b0a341ae128cb5710f522,
         type: 2}
   - firstElement: 1
     secondElement: 4
     spellDetails:
-      firstElementCost: 100
-      secondElementCost: 100
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1519587383364116, guid: 608f92466c7759148ba2d3f9a7d46fe1,
         type: 2}
   - firstElement: 1
     secondElement: 2
     spellDetails:
-      firstElementCost: 40
-      secondElementCost: 40
+      firstElementCost: 12
+      secondElementCost: 12
       spellObject: {fileID: 1597792108280998, guid: 51e7f5a43ebe5d14c9e09ace01c7cec1,
         type: 2}
 --- !u!114 &1499080610
@@ -12429,6 +12412,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1551418114}
+--- !u!1 &1565436351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1565436352}
+  m_Layer: 0
+  m_Name: LeftBulletPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1565436352
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1565436351}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1927387661}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1572978417
 GameObject:
   m_ObjectHideFlags: 0
@@ -14066,6 +14077,35 @@ MonoBehaviour:
   MonsterAttackDamage: 10
   translation: {x: 0, y: 0, z: 0}
   HealthBar: {fileID: 0}
+--- !u!21 &1816857647
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: PixelSnap
+      second: 0
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1823864011
 GameObject:
   m_ObjectHideFlags: 0
@@ -14416,6 +14456,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8796c30149de704bb9c5d4e869fd94d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1866044118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1866044119}
+  m_Layer: 0
+  m_Name: RightBulletPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1866044119
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866044118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1576228228}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1872655519
 GameObject:
   m_ObjectHideFlags: 0
@@ -14838,10 +14906,6 @@ NavMeshAgent:
   m_BaseOffset: 0.007
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!1 &1927387658 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: d8796c30149de704bb9c5d4e869fd94d, type: 2}
-  m_PrefabInternal: {fileID: 1856004535}
 --- !u!4 &1927387661 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d8796c30149de704bb9c5d4e869fd94d, type: 2}

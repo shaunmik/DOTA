@@ -157,7 +157,7 @@ MonoBehaviour:
   ForceRadius: 0
   IsProjectile: 0
   ManualParticleSystems: []
-  dotDamage: 10
+  dotDamage: 0
   dotFireGain: 0
   dotWaterGain: 0
   dotEarthGain: 0

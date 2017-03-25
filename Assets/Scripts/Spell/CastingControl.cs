@@ -43,6 +43,7 @@ public class CastingControl : MonoBehaviour
     {
         get
         {
+            //Debug.Log((int)trackedObj.index);
             return SteamVR_Controller.Input((int)trackedObj.index);
         }
 

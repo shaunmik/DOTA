@@ -126,22 +126,22 @@ public class SpellController : MonoBehaviour
                 Vector2 touchpad = Controller.GetAxis();
                 if (touchpad.y > 0.7f)
                 {
-                    QueueElement(Elements.elemEnum.fire);
+                    QueueElement(Elements.elemEnum.earth);
                 }
 
                 else if (touchpad.y < -0.7f)
                 {
-                    QueueElement(Elements.elemEnum.water);
+                    
+                    QueueElement(Elements.elemEnum.wind);
                 }
 
                 if (touchpad.x > 0.7f)
                 {
-                    QueueElement(Elements.elemEnum.wind);
-
+                    QueueElement(Elements.elemEnum.fire);
                 }
                 else if (touchpad.x < -0.7f)
                 {
-                    QueueElement(Elements.elemEnum.earth);
+                    QueueElement(Elements.elemEnum.water); 
                 }
 
             }

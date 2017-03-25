@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour {
-    public Camera cam;
+    public GameObject controllerLeft;
+    public GameObject controllerRight;
 
     [Header("Cube")]
     public GameObject cube;
@@ -13,6 +14,9 @@ public class TutorialManager : MonoBehaviour {
 
     [Header("Dialogs")]
     public GameObject[] dialogs;
+
+    [Header("GameObjects")]
+    public GameObject crossHair;
 
     int dialogIndex = 0;
 
@@ -33,12 +37,16 @@ public class TutorialManager : MonoBehaviour {
 
     Dictionary<GameObject, bool[]> dialogDict = new Dictionary<GameObject, bool[]>();
 
-    SpellController spellController;
+    SpellController spellControllerLeft;
+    SpellController spellControllerRight;
 
     // Use this for initialization
     void Start () {
-        spellController = cam.GetComponent<SpellController>();
-        spellController.setIsControlDisabled(true);
+        spellControllerLeft = controllerLeft.GetComponent<SpellController>();
+        spellControllerRight = controllerRight.GetComponent<SpellController>();
+
+        spellControllerLeft.setIsControlDisabled(true);
+        spellControllerRight.setIsControlDisabled(true);
 
         for (int i = 0; i < dialogs.Length; i++)
         {
@@ -74,7 +82,9 @@ public class TutorialManager : MonoBehaviour {
 
             if (!training_MakeSpell_Completed && dialogs[dialogIndex - 1].gameObject.name == "dialogQueue_MakeSpells")
             {
-                spellController.setIsControlDisabled(false);
+                spellControllerLeft.setIsControlDisabled(false);
+                spellControllerRight.setIsControlDisabled(false);
+
                 training_MakeSpell_Started = true;
                 if (checkHandSpellSingleHand())
                 {
@@ -113,6 +123,11 @@ public class TutorialManager : MonoBehaviour {
             return;
         }
 
+        if (training_Cube_Completed)
+        {
+            crossHair.SetActive(false);
+        }
+
         if (dialogDict[dialogs[dialogIndex - 1]][1] 
             && (!training_Cube_Started || (training_Cube_Started && training_Cube_Completed))
             && (!training_MakeSpell_Started || (training_MakeSpell_Started && training_MakeSpell_Completed))
@@ -134,12 +149,12 @@ public class TutorialManager : MonoBehaviour {
 
     bool checkHandSpellSingleHand()
     {
-        return (!spellController.LeftHandElementsPair.isNonePair() || !spellController.RightHandElementsPair.isNonePair());
+        return (!spellControllerLeft.LeftHandElementsPair.isNonePair() || !spellControllerRight.RightHandElementsPair.isNonePair());
     }
 
     bool checkHandSpellBothHand()
     {
-        return (!spellController.LeftHandElementsPair.isNonePair() && !spellController.RightHandElementsPair.isNonePair());
+        return (!spellControllerLeft.LeftHandElementsPair.isNonePair() && !spellControllerRight.RightHandElementsPair.isNonePair());
     }
 
     void SpawnCubes()

@@ -17,9 +17,34 @@ public class PauseGameController : MonoBehaviour
         gui = GameObject.Find("GUI");
     }
 
+    private SteamVR_TrackedObject LeftTrackedObj;
+    private SteamVR_TrackedObject RightTrackedObj;
+    // 2
+    private SteamVR_Controller.Device LeftController
+    {
+        get
+        {
+            return SteamVR_Controller.Input((int)LeftTrackedObj.index);
+        }
+    }
+    private SteamVR_Controller.Device RightController
+    {
+        get
+        {
+            return SteamVR_Controller.Input((int)RightTrackedObj.index);
+        }
+    }
+
+    private void Awake()
+    {
+        LeftTrackedObj = FindObjectsOfType<SteamVR_TrackedObject>()[0];
+        RightTrackedObj = FindObjectsOfType<SteamVR_TrackedObject>()[1];
+    }
+
     void Update()
     {
-        if (ActionControlListener.isStartButtonPressed())
+
+        if (ActionControlListener.isStartButtonPressed() || LeftController.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) || RightController.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
         {
             if (Time.timeScale == 1)
             {

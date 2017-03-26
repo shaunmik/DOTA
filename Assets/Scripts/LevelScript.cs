@@ -54,8 +54,8 @@ public class LevelScript : MonoBehaviour {
     void GetSpawnPoint(out Vector3 spawnPos, GameObject monster) {
         // Randomizes position of monster
         // TODO: replace this function with actual spawn points or range as param
-        int spawnPositionX = Random.Range(-70, 70);
-        spawnPos = new Vector3(spawnPositionX, 5f, 379f);
+        int spawnPositionX = Random.Range(-10, 10);
+        spawnPos = new Vector3(spawnPositionX, 10f, 300f);
         // REMOVED: spawnPos.y = Terrain.activeTerrain.SampleHeight(spawnPos);
 
         NavMeshHit navHit;

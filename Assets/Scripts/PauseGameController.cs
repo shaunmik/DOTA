@@ -10,6 +10,7 @@ public class PauseGameController : MonoBehaviour
     public GameObject VRCameraUI;
 
     private RaycastManager raycastManager;
+    private bool wasVRCameraUIActive;
 
     void Start()
     {
@@ -63,6 +64,7 @@ public class PauseGameController : MonoBehaviour
         Time.timeScale = 0;
         gui.SetActive(false);
         pausemenu.SetActive(true);
+        wasVRCameraUIActive = VRCameraUI.activeSelf;
         VRCameraUI.SetActive(true);
     }
 
@@ -71,7 +73,8 @@ public class PauseGameController : MonoBehaviour
         Time.timeScale = 1;
         gui.SetActive(true);
         pausemenu.SetActive(false);
-        VRCameraUI.SetActive(false);
+        Debug.Log(VRCameraUI);
+        VRCameraUI.SetActive(wasVRCameraUIActive);
     }
 
     public void inactivatePauseMenu()

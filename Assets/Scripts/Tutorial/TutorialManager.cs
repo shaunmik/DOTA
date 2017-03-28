@@ -123,10 +123,6 @@ public class TutorialManager : MonoBehaviour {
             return;
         }
 
-        if (training_Cube_Completed)
-        {
-            crossHair.SetActive(false);
-        }
 
         if (dialogDict[dialogs[dialogIndex - 1]][1] 
             && (!training_Cube_Started || (training_Cube_Started && training_Cube_Completed))
@@ -192,6 +188,11 @@ public class TutorialManager : MonoBehaviour {
     public void setTrainingCubeCompleted(bool b)
     {
         training_Cube_Completed = b;
+
+        if (training_Cube_Completed)
+        {
+            crossHair.SetActive(false);
+        }
     }
 }
 

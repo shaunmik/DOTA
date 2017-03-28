@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GhostBrown : Ghost {
+
     protected Vector3 dest;
 
 	protected override void monsterInit() {

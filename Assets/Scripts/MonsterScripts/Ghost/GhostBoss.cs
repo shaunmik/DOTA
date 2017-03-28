@@ -14,5 +14,4 @@ public class GhostBoss : GhostWhite
     {
        return (transform.position.z <= target.transform.position.z + 70f && agent.remainingDistance < 70f);
     }
-    // TODO: resistances
 }

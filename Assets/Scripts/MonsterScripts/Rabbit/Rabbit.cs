@@ -6,9 +6,9 @@ using UnityEngine.AI;
 
 public class Rabbit : Monster
 {
-    public float wanderRadius = 50;
-    protected float minDestChangeRate = 3;
-    protected float maxDestChangeRate = 6;
+    public float wanderRadius = 100;
+    protected float minDestChangeRate = 2.0f;
+    protected float maxDestChangeRate = 4.5f;
     protected float nextDestChange = 0;
     protected int mask;
 

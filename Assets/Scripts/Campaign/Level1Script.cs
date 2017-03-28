@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Level1Script : MonoBehaviour {
+    [Header("BGM")]
+    public AudioSource[] BGM;
+
     [Header("Level 1")]
     public GameObject[] monstersLevel1;
     public float level1MaxTime = 10f;
@@ -70,6 +73,7 @@ public class Level1Script : MonoBehaviour {
         amountOfEnemies = monsters.Length;
         MonsterToSpawnOffsetMap = Monsters.createMonsterToSpawnOffsetMap();
 
+        BGM[0].Play();
         level1Indicator.SetActive(true);
         Wait(secondsToWait);
     }
@@ -110,6 +114,10 @@ public class Level1Script : MonoBehaviour {
                 minTime = level2MinTime;
                 maxTime = level2MaxTime;
                 monsters = monstersLevel2;
+
+                stopOtherMusic(1);
+                BGM[1].Play();
+                
                 level2Indicator.SetActive(true);
                 Wait(secondsToWait);
             }
@@ -120,6 +128,10 @@ public class Level1Script : MonoBehaviour {
                 minTime = level3MinTime;
                 maxTime = level3MaxTime;
                 monsters = monstersLevel3;
+
+                stopOtherMusic(2);
+                BGM[2].Play();
+
                 level3Indicator.SetActive(true);
                 Wait(secondsToWait);
             }
@@ -130,9 +142,19 @@ public class Level1Script : MonoBehaviour {
                 isLevel3Completed = true;
                 maxMonsterCount = levelBossMonsterCount;
                 monsters = monstersLevelBoss;
+
+                stopOtherMusic(3);
+                BGM[3].Play();
+
                 levelBossIndicator.SetActive(true);
                 Wait(secondsToWait);
-                SpawnMonster(monsterLevelBoss);
+
+                Vector3 position;
+                GetSpawnPoint(out position, monsterLevelBoss);
+                position.x = 0;
+
+                GameObject newMonster = GameObject.Instantiate(monsterLevelBoss, position, Quaternion.identity);
+                newMonster.SetActive(true);
             }
             else if (!isLevelBossCompleted)
             {
@@ -151,6 +173,13 @@ public class Level1Script : MonoBehaviour {
     IEnumerator _wait(float time)
     {
         yield return new WaitForSeconds(time);
+    }
+
+    void stopOtherMusic (int index)
+    {
+        for (int i = 0; i < BGM.Length; i ++) {
+            if (i != index) BGM[i].Stop();
+        }
     }
 
     void GetSpawnPoint(out Vector3 spawnPos, GameObject monster) {

@@ -8,8 +8,8 @@ public class MonsterHealthController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        transform.LookAt(target.transform);
+    }
 	
 	// Update is called once per frame
 	void Update () {

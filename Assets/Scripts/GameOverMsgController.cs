@@ -11,6 +11,14 @@ public class GameOverMsgController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gameManager = FindObjectOfType<GameManager>();
+
+        Debug.Log(gameManager.getCampaign());
+        if (gameManager.getCampaign())
+        {
+            gameManager.setCampaign(false);
+            return;
+        }
+
         int playerscore = gameManager.getScore();
         gameManager.enterScore(playerscore);
         if (gameManager.checkIfHighscore(playerscore))

@@ -37,7 +37,6 @@ public class PlayerHealthController : MonoBehaviour
     //Damage control.
     public void TakeDamage(int damage)
     {
-        Debug.Log("123");
         if (IsDead)
         {
             return;

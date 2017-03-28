@@ -16,8 +16,11 @@ public class MenuHover : MonoBehaviour
     public GameObject MainMenuObj;
     public GameObject HighScoreObj;
 
+    private GameManager gameManager;
+
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         survival = FindObjectOfType<Survival>();
         campaign = FindObjectOfType<Campaign>();
         tutorial = FindObjectOfType<Tutorial>();
@@ -34,6 +37,7 @@ public class MenuHover : MonoBehaviour
         {
             if (seen.collider.transform.name.Equals("Survival"))
             {
+                gameManager.setCampaign(false);
                 exitgame.unload();
                 campaign.unload();
                 tutorial.unload();
@@ -72,6 +76,8 @@ public class MenuHover : MonoBehaviour
             }
             else if (seen.collider.transform.name.Equals("Campaign"))
             {
+                gameManager.setCampaign(true);
+
                 survival.unload();
                 exitgame.unload();
                 tutorial.unload();
@@ -84,6 +90,8 @@ public class MenuHover : MonoBehaviour
             }
             else if (seen.collider.transform.name.Equals("Tutorial"))
             {
+                gameManager.setCampaign(false);
+
                 survival.unload();
                 exitgame.unload();
                 campaign.unload();

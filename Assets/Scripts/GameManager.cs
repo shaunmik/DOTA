@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
 
     public static int score = 0;
 
+    public static bool isCampaign = false;
+
     private PlayerScoreController playerScore;
     private ElementsPair elemsSelected = new ElementsPair();  // Current one or two elements selected
 
@@ -96,5 +98,15 @@ public class GameManager : MonoBehaviour {
     public void resetGame()
     {
         score = 0;
+    }
+
+    public void setCampaign(bool b)
+    {
+        isCampaign = b;
+    }
+
+    public bool getCampaign()
+    {
+        return isCampaign;
     }
 }

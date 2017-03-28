@@ -12,8 +12,6 @@ public class GhostViolet : Ghost
 
     protected override bool playerDamageCriteria()
     {
-       return (transform.position.z <= target.transform.position.z + 15f && agent.remainingDistance < 0.5f);
+       return (transform.position.z <= target.transform.position.z + 15f && agent.remainingDistance < 1f);
     }
-
-    // TODO: resistances
 }

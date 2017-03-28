@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostGreen : Ghost {
-    protected override void monsterInit()
-    {
-        MonsterBehavior.FollowStandingTargetStart(agent, target.transform.position);
+public class GhostGreen : Ghost 
+{
+
+    protected override void monsterInit() {
+    	Vector3 dest = target.transform.position;
+        MonsterBehavior.FollowStandingTargetStart(agent, dest);
     }
-    protected override void monsterMovement()
-    {
-        agent.speed = agent.speed * 1.15f;
-    }
+
 }
